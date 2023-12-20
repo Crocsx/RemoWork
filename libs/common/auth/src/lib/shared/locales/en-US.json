@@ -1,0 +1,9 @@
+{
+  "place": {
+    "api": {
+      "error": {
+        "tokenInvalid": "Token is invalid"
+      }
+    }
+  }
+}

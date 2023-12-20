@@ -1,0 +1,13 @@
+{
+  "name": "common-auth",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/common/auth/src",
+  "projectType": "library",
+  "tags": ["type:common"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  }
+}

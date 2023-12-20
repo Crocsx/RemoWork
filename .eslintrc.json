@@ -1,0 +1,135 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx", "unused-imports"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "import/order": [
+          "error",
+          {
+            "pathGroups": [
+              {
+                "pattern": "{react,react/**/*,react-*,react-*/**/*}",
+                "group": "builtin",
+                "position": "before"
+              },
+              {
+                "pattern": "~workspace/lib/**",
+                "group": "internal",
+                "position": "after"
+              },
+              {
+                "pattern": "~workspace/app/**",
+                "group": "internal",
+                "position": "after"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": [
+              "react",
+              "react/**/*",
+              "react-*",
+              "react-*/**/*"
+            ],
+            "groups": [
+              ["builtin", "external", "internal"],
+              ["parent", "sibling", "index"]
+            ],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ],
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "allow": [],
+            "enforceBuildableLibDependency": true,
+            "allowCircularSelfDependency": true,
+            "depConstraints": [
+              {
+                "sourceTag": "type:no-dep",
+                "onlyDependOnLibsWithTags": [""]
+              },
+              {
+                "sourceTag": "type:util",
+                "onlyDependOnLibsWithTags": ["type:util"]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": ["type:util"]
+              },
+              {
+                "sourceTag": "type:external",
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": [
+                  "type:shared",
+                  "type:ui",
+                  "type:util",
+                  "type:external",
+                  "type:common"
+                ]
+              },
+              {
+                "sourceTag": "type:common",
+                "onlyDependOnLibsWithTags": [
+                  "type:ui",
+                  "type:util",
+                  "type:feature",
+                  "type:common",
+                  "type:external"
+                ]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": [
+                  "type:feature",
+                  "type:ui",
+                  "type:util",
+                  "type:common",
+                  "type:external",
+                  "type:routing"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
+    }
+  ]
+}

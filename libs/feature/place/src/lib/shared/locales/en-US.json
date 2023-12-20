@@ -1,0 +1,13 @@
+{
+  "place": {
+    "api": {
+      "error": {
+        "idRequired": "Place ID is required",
+        "nameRequired": "Place name is required",
+        "locationRequired": "Place location is required",
+        "invalidBounds": "Bounds are invalid",
+        "boundsNotProvided": "Bounds are required"
+      }
+    }
+  }
+}

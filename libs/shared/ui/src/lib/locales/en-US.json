@@ -1,0 +1,109 @@
+{
+  "shared": {
+    "api": {
+      "error": {
+        "internalError": "Internal Server Error",
+        "notFound": "Not Found",
+        "unauthorized": "Unauthorized",
+        "forbidden": "Forbidden",
+        "alreadyExist": "Already Exist"
+      }
+    },
+    "alert": {
+      "title": "{type, select,other {unknown}SUCCESS {Success}ERROR {Error}WARNING {Warning}INFO {Information}}"
+    },
+    "action": {
+      "add": "Add {entity}",
+      "confirm": "Confirm {entity}",
+      "archive": "Archive {entity}",
+      "merge": "Merge {entity}",
+      "upload": "Upload {entity}",
+      "reset": "Reset {entity}",
+      "cancel": "Cancel {entity}",
+      "error": "{entity} Error",
+      "clear": "Clear {entity} ",
+      "create": "Create {entity}",
+      "delete": "Delete {entity}",
+      "edit": "Edit {entity}",
+      "signin": "Login {entity}",
+      "search": "Search {entity}",
+      "signup": "Signup {entity}"
+    },
+    "button": {
+      "add": "Add",
+      "accept": "Accept",
+      "close": "Close",
+      "yes": "Yes",
+      "no": "No",
+      "submit": "Submit",
+      "return": "Return",
+      "back": "Back",
+      "signin": "Login",
+      "signout": "Logout",
+      "create": "Create",
+      "today": "Today",
+      "refuse": "Refuse"
+    },
+    "counter": {
+      "article": ""
+    },
+    "entity": {
+      "app": "{count, plural, one {} =0{Apps} =1{App} other{Apps}}",
+      "password": "{count, plural, one {} =0{Passwords} =1{Password} other{Passwords}}",
+      "place": "{count, plural, one {} =0{Places} =1{Place} other{Places}}",
+      "name": "{count, plural, one {} =0{Names} =1{Name} other{Names}}",
+      "username": "{count, plural, one {} =0{Usernames} =1{Username} other{Usernames}}",
+      "address": "{count, plural, one {} =0{Addresses} =1{Address} other{Addresses}}",
+      "email": "{count, plural, one {} =0{Emails} =1{Email} other{Emails}}",
+      "account": "{count, plural, one {} =0{Accounts} =1{Account} other{Accounts}}",
+      "authentication": "{count, plural, one {} =0{Authentications} =1{Authentication} other{Authentications}}",
+      "alert": "{count, plural, one {} =0{Alerts} =1{Alert} other{Alerts}}",
+      "success": "{count, plural, one {} =0{Successes} =1{Success} other{Successes}}",
+      "warning": "{count, plural, one {} =0{Warnings} =1{Warning} other{Warnings}}",
+      "error": "{count, plural, one {} =0{Errors} =1{Error} other{Errors}}"
+    },
+    "enum": {
+      "day": "{day, select, MONDAY {Monday} TUESDAY {Tuesday} WEDNESDAY {Wednesday} THURSDAY {Thursday} FRIDAY {Friday} SATURDAY {Saturday} SUNDAY {Sunday} other {Unknown}}",
+      "country": "{country, select, other {unknown}INT {International}AC {Ascension}AD {Andorra}AE {United Arab Emirates}AF {Afghanistan}AG {Antigua and Barbuda}AI {Anguilla}AL {Albania}AM {Armenia}AN {Netherlands Antilles}AO {Angola}AQ {Antarctica}AR {Argentina}AS {American Samoa}AT {Austria}AU {Australia}AW {Aruba}AX {Åland Islands}AZ {Azerbaijan}BA {Bosnia and Herzegovina}BB {Barbados}BD {Bangladesh}BE {Belgium}BF {Burkina Faso}BG {Bulgaria}BH {Bahrain}BI {Burundi}BJ {Benin}BL {Saint Barthélemy}BM {Bermuda}BN {Brunei Darussalam}BO {Bolivia}BQ {Bonaire, Sint Eustatius and Saba}BR {Brazil}BS {Bahamas}BT {Bhutan}BV {Bouvet Island}BW {Botswana}BY {Belarus}BZ {Belize}CA {Canada}CC {Cocos Islands}CD {Congo}CF {Central African Republic}CG {Congo}CH {Switzerland}CI {Côte d'Ivoire}CK {Cook Islands}CL {Chile}CM {Cameroon}CN {China}CO {Colombia}CR {Costa Rica}CU {Cuba}CV {Cabo Verde}CW {Curaçao}CX {Christmas Island}CY {Cyprus}CZ {Czechia}DE {Germany}DJ {Djibouti}DK {Denmark}DM {Dominica}DO {Dominican Republic}DZ {Algeria}EC {Ecuador}EE {Estonia}EG {Egypt}EH {Western Sahara}ER {Eritrea}ES {Spain}ET {Ethiopia}FI {Finland}FJ {Fiji}FK {Falkland Islands}FM {Micronesia}FO {Faroe Islands}FR {France}GA {Gabon}GB {United Kingdom}GD {Grenada}GE {Georgia}GF {French Guiana}GG {Guernsey}GH {Ghana}GI {Gibraltar}GL {Greenland}GM {Gambia}GN {Guinea}GP {Guadeloupe}GQ {Equatorial Guinea}GR {Greece}GS {South Georgia}GT {Guatemala}GU {Guam}GW {Guinea-Bissau}GY {Guyana}HK {Hong Kong}HM {Heard Island}HN {Honduras}HR {Croatia}HT {Haiti}HU {Hungary}ID {Indonesia}IE {Ireland}IL {Israel}IM {Isle of Man}IN {India}IO {British Indian Ocean Territory}IQ {Iraq}IR {Iran}IS {Iceland}IT {Italy}JE {Jersey}JM {Jamaica}JO {Jordan}JP {Japan}KE {Kenya}KG {Kyrgyzstan}KH {Cambodia}KI {Kiribati}KM {Comoros}KN {Saint Kitts and Nevis}KP {North Korea}KR {South Korea}KW {Kuwait}KY {Cayman Islands}KZ {Kazakhstan}LA {Laos}LB {Lebanon}LC {Saint Lucia}LI {Liechtenstein}LK {Sri Lanka}LR {Liberia}LS {Lesotho}LT {Lithuania}LU {Luxembourg}LV {Latvia}LY {Libya}MA {Morocco}MC {Monaco}MD {Moldova}ME {Montenegro}MF {Saint Martin}MG {Madagascar}MH {Marshall Islands}MK {Republic of North Macedonia}ML {Mali}MM {Myanmar}MN {Mongolia}MO {Macao}MP {Northern Mariana Islands}MQ {Martinique}MR {Mauritania}MS {Montserrat}MT {Malta}MU {Mauritius}MV {Maldives}MW {Malawi}MX {Mexico}MY {Malaysia}MZ {Mozambique}NA {Namibia}NC {New Caledonia}NE {Niger}NF {Norfolk Island}NG {Nigeria}NI {Nicaragua}NL {Netherlands}NO {Norway}NP {Nepal}NR {Nauru}NU {Niue}NZ {New Zealand}OM {Oman}PA {Panama}PE {Peru}PF {French Polynesia}PG {Papua New Guinea}PH {Philippines}PK {Pakistan}PL {Poland}PM {Saint Pierre and Miquelon}PN {Pitcairn}PR {Puerto Rico}PS {Palestine}PT {Portugal}PW {Palau}PY {Paraguay}QA {Qatar}RE {Réunion}RO {Romania}RS {Serbia}RU {Russian Federation}RW {Rwanda}SA {Saudi Arabia}SB {Solomon Islands}SC {Seychelles}SD {Sudan}SE {Sweden}SG {Singapore}SH {Saint Helena}SI {Slovenia}SJ {Svalbard and Jan Mayen}SK {Slovakia}SL {Sierra Leone}SM {San Marino}SN {Senegal}SO {Somalia}SR {Suriname}SS {South Sudan}ST {Sao Tome}SV {El Salvador}SX {Sint Maarten}SY {Syrian Arab Republic}SZ {Eswatini}TC {Turks and Caicos Islands}TD {Chad}TF {French Southern Territories}TG {Togo}TH {Thailand}TJ {Tajikistan}TK {Tokelau}TL {Timor-Leste}TM {Turkmenistan}TN {Tunisia}TO {Tonga}TR {Turkey}TT {Trinidad and Tobago}TV {Tuvalu}TW {Taiwan}TZ {Tanzania}UA {Ukraine}UG {Uganda}UM {United States Minor Outlying Islands }UK {United Kingdom}US {United States of America}UY {Uruguay}UZ {Uzbekistan}VA {Holy See}VC {Saint Vincent and the Grenadines}VE {Venezuela}VG {Virgin Islands}VI {Virgin Islands}VN {Viet Nam}VU {Vanuatu}WF {Wallis and Futuna}WS {Samoa}XK {Kosovo}YE {Yemen}YT {Mayotte}ZA {South Africa}ZM {Zambia}ZW {Zimbabwe}Crossborder {Crossborder}}",
+      "language": "{language, select,other {Unknown}EN_US {English}ENGLISH {English}JA_JP {日本語}JAPANESE {日本語}ZH_CN {簡体中文}Chinese {簡体中文}ZH_TW {繁體中文}Taiwanese {繁體中文}KO_KR {한국어}Korean {한국어}}",
+      "speedLevel": "{speed, select,other {Unknown}SLOW {Slow}AVERAGE {Average}FAST {Fast}}",
+      "noiseLevel": "{noise, select,other {Unknown}QUIET {Quiet}MODERATE {Moderate}NOISY {Noisy}}",
+      "quantityLevel": "{quantity, select,other {Unknown}NONE {NONE}SOME {Some}MANY {Many}}",
+      "certaintyLevel": "{certainty, select,other {Unknown}YES {Yes}MAYBE {Maybe}NO {No}}",
+      "comfortLevel": "{comfort, select,other {Unknown}UNCOMFORTABLE {Uncomfortable}ADEQUATE {Adequate}COMFORTABLE {Comfortable}}",
+      "placeType": "{type, select, accounting{Accounting} airport{Airport} amusement_park{Amusement Park} aquarium{Aquarium} art_gallery{Art Gallery} atm{ATM} bakery{Bakery} bank{Bank} bar{Bar} beauty_salon{Beauty Salon} bicycle_store{Bicycle Store} book_store{Book Store} bowling_alley{Bowling Alley} bus_station{Bus Station} cafe{Cafe} campground{Campground} car_dealer{Car Dealer} car_rental{Car Rental} car_repair{Car Repair} car_wash{Car Wash} casino{Casino} cemetery{Cemetery} church{Church} city_hall{City Hall} clothing_store{Clothing Store} convenience_store{Convenience Store} courthouse{Courthouse} dentist{Dentist} department_store{Department Store} doctor{Doctor} drugstore{Drugstore} electrician{Electrician} electronics_store{Electronics Store} embassy{Embassy} fire_station{Fire Station} florist{Florist} funeral_home{Funeral Home} furniture_store{Furniture Store} gas_station{Gas Station} gym{Gym} hair_care{Hair Care} hardware_store{Hardware Store} hindu_temple{Hindu Temple} home_goods_store{Home Goods Store} hospital{Hospital} insurance_agency{Insurance Agency} jewelry_store{Jewelry Store} laundry{Laundry} lawyer{Lawyer} library{Library} light_rail_station{Light Rail Station} liquor_store{Liquor Store} local_government_office{Local Government Office} locksmith{Locksmith} lodging{Lodging} meal_delivery{Meal Delivery} meal_takeaway{Meal Takeaway} mosque{Mosque} movie_rental{Movie Rental} movie_theater{Movie Theater} moving_company{Moving Company} museum{Museum} night_club{Night Club} painter{Painter} park{Park} parking{Parking} pet_store{Pet Store} pharmacy{Pharmacy} physiotherapist{Physiotherapist} plumber{Plumber} police{Police} post_office{Post Office} primary_school{Primary School} real_estate_agency{Real Estate Agency} restaurant{Restaurant} roofing_contractor{Roofing Contractor} rv_park{RV Park} school{School} secondary_school{Secondary School} shoe_store{Shoe Store} shopping_mall{Shopping Mall} spa{Spa} stadium{Stadium} storage{Storage} store{Store} subway_station{Subway Station} supermarket{Supermarket} synagogue{Synagogue} taxi_stand{Taxi Stand} tourist_attraction{Tourist Attraction} train_station{Train Station} transit_station{Transit Station} travel_agency{Travel Agency} university{University} veterinary_care{Veterinary Care} zoo{Zoo}}",
+      "priceModel": "{price, select, other {Unknown} FREE {Free} PAID {Paid}}",
+      "open": "{open, select, other {Unknown} true {Open} false {Closed}}"
+    },
+    "form": {
+      "validation": {
+        "error": {
+          "accepted": "{field} must be accepted",
+          "required": "{field} is required",
+          "invalid": "{field} is invalid",
+          "invalidDate": "{field} is an invalid date",
+          "arrayLength": "{field} must contain at least {min} entry",
+          "min": "{field} must be greater than {min}",
+          "max": "{field} must be lower than {max}",
+          "charEqual": "{field} must contain exactly {value} characters",
+          "charLessThanEqual": "{field} must contain maximum {value} characters",
+          "charMoreThanEqual": "{field} must be at least {value} characters",
+          "charMin": "{field} must be at least {min} characters",
+          "charMax": "{field} must be at most {max} characters",
+          "match": "{field} do not match {match}",
+          "lessThanEqual": "{field} must be less than or equals to {number}",
+          "inUse": "{field} is already in use",
+          "url": "{field} is not a valid URL",
+          "notMatch": "{field1} and {field2} do not match",
+          "passwordRules": "{field} must be at least 8 characters and include a number, capital letter and special character (!@＃$％^&)",
+          "noWhitespace": "{field} should contain only letters, digits and '-' or '_'",
+          "noSpecialCharacter": "{field} should only contain letters and numbers",
+          "integer": "{field} must be an integer",
+          "numeric": "{field} must be numeric",
+          "before": "{field1} must be before {field2}",
+          "after": "{field1} must be after {field2}"
+        }
+      }
+    }
+  }
+}

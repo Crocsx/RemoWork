@@ -1,0 +1,1 @@
+export { initFirebaseClient } from './initFirebaseClient';

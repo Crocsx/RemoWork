@@ -1,0 +1,77 @@
+{
+  "core": {
+    "page": {
+      "signup": {
+        "title": "Let's get you in!",
+        "description": "Already have an account ? <link> Login instead </link>",
+        "tos": "I accept the <terms>Terms of Use</terms> & <privacy>Privacy Policy</privacy>"
+      },
+      "recovery": {
+        "title": "Forgot your password ?",
+        "description": "Enter your email to get a reset link",
+        "return": "Back to login"
+      },
+      "signin": {
+        "title": "Welcome back!",
+        "description": "Do not have an account yet? <link> Create an account </link>",
+        "rememberMe": "Remember Me",
+        "recovery": "Forgot Password ?"
+      },
+      "map": {
+        "module": {
+          "place": {
+            "editor": {
+              "title": "Add a new Place",
+              "description": "Search a place below, then provide as much info as you can to create a new place",
+              "field": {
+                "priceModel": "Price Model",
+                "wifiAvailability": "WiFi Available",
+                "WifiName": "WiFi Name",
+                "wifiPassword": "WiFi Password",
+                "wifiSpeed": "WiFi Speed",
+                "noiseLevel": "Noise Level",
+                "talkingAllowed": "Talking Allowed",
+                "plugsQuantity": "Plugs Quantity",
+                "comfortLevel": "Comfort Level",
+                "tags": "Tags"
+              },
+              "notification": {
+                "placeNotOperational": {
+                  "title": "The place unavailable",
+                  "description": "This place is marked as temporary or permanently closed."
+                },
+                "placeSaved": {
+                  "title": "Place Saved !",
+                  "description": "It will now be visible on the map"
+                },
+                "placeFailedToSaved": {
+                  "title": "Place couldn't be saved",
+                  "description": "Please try again error : {error}"
+                }
+              }
+            },
+            "viewer": {
+              "button": {
+                "openOnGoogleMap": "View on Map"
+              },
+              "noPlaceFound": "No places founds around you",
+              "filter": {
+                "wifiAvailability": "With Wifi",
+                "noiseLevel": "Quiet",
+                "talkingAllowed": "Meeting Allowed",
+                "plugsQuantity": "Has Plugs",
+                "comfortLevel": "Comfy Sits",
+                "priceModel": "Is Free"
+              }
+            }
+          }
+        }
+      },
+      "notfound": {
+        "title": "You have found a secret place.",
+        "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
+        "return": "Take me back to home page"
+      }
+    }
+  }
+}
