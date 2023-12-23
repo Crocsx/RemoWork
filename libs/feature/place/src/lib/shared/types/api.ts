@@ -10,6 +10,7 @@ export type ReadPlacesRequest = {
   east?: number;
   north?: number;
   west?: number;
+  zoom?: number;
   wifiAvailability?: CertaintyLevel;
   wifiSpeed?: SpeedLevel;
   noiseLevel?: NoiseLevel;

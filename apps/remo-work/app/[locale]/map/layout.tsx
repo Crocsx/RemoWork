@@ -30,7 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
         libraries: ['places'],
       }}
     >
-      <PlaceProvider>
+      <PlaceProvider maxZoom={15}>
         <AppShell
           header={{ height: 60 }}
           navbar={{

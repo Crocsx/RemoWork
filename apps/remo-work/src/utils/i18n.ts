@@ -1,5 +1,7 @@
 import { getRequestConfig } from 'next-intl/server';
 
+import { TimezoneUtils } from '~workspace/lib/shared/utils';
+
 export const messageLoader = async (locale: string) => {
   return {
     ...(await import(`../../locales/${locale}.json`)).default,
@@ -21,5 +23,5 @@ export const messageLoader = async (locale: string) => {
 
 export default getRequestConfig(async ({ locale }) => ({
   messages: await messageLoader(locale),
-  timeZone: 'Europe/Paris',
+  timeZone: TimezoneUtils.getRecommendedTimezone(),
 }));

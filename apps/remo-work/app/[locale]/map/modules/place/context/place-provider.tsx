@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 
+import { useAxiosCtx } from 'apps/remo-work/src/context';
 import { AxiosResponse } from 'axios';
 
 import { Place, ReadPlacesRequest } from '~workspace/lib/feature/place';
@@ -11,9 +12,11 @@ import {
 } from '~workspace/lib/shared/utils';
 
 import { PlaceContext } from './place-context';
-import { useAxiosCtx } from 'apps/remo-work/src/context';
 
-export const PlaceProvider = ({ children }: React.PropsWithChildren<{}>) => {
+export const PlaceProvider = ({
+  children,
+  maxZoom,
+}: React.PropsWithChildren<{ maxZoom: number }>) => {
   const [places, setPlaces] = useState<Place[]>([]);
   const [filters, setFilters] = useState<ReadPlacesRequest>({});
   const axios = useAxiosCtx();
@@ -39,10 +42,11 @@ export const PlaceProvider = ({ children }: React.PropsWithChildren<{}>) => {
   });
 
   useEffect(() => {
-    if (Object.keys(filters).length !== 0) {
+    const { zoom, ...rest } = filters;
+    if (Object.keys(rest).length !== 0 && maxZoom <= Number(zoom)) {
       loadPlaces(filters);
     }
-  }, [filters]);
+  }, [filters, loadPlaces, maxZoom]);
 
   return (
     <PlaceContext.Provider

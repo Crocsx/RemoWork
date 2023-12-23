@@ -1,7 +1,8 @@
 'use client';
 
 import { Burger, Container, Group, UnstyledButton } from '@mantine/core';
-import { Icon123 } from '@tabler/icons-react';
+
+import { Image } from '~workspace/lib/shared/ui';
 
 export const Header = ({
   withBurgerControl,
@@ -39,7 +40,7 @@ export const Header = ({
             </>
           )}
           <UnstyledButton component="a" href="/">
-            <Icon123 size={28} />
+            <Image src="/images/logo.png" alt="logo" width={180} height={32} />
           </UnstyledButton>
         </Group>
         {aside}

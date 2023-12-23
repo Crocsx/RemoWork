@@ -31,6 +31,7 @@ export const Places = () => {
     if (ne && sw)
       setFilters({
         ...filters,
+        zoom: map?.getZoom(),
         north: ne.lat(),
         south: sw.lat(),
         east: ne.lng(),

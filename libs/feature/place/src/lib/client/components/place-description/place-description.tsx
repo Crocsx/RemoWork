@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Flex, Group, Text, Anchor, Button } from '@mantine/core';
+import { Badge } from '@mantine/core';
 import { IconPin } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 
@@ -53,20 +54,18 @@ export const PlaceDescription = ({
       </Group>
       <Flex>
         {details && (
-          <Flex direction="column" style={{ flex: 1 }}>
+          <Flex direction="column" style={{ flex: 1 }} miw={0}>
             <Text fz="lg" truncate="end">
               {place.name}
+              {typeof details.openingHours?.isOpen() === 'boolean' && (
+                <Badge c={details.openingHours?.isOpen() ? 'green' : 'red'}>
+                  {t('shared.enum.open', {
+                    open: details.openingHours?.isOpen()?.toString(),
+                  })}
+                </Badge>
+              )}
             </Text>
-            <Text fz="sm">
-              <PlaceOpeningTime openingHours={details.openingHours} />
-            </Text>
-            {typeof details.openingHours?.isOpen() === 'boolean' && (
-              <Text c={details.openingHours?.isOpen() ? 'green' : 'red'}>
-                {t('shared.enum.open', {
-                  open: details.openingHours?.isOpen()?.toString(),
-                })}
-              </Text>
-            )}
+            <PlaceOpeningTime openingHours={details.openingHours} />
             <PlaceIcons place={place} />
             {details.url && (
               <Anchor fz="xs" href={details?.url} target="_blank">

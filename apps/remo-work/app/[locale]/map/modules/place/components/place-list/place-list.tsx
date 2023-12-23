@@ -24,22 +24,24 @@ export const PlaceList = () => {
   );
 
   return (
-    <Grid w="100%" gutter={0} pos="relative">
-      <Grid.Col span={{ base: 12, md: 6, xl: 4 }}>
-        <LoadingOverlay visible={loading} />
-        {places.length === 0 && (
+    <Grid w="100%" h="100%" pos="relative">
+      <LoadingOverlay visible={loading} />
+      {places.length === 0 && (
+        <Grid.Col span={12}>
           <Text>{t('core.page.map.module.place.viewer.noPlaceFound')}</Text>
-        )}
-        {places?.map((p) => (
-          <Card withBorder key={p.id}>
+        </Grid.Col>
+      )}
+      {places?.map((p) => (
+        <Grid.Col span={{ base: 12, md: 6, xl: 4 }} key={p.id}>
+          <Card withBorder h="100%">
             <PlaceDescription
               place={p}
               service={service}
               goToHandler={goToPlace}
             />
           </Card>
-        ))}
-      </Grid.Col>
+        </Grid.Col>
+      ))}
     </Grid>
   );
 };
