@@ -7,16 +7,12 @@ import { Image } from '~workspace/lib/shared/ui';
 export const Header = ({
   withBurgerControl,
   mobileOpened,
-  desktopOpened,
   toggleMobile,
-  toggleDesktop,
   aside,
 }: {
   withBurgerControl?: boolean;
   mobileOpened?: boolean;
-  desktopOpened?: boolean;
   toggleMobile?: () => void;
-  toggleDesktop?: () => void;
   aside?: React.ReactNode;
 }) => {
   return (
@@ -29,12 +25,6 @@ export const Header = ({
                 opened={mobileOpened}
                 onClick={toggleMobile}
                 hiddenFrom="sm"
-                size="sm"
-              />
-              <Burger
-                opened={desktopOpened}
-                onClick={toggleDesktop}
-                visibleFrom="sm"
                 size="sm"
               />
             </>

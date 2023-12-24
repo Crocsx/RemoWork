@@ -27,8 +27,8 @@ export const PlaceCard = ({
 }) => {
   return (
     <Card withBorder radius="md" p="md">
-      <CardSection h={180} pos="relative">
-        <Image src={image} alt={title} fill />
+      <CardSection h={rem(180)} pos="relative">
+        <Image src={image} alt={title} fill sizes="350px" />
       </CardSection>
 
       <CardSection p="md">

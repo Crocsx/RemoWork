@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-import { Anchor, Flex } from '@mantine/core';
+import { Anchor, Flex, rem } from '@mantine/core';
 import { Icon123 } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 
@@ -14,14 +14,14 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (authenticated) {
-      router.push('/map');
+      router.push('/search');
     }
   }, [authenticated, router]);
 
   return (
     <Flex direction="column" align="center">
       <Anchor href="/" mt="xl">
-        <Icon123 width={60} />
+        <Icon123 width={rem(60)} />
       </Anchor>
       {children}
     </Flex>

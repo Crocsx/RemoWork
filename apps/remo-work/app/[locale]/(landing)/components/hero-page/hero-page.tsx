@@ -40,7 +40,7 @@ export const Heropage = () => {
             className={classes['control']}
             variant="white"
             size="lg"
-            href="/map"
+            href="/search"
           >
             Get started
           </Button>
