@@ -1,4 +1,4 @@
-import { Flex } from '@mantine/core';
+import { Badge, Group, Text } from '@mantine/core';
 import {
   IconCoin,
   IconCoinOff,
@@ -10,38 +10,117 @@ import {
   IconWifi,
   IconWifiOff,
 } from '@tabler/icons-react';
+import { useTranslations } from 'next-intl';
 
 import {
   CertaintyLevel,
   Place,
   PricingModel,
+  certaintyLevelColor,
   comfortLevelColor,
   noiseLevelColor,
+  pricingModelColor,
   quantityLevelColor,
   speedLevelColor,
 } from '~workspace/lib/feature/place';
 
 export const PlaceIcons = ({ place }: { place: Place }) => {
+  const t = useTranslations();
+
   return (
-    <Flex>
-      {place.wifiAvailability === CertaintyLevel.YES ? (
-        <IconWifi color={speedLevelColor(place.wifiSpeed)} size={18} />
+    <Group gap={6}>
+      {place.wifiAvailability === CertaintyLevel.NO ? (
+        <Badge
+          leftSection={<IconWifiOff size={16} />}
+          size="xs"
+          color={certaintyLevelColor(place.wifiAvailability)}
+        >
+          <Text fz="xs">
+            {t('shared.enum.certaintyLevel', {
+              certainty: place.wifiAvailability,
+            })}
+          </Text>
+        </Badge>
       ) : (
-        <IconWifiOff size={18} />
+        <Badge
+          leftSection={<IconWifi size={16} />}
+          size="xs"
+          color={speedLevelColor(place.wifiSpeed)}
+        >
+          <Text fz="xs">
+            {t('shared.enum.speedLevel', {
+              speed: place.wifiSpeed,
+            })}
+          </Text>
+        </Badge>
       )}
-      {place.talkingAllowed === CertaintyLevel.YES ? (
-        <IconMicrophone size={18} />
-      ) : (
-        <IconMicrophoneOff size={18} />
-      )}
-      {place.priceModel === PricingModel.FREE ? (
-        <IconCoinOff size={18} />
-      ) : (
-        <IconCoin size={18} />
-      )}
-      <IconSofa color={comfortLevelColor(place.comfortLevel)} size={18} />
-      <IconEar color={noiseLevelColor(place.noiseLevel)} size={18} />
-      <IconPlug color={quantityLevelColor(place.plugsQuantity)} size={18} />
-    </Flex>
+      <Badge
+        size="xs"
+        color={certaintyLevelColor(place.talkingAllowed)}
+        leftSection={
+          place.talkingAllowed === CertaintyLevel.YES ? (
+            <IconMicrophone size={16} />
+          ) : (
+            <IconMicrophoneOff size={16} />
+          )
+        }
+      >
+        <Text fz="xs">
+          {t('shared.enum.certaintyLevel', {
+            certainty: place.talkingAllowed,
+          })}
+        </Text>
+      </Badge>
+      <Badge
+        leftSection={
+          place.priceModel === PricingModel.FREE ? (
+            <IconCoinOff size={16} />
+          ) : (
+            <IconCoin size={16} />
+          )
+        }
+        size="xs"
+        color={pricingModelColor(place.priceModel)}
+      >
+        <Text fz="xs">
+          {t('shared.enum.priceModel', {
+            price: place.priceModel,
+          })}
+        </Text>
+      </Badge>
+      <Badge
+        size="xs"
+        leftSection={<IconSofa size={16} />}
+        color={comfortLevelColor(place.comfortLevel)}
+      >
+        <Text fz="xs">
+          {t('shared.enum.comfortLevel', {
+            comfort: place.comfortLevel,
+          })}
+        </Text>
+      </Badge>
+      <Badge
+        leftSection={<IconEar size={16} />}
+        size="xs"
+        color={noiseLevelColor(place.noiseLevel)}
+      >
+        <Text fz="xs">
+          {t('shared.enum.noiseLevel', {
+            noise: place.noiseLevel,
+          })}
+        </Text>
+      </Badge>
+      <Badge
+        leftSection={<IconPlug size={16} />}
+        size="xs"
+        color={quantityLevelColor(place.plugsQuantity)}
+      >
+        <Text fz="xs">
+          {t('shared.enum.quantityLevel', {
+            quantity: place.plugsQuantity,
+          })}
+        </Text>
+      </Badge>
+    </Group>
   );
 };

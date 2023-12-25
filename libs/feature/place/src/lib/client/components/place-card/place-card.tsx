@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Flex, Group, Text, Anchor, Button, rem } from '@mantine/core';
+import { Flex, Group, Anchor, Text, Button, rem, Badge } from '@mantine/core';
 import { IconPin } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 
@@ -22,31 +22,28 @@ export const PlaceCard = ({
   onSelect?: () => void;
 }) => {
   const t = useTranslations();
-  const [details, setDetails] = useState<{
-    url?: string;
-    openingHours?: google.maps.places.PlaceOpeningHours;
-  }>();
+  const [details, setDetails] =
+    useState<google.maps.places.PlaceResult | null>();
   useEffect(() => {
     const cache = PlaceUtils.cache[place.id];
     if (cache) {
-      setDetails({
-        url: cache?.url,
-        openingHours: cache?.opening_hours,
-      });
+      setDetails(cache);
     } else {
       service?.getDetails(
         { placeId: place.id, fields: ['url', 'opening_hours'] },
         (detail) => {
           PlaceUtils.addPlace(place.id, detail);
-          setDetails({
-            url: detail?.url,
-            openingHours: detail?.opening_hours,
-          });
+          setDetails(detail);
         }
       );
     }
   }, [service, place.id]);
 
+  const hasOpenInfo =
+    typeof details?.opening_hours?.isOpen() === 'boolean' ||
+    typeof details?.opening_hours?.open_now === 'boolean';
+  const isOpen =
+    details?.opening_hours?.isOpen() || details?.opening_hours?.open_now;
   return (
     <Flex direction="column" style={{ flexGrow: 1 }}>
       <Group h={rem(180)} pos="relative">
@@ -54,34 +51,59 @@ export const PlaceCard = ({
       </Group>
       <Flex style={{ flexGrow: 1 }}>
         {details && (
-          <Flex direction="column" style={{ flex: 1 }} miw={0}>
-            <Anchor component="button" onClick={onSelect} ta="start">
-              <Text fz="lg" truncate="end">
-                {place.name}
-              </Text>
-            </Anchor>
-            <PlaceOpeningTime openingHours={details.openingHours} />
-            <PlaceIcons place={place} />
-            {details.url && (
+          <Flex direction="column">
+            <Group align="center">
               <Anchor
-                fz="xs"
-                href={details?.url}
-                target="_blank"
-                maw="fit-content"
+                component="button"
+                onClick={onSelect}
+                ta="start"
+                display="flex"
+                truncate="end"
+                style={{ flex: 1 }}
               >
-                {t('core.page.map.module.place.viewer.button.openOnGoogleMap')}
+                <Text truncate="end">{place.name}</Text>
               </Anchor>
-            )}
+              {hasOpenInfo && (
+                <Badge
+                  color={isOpen ? 'green' : 'red'}
+                  fz="xs"
+                  size="sm"
+                  variant="outline"
+                  miw="fit-content"
+                >
+                  {t('shared.enum.open', {
+                    open: isOpen?.toString(),
+                  })}
+                </Badge>
+              )}
+            </Group>
+            <Group>
+              <Flex direction="column" style={{ flex: 1 }} gap={'xs'}>
+                <PlaceOpeningTime openingHours={details.opening_hours} />
+                <PlaceIcons place={place} />
+              </Flex>
+              {goToHandler && (
+                <Group>
+                  <Button size="compact-md" onClick={() => goToHandler(place)}>
+                    <IconPin />
+                  </Button>
+                </Group>
+              )}
+            </Group>
           </Flex>
         )}
-        {goToHandler && (
-          <Group>
-            <Button size="compact-md" onClick={() => goToHandler(place)}>
-              <IconPin />
-            </Button>
-          </Group>
-        )}
       </Flex>
+      {details?.url && (
+        <Anchor
+          ml="auto"
+          fz="xs"
+          href={details?.url}
+          target="_blank"
+          maw="fit-content"
+        >
+          {t('core.page.map.module.place.viewer.button.openOnGoogleMap')}
+        </Anchor>
+      )}
     </Flex>
   );
 };

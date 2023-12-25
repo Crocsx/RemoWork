@@ -52,7 +52,8 @@
             },
             "viewer": {
               "button": {
-                "openOnGoogleMap": "View on Map"
+                "openOnGoogleMap": "View on Map",
+                "closedAllDay": "Closed All Day"
               },
               "noPlaceFound": "No places founds around you",
               "filter": {
