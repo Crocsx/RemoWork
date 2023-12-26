@@ -15,7 +15,7 @@ import { useMapCtx } from '../map';
 export const Places = () => {
   const [opened, { open, close }] = useDisclosure();
   const t = useTranslations();
-  const { map } = useMapCtx();
+  const { map, service } = useMapCtx();
   const { setFilters, filters, selectedPlaceId } = usePlaceCtx();
   const bounds = useMapBoundsChanged(map);
 
@@ -52,7 +52,7 @@ export const Places = () => {
       {!selectedPlaceId ? (
         <PlacesExplorer addPlaceHandler={open} />
       ) : (
-        <PlaceDetails placeId={selectedPlaceId} />
+        <PlaceDetails placeId={selectedPlaceId} service={service} />
       )}
     </>
   );

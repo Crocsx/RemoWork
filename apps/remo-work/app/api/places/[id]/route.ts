@@ -1,7 +1,7 @@
 import { readPlace } from '~workspace/lib/feature/place/server';
 
-import '../initFirebase';
+import '../../initFirebase';
 
-export const GET = async (req: Request) => {
-  return readPlace(req);
+export const GET = async (req: Request, params: { params: { id: string } }) => {
+  return readPlace(req, params);
 };

@@ -15,6 +15,7 @@
     "action": {
       "add": "Add {entity}",
       "confirm": "Confirm {entity}",
+      "report": "Report {entity}",
       "archive": "Archive {entity}",
       "merge": "Merge {entity}",
       "upload": "Upload {entity}",
@@ -28,6 +29,10 @@
       "signin": "Login {entity}",
       "search": "Search {entity}",
       "signup": "Signup {entity}"
+    },
+    "execution": {
+      "updated": "Updated {entity}",
+      "created": "Created {entity}"
     },
     "button": {
       "add": "Add",
@@ -52,6 +57,8 @@
       "password": "{count, plural, one {} =0{Passwords} =1{Password} other{Passwords}}",
       "place": "{count, plural, one {} =0{Places} =1{Place} other{Places}}",
       "name": "{count, plural, one {} =0{Names} =1{Name} other{Names}}",
+      "wifi": "{count, plural, one {} =0{Wifis} =1{Wifi} other{Wifis}}",
+      "speed": "{count, plural, one {} =0{Speeds} =1{Speed} other{Speeds}}",
       "username": "{count, plural, one {} =0{Usernames} =1{Username} other{Usernames}}",
       "address": "{count, plural, one {} =0{Addresses} =1{Address} other{Addresses}}",
       "email": "{count, plural, one {} =0{Emails} =1{Email} other{Emails}}",

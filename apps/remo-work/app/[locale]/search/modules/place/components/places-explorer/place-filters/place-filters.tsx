@@ -10,6 +10,7 @@ import {
   PricingModel,
   QuantityLevel,
   ReadPlacesRequest,
+  SpeedLevel,
 } from '~workspace/lib/feature/place';
 
 export const PlaceFilters = ({
@@ -40,10 +41,10 @@ export const PlaceFilters = ({
     <Flex gap="xs" wrap="wrap" py="md">
       <Chip
         size="xs"
-        checked={filters.wifiAvailability === CertaintyLevel.YES}
-        onClick={() => handleChipClick('wifiAvailability', CertaintyLevel.YES)}
+        checked={filters.wifiSpeed === SpeedLevel.FAST}
+        onClick={() => handleChipClick('wifiSpeed', SpeedLevel.FAST)}
       >
-        {t('core.page.map.module.place.viewer.filter.wifiAvailability')}
+        {t('core.page.map.module.place.viewer.filter.wifiSpeed')}
       </Chip>
       <Chip
         size="xs"

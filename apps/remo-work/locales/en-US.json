@@ -26,13 +26,14 @@
               "field": {
                 "priceModel": "Price Model",
                 "wifiAvailability": "WiFi Available",
-                "WifiName": "WiFi Name",
+                "wifiName": "WiFi Name",
                 "wifiPassword": "WiFi Password",
                 "wifiSpeed": "WiFi Speed",
                 "noiseLevel": "Noise Level",
                 "talkingAllowed": "Talking Allowed",
                 "plugsQuantity": "Plugs Quantity",
                 "comfortLevel": "Comfort Level",
+                "MeetingRoom": "Meeting Space",
                 "tags": "Tags"
               },
               "notification": {
@@ -55,12 +56,27 @@
                 "openOnGoogleMap": "View on Map",
                 "closedAllDay": "Closed All Day"
               },
+              "field": {
+                "priceModel": "Price Model",
+                "wifiAvailability": "WiFi Available",
+                "wifiName": "WiFi Name",
+                "wifiPassword": "WiFi Password",
+                "wifiSpeed": "WiFi Speed",
+                "noiseLevel": "Noise Level",
+                "talkingAllowed": "Talking Allowed",
+                "plugsQuantity": "Plugs Quantity",
+                "comfortLevel": "Comfort Level",
+                "MeetingRoom": "Meeting Space",
+                "openingTime": "Opening Time",
+                "address": "Address",
+                "tags": "Tags"
+              },
               "noPlaceFound": "No places founds around you",
               "filter": {
-                "wifiAvailability": "With Wifi",
-                "noiseLevel": "Quiet",
+                "wifiSpeed": "Fast Wifi",
+                "noiseLevel": "Very Quiet",
                 "talkingAllowed": "Meeting Allowed",
-                "plugsQuantity": "Has Plugs",
+                "plugsQuantity": "Has Many Plugs",
                 "comfortLevel": "Comfy Sits",
                 "priceModel": "Is Free"
               }

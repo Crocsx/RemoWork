@@ -1,3 +1,4 @@
+import { Image as MantineImage } from '@mantine/core';
 import NextImage from 'next/image';
 
 export const Image = ({
@@ -6,4 +7,13 @@ export const Image = ({
 }: Omit<React.ComponentProps<typeof NextImage>, 'src' | 'alt'> & {
   src?: string | null;
   alt: string;
-}) => (src ? <NextImage src={src} {...rest} /> : <div>nope</div>);
+}) =>
+  src ? (
+    <MantineImage component={NextImage} src={src} {...rest} />
+  ) : (
+    <MantineImage
+      component={NextImage}
+      src={`https://placehold.co/${rest.width}x${rest.height}`}
+      {...rest}
+    />
+  );

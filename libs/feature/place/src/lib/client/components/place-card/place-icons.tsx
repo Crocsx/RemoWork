@@ -58,7 +58,7 @@ export const PlaceIcons = ({ place }: { place: Place }) => {
         size="xs"
         color={certaintyLevelColor(place.talkingAllowed)}
         leftSection={
-          place.talkingAllowed === CertaintyLevel.YES ? (
+          place.talkingAllowed === CertaintyLevel.NO ? (
             <IconMicrophone size={16} />
           ) : (
             <IconMicrophoneOff size={16} />

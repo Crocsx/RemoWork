@@ -45,13 +45,13 @@ export const PlaceCard = ({
   const isOpen =
     details?.opening_hours?.isOpen() || details?.opening_hours?.open_now;
   return (
-    <Flex direction="column" style={{ flexGrow: 1 }}>
+    <Flex direction="column" style={{ flexGrow: 1 }} gap="sm">
       <Group h={rem(180)} pos="relative">
         <Image src={place.illustration} alt={place.name} fill sizes="350px" />
       </Group>
       <Flex style={{ flexGrow: 1 }}>
         {details && (
-          <Flex direction="column">
+          <Flex direction="column" maw="100%">
             <Group align="center">
               <Anchor
                 component="button"
@@ -82,28 +82,30 @@ export const PlaceCard = ({
                 <PlaceOpeningTime openingHours={details.opening_hours} />
                 <PlaceIcons place={place} />
               </Flex>
-              {goToHandler && (
-                <Group>
-                  <Button size="compact-md" onClick={() => goToHandler(place)}>
-                    <IconPin />
-                  </Button>
-                </Group>
-              )}
             </Group>
           </Flex>
         )}
       </Flex>
-      {details?.url && (
-        <Anchor
-          ml="auto"
-          fz="xs"
-          href={details?.url}
-          target="_blank"
-          maw="fit-content"
-        >
-          {t('core.page.map.module.place.viewer.button.openOnGoogleMap')}
-        </Anchor>
-      )}
+      <Flex justify="space-between">
+        {goToHandler && (
+          <Group>
+            <Button size="compact-md" onClick={() => goToHandler(place)}>
+              <IconPin />
+            </Button>
+          </Group>
+        )}
+        {details?.url && (
+          <Anchor
+            ml="auto"
+            fz="xs"
+            href={details?.url}
+            target="_blank"
+            maw="fit-content"
+          >
+            {t('core.page.map.module.place.viewer.button.openOnGoogleMap')}
+          </Anchor>
+        )}
+      </Flex>
     </Flex>
   );
 };
