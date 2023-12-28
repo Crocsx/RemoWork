@@ -2,10 +2,12 @@ import * as Sentry from '@sentry/nextjs';
 import { firestore } from 'firebase-admin';
 import { NextResponse } from 'next/server';
 
-export async function deletePlace(req: Request) {
+export async function deletePlace(
+  _: Request,
+  { params }: { params: { id: string } }
+) {
   try {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get('id');
+    const id = params.id;
     if (!id || typeof id !== 'string') {
       return NextResponse.json(
         { error: 'place.api.error.idRequired' },

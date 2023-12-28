@@ -2,17 +2,17 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { useAxiosCtx } from 'apps/remo-work/src/context';
 import { AxiosResponse } from 'axios';
+import { useQueryState, parseAsJson } from 'next-usequerystate';
 
 import { Place, ReadPlacesRequest } from '~workspace/lib/feature/place';
 import {
   createQueryString,
   useApiRequestLazy,
+  useAxiosCtx,
 } from '~workspace/lib/shared/utils';
 
 import { PlaceContext } from './place-context';
-import { useQueryState, parseAsJson, parseAsString } from 'next-usequerystate';
 
 export const PlaceProvider = ({
   children,

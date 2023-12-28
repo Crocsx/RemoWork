@@ -1,11 +1,12 @@
 import * as Sentry from '@sentry/nextjs';
 import { firestore } from 'firebase-admin';
+import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 import { NextResponse } from 'next/server';
 import geohash from 'ngeohash';
 
 import { Place } from '../../../shared';
 
-export async function createPlace(req: Request) {
+export async function createPlace(req: Request, user: DecodedIdToken) {
   try {
     const { longitude, latitude, ...place }: Place = await req.json();
 
@@ -44,8 +45,8 @@ export async function createPlace(req: Request) {
     const response = await documentRef.set({
       ...place,
       geohash: geohash.encode(latitude, longitude),
-      createAt: Date.now(),
-      updatedAt: Date.now(),
+      createdAt: Date.now(),
+      createdBy: user.uid,
     });
 
     return NextResponse.json(response, {

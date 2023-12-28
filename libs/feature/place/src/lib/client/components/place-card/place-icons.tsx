@@ -1,5 +1,7 @@
 import { Badge, Group, Text } from '@mantine/core';
 import {
+  IconChalkboard,
+  IconChalkboardOff,
   IconCoin,
   IconCoinOff,
   IconEar,
@@ -68,6 +70,23 @@ export const PlaceIcons = ({ place }: { place: Place }) => {
         <Text fz="xs">
           {t('shared.enum.certaintyLevel', {
             certainty: place.talkingAllowed,
+          })}
+        </Text>
+      </Badge>
+      <Badge
+        size="xs"
+        color={certaintyLevelColor(place.meetingSpace)}
+        leftSection={
+          place.meetingSpace === CertaintyLevel.NO ? (
+            <IconChalkboard size={16} />
+          ) : (
+            <IconChalkboardOff size={16} />
+          )
+        }
+      >
+        <Text fz="xs">
+          {t('shared.enum.certaintyLevel', {
+            certainty: place.meetingSpace,
           })}
         </Text>
       </Badge>

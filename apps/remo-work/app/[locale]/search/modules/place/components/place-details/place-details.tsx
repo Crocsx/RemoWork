@@ -1,46 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Carousel } from '@mantine/carousel';
 import {
+  Anchor,
   Button,
   Flex,
-  Text,
-  LoadingOverlay,
-  rem,
-  Anchor,
   Grid,
-  Rating,
   Group,
+  LoadingOverlay,
+  Rating,
   ScrollArea,
+  rem,
 } from '@mantine/core';
-import {
-  IconAlertTriangle,
-  IconAlertTriangleFilled,
-  IconArrowLeft,
-  IconBrandSpeedtest,
-  IconKey,
-  IconPencil,
-  IconRouter,
-  IconTrashFilled,
-  IconWifi,
-} from '@tabler/icons-react';
-import { useAxiosCtx } from 'apps/remo-work/src/context';
-import { PlaceIcons } from 'libs/feature/place/src/lib/client/components/place-card/place-icons';
-import { PlaceOpeningTime } from 'libs/feature/place/src/lib/client/components/place-card/place-opening-time';
+import { IconArrowLeft } from '@tabler/icons-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+import { AuthRestricted } from '~workspace/lib/common/auth';
 import {
   CertaintyLevel,
   Place,
+  PlaceOpeningTime,
   PlaceUtils,
-  certaintyLevelColor,
-  speedLevelColor,
 } from '~workspace/lib/feature/place';
-import { EMPTY_DEFAULT, useApiRequest } from '~workspace/lib/shared/utils';
-import { AuthRestricted } from '~workspace/lib/common/auth';
+import {
+  EMPTY_DEFAULT,
+  useApiRequest,
+  useAxiosCtx,
+} from '~workspace/lib/shared/utils';
+
 import { PlaceDetailField } from './place-details-field';
+import { PlaceEditModal } from './place-edit-modal';
+import { PlaceReportModal } from './place-report-modal';
 
 export const PlaceDetails = ({
   service,
@@ -54,44 +46,33 @@ export const PlaceDetails = ({
   const axios = useAxiosCtx();
   const [details, setDetails] =
     useState<google.maps.places.PlaceResult | null>();
-
-  useEffect(() => {
-    const cache = PlaceUtils.cache[placeId];
-    if (cache) {
-      setDetails(cache);
-    } else {
-      service?.getDetails(
-        {
-          placeId: placeId,
-          fields: ['opening_hours', 'place_id', 'geometry', 'photos'],
-        },
-        (detail) => {
-          PlaceUtils.addPlace(placeId, detail);
-          setDetails(detail);
-        }
-      );
-    }
-  }, [service, placeId]);
-
-  const { loading, response } = useApiRequest<Place>({
+  const { loading, response: { data: place } = {} } = useApiRequest<Place>({
     operation: () => axios.get(`/places/${placeId}`),
   });
 
-  const place = response?.data;
+  useEffect(() => {
+    const retrievePlace = async () => {
+      if (!service) return;
+      setDetails(
+        await PlaceUtils.retrieveFromCache(
+          placeId,
+          ['opening_hours', 'place_id', 'geometry', 'photos'],
+          service
+        )
+      );
+    };
+    retrievePlace();
+  }, [service, placeId]);
 
   return (
     <Flex direction="column" style={{ flex: 1 }} gap="sm">
       <Flex justify="space-between">
-        <Button variant="outline">
+        <Button variant="outline" onClick={back}>
           <IconArrowLeft />
           {t('shared.button.back')}
         </Button>
         <AuthRestricted>
-          <Button leftSection={<IconPencil />}>
-            {t('shared.action.edit', {
-              entity: t('shared.entity.place', { count: 1 }),
-            })}
-          </Button>
+          <PlaceEditModal place={place} details={details} />
         </AuthRestricted>
       </Flex>
       <ScrollArea scrollbars="y" style={{ flex: 1 }}>
@@ -187,9 +168,9 @@ export const PlaceDetails = ({
               })}
             />
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.MeetingRoom')}
+              title={t('core.page.map.module.place.viewer.field.meetingSpace')}
               value={t('shared.enum.certaintyLevel', {
-                certaintyLevel: place?.hasMeetingRoom,
+                certainty: place?.meetingSpace,
               })}
             />
             <PlaceDetailField
@@ -217,20 +198,7 @@ export const PlaceDetails = ({
       </ScrollArea>
       <AuthRestricted>
         <Flex justify="space-between">
-          <Button color="red" leftSection={<IconTrashFilled />}>
-            {t('shared.action.delete', {
-              entity: t('shared.entity.place', { count: 1 }),
-            })}
-          </Button>
-          <Button
-            variant="subtle"
-            color="red"
-            leftSection={<IconAlertTriangleFilled />}
-          >
-            {t('shared.action.report', {
-              entity: t('shared.entity.place', { count: 1 }),
-            })}
-          </Button>
+          <PlaceReportModal placeId={place?.id} />
         </Flex>
       </AuthRestricted>
     </Flex>

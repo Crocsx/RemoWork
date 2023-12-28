@@ -12,8 +12,8 @@ import {
 } from '~workspace/lib/feature/place';
 
 export interface FormType {
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
   longitude?: number;
   latitude?: number;
   illustration?: string;
@@ -26,6 +26,7 @@ export interface FormType {
   noiseLevel?: NoiseLevel;
   talkingAllowed?: CertaintyLevel;
   plugsQuantity?: QuantityLevel;
+  meetingSpace?: CertaintyLevel;
   comfortLevel?: ComfortLevel;
   tags?: string[];
 }

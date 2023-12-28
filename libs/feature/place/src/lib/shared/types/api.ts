@@ -16,7 +16,13 @@ export type ReadPlacesRequest = {
   wifiSpeed?: SpeedLevel;
   noiseLevel?: NoiseLevel;
   talkingAllowed?: CertaintyLevel;
+  meetingSpace?: CertaintyLevel;
   plugsQuantity?: QuantityLevel;
   comfortLevel?: ComfortLevel;
   priceModel?: PricingModel;
+};
+
+export type ReportPlaceRequest = {
+  placeId: string;
+  reason: string;
 };

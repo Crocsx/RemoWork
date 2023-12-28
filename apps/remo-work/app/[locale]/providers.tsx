@@ -5,13 +5,9 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import { AuthProvider } from '~workspace/lib/common/auth';
 import { FirebaseProvider } from '~workspace/lib/external/firebase';
-import { TimezoneUtils } from '~workspace/lib/shared/utils';
+import { AxiosProvider, TimezoneUtils } from '~workspace/lib/shared/utils';
 
-import {
-  messageLoader,
-  AxiosProvider,
-  themeBlue,
-} from '~workspace/app/remo-work/src';
+import { messageLoader, themeBlue } from '~workspace/app/remo-work/src';
 
 export default async function Providers({
   children,

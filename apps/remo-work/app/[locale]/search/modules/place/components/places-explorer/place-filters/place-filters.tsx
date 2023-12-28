@@ -62,6 +62,13 @@ export const PlaceFilters = ({
       </Chip>
       <Chip
         size="xs"
+        checked={filters.meetingSpace === CertaintyLevel.YES}
+        onClick={() => handleChipClick('meetingSpace', CertaintyLevel.YES)}
+      >
+        {t('core.page.map.module.place.viewer.filter.meetingSpace')}
+      </Chip>
+      <Chip
+        size="xs"
         checked={filters.plugsQuantity === QuantityLevel.MANY}
         onClick={() => handleChipClick('plugsQuantity', QuantityLevel.MANY)}
       >

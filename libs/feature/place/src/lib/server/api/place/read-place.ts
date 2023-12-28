@@ -1,6 +1,9 @@
 import * as Sentry from '@sentry/nextjs';
 import { firestore } from 'firebase-admin';
 import { NextResponse } from 'next/server';
+import geohash from 'ngeohash';
+
+import { FirestorePlace } from '../../../shared';
 
 export async function readPlace(
   _: Request,
@@ -25,9 +28,17 @@ export async function readPlace(
       );
     }
 
-    const placeData = docSnapshot.data();
+    const placeData = docSnapshot.data() as FirestorePlace;
+    const { latitude, longitude } = geohash.decode(placeData.geohash);
 
-    return NextResponse.json(placeData, { status: 200 });
+    return NextResponse.json(
+      {
+        latitude,
+        longitude,
+        ...placeData,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);

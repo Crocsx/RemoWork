@@ -8,15 +8,15 @@ import { Image } from '~workspace/lib/shared/ui';
 
 import DisplayOpeningHours from './opening-hours';
 
-export const PlacePreview = ({
-  place,
+export const PlaceDetailsPreview = ({
+  details,
 }: {
-  place: google.maps.places.PlaceResult;
+  details: google.maps.places.PlaceResult;
 }) => {
   const t = useTranslations();
   const markerStyle = useMarkerStyles({});
 
-  if (!place.geometry?.location) return null;
+  if (!details.geometry?.location) return null;
 
   return (
     <Grid px={0} py="md">
@@ -30,7 +30,7 @@ export const PlacePreview = ({
           align="start"
         >
           {[
-            ...(place.photos?.slice(0, 3).map((photo) =>
+            ...(details.photos?.slice(0, 3).map((photo) =>
               photo.getUrl({
                 maxHeight: 640,
                 maxWidth: 360,
@@ -51,13 +51,13 @@ export const PlacePreview = ({
       <Grid.Col span={{ base: 12, md: 6 }}>
         <Flex display="flex" direction="column" style={{ flexGrow: 1 }}>
           <Title order={5}>
-            {place.name}
-            {place.types?.map((type) => (
+            {details.name}
+            {details.types?.map((type) => (
               <Badge key={type}>{t('shared.enum.placeTypes', { type })}</Badge>
             ))}
           </Title>
-          <Text fz="xs">{place.formatted_address}</Text>
-          <DisplayOpeningHours openingHours={place.opening_hours} />
+          <Text fz="xs">{details.formatted_address}</Text>
+          <DisplayOpeningHours openingHours={details.opening_hours} />
         </Flex>
       </Grid.Col>
       <Grid.Col span={{ base: 12 }}>
@@ -73,10 +73,10 @@ export const PlacePreview = ({
             scrollwheel: false,
             disableDoubleClickZoom: true,
           }}
-          center={place.geometry?.location}
+          center={details.geometry?.location}
           zoom={15}
         >
-          <Marker {...markerStyle} position={place.geometry.location} />
+          <Marker {...markerStyle} position={details.geometry.location} />
         </GoogleMap>
       </Grid.Col>
     </Grid>

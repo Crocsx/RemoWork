@@ -40,12 +40,9 @@ export interface Place {
   talkingAllowed?: CertaintyLevel;
   plugsQuantity?: QuantityLevel;
   comfortLevel?: ComfortLevel;
-
-  // need to add
+  meetingSpace?: CertaintyLevel;
   createdBy?: string;
-  editedBy?: string;
-  hasMeetingRoom?: CertaintyLevel;
-
   createdAt?: string;
+  updatedBy?: string;
   updatedAt?: string;
 }

@@ -7,6 +7,22 @@ import {
   SpeedLevel,
 } from '../../shared';
 
+function getPlaceDetails(
+  service: google.maps.places.PlacesService,
+  placeId: string,
+  fields: (keyof google.maps.places.PlaceResult)[]
+): Promise<google.maps.places.PlaceResult | null> {
+  return new Promise((resolve, reject) => {
+    service.getDetails({ placeId, fields }, (detail, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        resolve(detail);
+      } else {
+        reject(new Error(status));
+      }
+    });
+  });
+}
+
 function rateAttribute<T extends string>(
   attribute: T | undefined,
   ratingMap: Record<T, number>
@@ -24,6 +40,27 @@ export class PlaceUtils {
       ...details,
     };
   }
+
+  static retrieveFromCache = async (
+    placeId: string,
+    fields: (keyof google.maps.places.PlaceResult)[],
+    service: google.maps.places.PlacesService
+  ) => {
+    const cache = PlaceUtils.cache[placeId];
+    const missingField = fields.some((key) => !cache?.[key]);
+    try {
+      if (missingField) {
+        const place = await getPlaceDetails(service, placeId, fields);
+        PlaceUtils.addPlace(placeId, place);
+        return place;
+      } else {
+        return cache;
+      }
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  };
 
   static ratePlace(place?: Place): number {
     let score = 0;

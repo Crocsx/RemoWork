@@ -21,12 +21,12 @@ export const useApiRequestLazy = <P, R>({
       setLoading(true);
       try {
         const result = await operation(payload);
-        setLoading(false);
         onSuccess?.(result);
       } catch (e) {
         setError(e);
-        setLoading(false);
         onFailure?.(e);
+      } finally {
+        setLoading(false);
       }
     },
     [onFailure, onSuccess, operation]

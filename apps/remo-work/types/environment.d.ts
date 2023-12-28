@@ -14,6 +14,8 @@ declare global {
       NEXT_PUBLIC_API_ENDPOINT: string;
       NEXT_CSFR_TOKEN: string;
       SENTRY_AUTH_TOKEN: string;
+      NEXT_GOOGLE_MAIL_ADDRESS: string;
+      NEXT_GOOGLE_MAIL_PASSWORD: string;
     }
   }
 }

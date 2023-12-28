@@ -8,6 +8,48 @@
         "invalidBounds": "Bounds are invalid",
         "boundsNotProvided": "Bounds are required"
       }
+    },
+    "component": {
+      "placeReport": {
+        "modal": {
+          "title": "Report the place",
+          "description": "Please explain below why would you like to report the following place :"
+        },
+        "notification": {
+          "placeReportedFailure": {
+            "title": "Place couldn't be Reported",
+            "description": "Something went wrong {error}"
+          },
+          "placeReported": {
+            "title": "Place Reported",
+            "description": "Admin will take a look at it"
+          }
+        }
+      },
+      "placeEditor": {
+        "notification": {
+          "placeNotOperational": {
+            "title": "The place unavailable",
+            "description": "This place is marked as temporary or permanently closed."
+          },
+          "placeSaved": {
+            "title": "Place Saved !",
+            "description": "It will now be visible on the map"
+          },
+          "placeFailedToSaved": {
+            "title": "Place couldn't be saved",
+            "description": "Please try again error : {error}"
+          },
+          "placeUpdated": {
+            "title": "Place Updated !",
+            "description": "Your changes are now live"
+          },
+          "placeFailedToUpdate": {
+            "title": "Place couldn't be updated",
+            "description": "Please try again error : {error}"
+          }
+        }
+      }
     }
   }
 }

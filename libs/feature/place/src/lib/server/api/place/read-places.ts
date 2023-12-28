@@ -20,6 +20,7 @@ export async function readPlaces(req: Request) {
     const plugsQuantity = searchParams.get('plugsQuantity');
     const comfortLevel = searchParams.get('comfortLevel');
     const priceModel = searchParams.get('priceModel');
+    const meetingSpace = searchParams.get('meetingSpace');
 
     if (!southParam || !northParam || !westParam || !eastParam) {
       return NextResponse.json(
@@ -70,6 +71,9 @@ export async function readPlaces(req: Request) {
     }
     if (priceModel) {
       query = query.where('priceModel', '==', priceModel);
+    }
+    if (meetingSpace) {
+      query = query.where('meetingSpace', '==', meetingSpace);
     }
 
     const querySnapshot = await query.get();

@@ -8,7 +8,7 @@ import { Place, PlaceUtils } from '~workspace/lib/feature/place';
 import { Image } from '~workspace/lib/shared/ui';
 
 import { PlaceIcons } from './place-icons';
-import { PlaceOpeningTime } from './place-opening-time';
+import { PlaceOpeningTime } from '../place-opening-time';
 
 export const PlaceCard = ({
   place,
@@ -25,18 +25,17 @@ export const PlaceCard = ({
   const [details, setDetails] =
     useState<google.maps.places.PlaceResult | null>();
   useEffect(() => {
-    const cache = PlaceUtils.cache[place.id];
-    if (cache) {
-      setDetails(cache);
-    } else {
-      service?.getDetails(
-        { placeId: place.id, fields: ['url', 'opening_hours'] },
-        (detail) => {
-          PlaceUtils.addPlace(place.id, detail);
-          setDetails(detail);
-        }
+    const retrievePlace = async () => {
+      if (!service) return;
+      setDetails(
+        await PlaceUtils.retrieveFromCache(
+          place.id,
+          ['url', 'opening_hours'],
+          service
+        )
       );
-    }
+    };
+    retrievePlace();
   }, [service, place.id]);
 
   const hasOpenInfo =
