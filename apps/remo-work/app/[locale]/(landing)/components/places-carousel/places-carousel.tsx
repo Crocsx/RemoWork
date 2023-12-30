@@ -1,5 +1,6 @@
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import { Container, Title, Text, rem } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 
 import { PlaceCard } from './place-card';
 
@@ -71,15 +72,15 @@ const mockdata = [
 ];
 
 export const PlacesCarousel = () => {
+  const t = useTranslations();
   return (
     <Container size="xl" py="xl">
       <Title order={2} ta="center" mt="sm">
-        Latest place added
+        {t('core.page.home.place.title')}
       </Title>
 
       <Text c="dimmed" ta="center" mt="md" maw={rem(600)} m="auto">
-        Every once in a while, you’ll see a Golbat that’s missing some fangs.
-        This happens when hunger drives it to try biting a Steel-type Pokémon.
+        {t('core.page.home.place.description')}
       </Text>
       <Carousel
         slideSize={{ base: '100%', sm: '33.333%' }}

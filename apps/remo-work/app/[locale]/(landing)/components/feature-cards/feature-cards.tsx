@@ -6,55 +6,58 @@ import {
   SimpleGrid,
   Container,
 } from '@mantine/core';
-import { IconGauge, IconUser, IconCookie } from '@tabler/icons-react';
+import {
+  IconWorld,
+  IconSearch,
+  IconBuildingCommunity,
+} from '@tabler/icons-react';
+import { useTranslations } from 'next-intl';
 
 import { FeatureCard } from './feature-card';
 
-const mockdata = [
+const tiles = [
   {
-    title: 'Extreme performance',
-    description:
-      'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
-    icon: IconGauge,
+    title: 'core.page.home.feature.bullet.worldwide.title',
+    description: 'core.page.home.feature.bullet.worldwide.description',
+
+    icon: IconWorld,
   },
   {
-    title: 'Privacy focused',
-    description:
-      'People say it can run at the same speed as lightning striking, Its icy body is so cold, it will not melt even if it is immersed in magma',
-    icon: IconUser,
+    title: 'core.page.home.feature.bullet.tailored.title',
+    description: 'core.page.home.feature.bullet.tailored.description',
+    icon: IconSearch,
   },
   {
-    title: 'No third parties',
-    description:
-      'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
-    icon: IconCookie,
+    title: 'core.page.home.feature.bullet.community.title',
+    description: 'core.page.home.feature.bullet.community.description',
+    icon: IconBuildingCommunity,
   },
 ];
 
 export const FeaturesCards = () => {
+  const t = useTranslations();
   return (
     <Container size="lg" py="xl">
       <Group justify="center">
         <Badge variant="filled" size="lg">
-          Best company ever
+          {t('core.page.home.feature.title')}
         </Badge>
       </Group>
 
       <Title order={2} ta="center" mt="sm">
-        Integrate effortlessly with any technology stack
+        {t('core.page.home.feature.catch')}
       </Title>
 
       <Text c="dimmed" ta="center" mt="md">
-        Every once in a while, you’ll see a Golbat that’s missing some fangs.
-        This happens when hunger drives it to try biting a Steel-type Pokémon.
+        {t('core.page.home.feature.description')}
       </Text>
 
       <SimpleGrid cols={{ base: 1, md: 3 }} spacing="xl" mt={50}>
-        {mockdata.map(({ title, description, icon }) => (
+        {tiles.map(({ title, description, icon }) => (
           <FeatureCard
             key={title}
-            title={title}
-            description={description}
+            title={t(title)}
+            description={t(description)}
             Icon={icon}
           />
         ))}
