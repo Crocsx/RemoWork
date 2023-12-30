@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { LoadingOverlay } from '@mantine/core';
-import { useJsApiLoader, UseLoadScriptOptions } from '@react-google-maps/api';
+import { useJsApiLoader } from '@react-google-maps/api';
 import * as Sentry from '@sentry/nextjs';
 
 import { notifications } from '~workspace/lib/shared/ui';
@@ -13,7 +13,9 @@ import { DEFAULT_LOCATION, MapContext } from './map-context';
 export const MapProvider = ({
   options,
   children,
-}: React.PropsWithChildren<{ options: UseLoadScriptOptions }>) => {
+}: React.PropsWithChildren<{
+  options: Parameters<typeof useJsApiLoader>[0];
+}>) => {
   const { isLoaded, loadError } = useJsApiLoader(options);
   const [map, setMap] = useState<google.maps.Map | undefined>(undefined);
   const [currentLocation, setCurrentLocation] =

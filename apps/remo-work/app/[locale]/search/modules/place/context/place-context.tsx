@@ -8,8 +8,8 @@ export type PlaceContextType = {
   readonly places: Place[];
   readonly selectedPlaceId: string | null;
   readonly setSelectedPlaceId: (place: string) => void;
-  readonly setFilters: (places: ReadPlacesRequest) => void;
-  readonly filters: ReadPlacesRequest;
+  readonly setFilters: (places: ReadPlacesRequest["filters"]) => void;
+  readonly filters: ReadPlacesRequest["filters"];
   readonly loading: boolean;
   readonly error: unknown;
 };

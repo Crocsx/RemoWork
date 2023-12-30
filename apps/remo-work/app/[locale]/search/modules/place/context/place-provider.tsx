@@ -21,7 +21,7 @@ export const PlaceProvider = ({
   const [places, setPlaces] = useState<Place[]>([]);
   const [filters, setFilters] = useQueryState(
     'search',
-    parseAsJson<ReadPlacesRequest>()
+    parseAsJson<ReadPlacesRequest['filters']>()
   );
   const [selectedPlaceId, setSelectedPlaceId] = useQueryState('placeId', {
     history: 'push',
@@ -52,7 +52,11 @@ export const PlaceProvider = ({
     const current = filters || {};
     const { zoom, ...rest } = current;
     if (Object.keys(rest).length !== 0 && maxZoom <= Number(zoom)) {
-      loadPlaces(current);
+      loadPlaces({
+        filters: {
+          ...current,
+        },
+      });
     }
   }, [filters, loadPlaces, maxZoom]);
 

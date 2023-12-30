@@ -6,20 +6,28 @@ import { QuantityLevel } from './quantity';
 import { SpeedLevel } from './wifi';
 
 export type ReadPlacesRequest = {
-  south?: number;
-  east?: number;
-  north?: number;
-  west?: number;
-  zoom?: number;
-  placeId?: string;
-  wifiAvailability?: CertaintyLevel;
-  wifiSpeed?: SpeedLevel;
-  noiseLevel?: NoiseLevel;
-  talkingAllowed?: CertaintyLevel;
-  meetingSpace?: CertaintyLevel;
-  plugsQuantity?: QuantityLevel;
-  comfortLevel?: ComfortLevel;
-  priceModel?: PricingModel;
+  filters: {
+    south?: number;
+    east?: number;
+    north?: number;
+    west?: number;
+    zoom?: number;
+    placeId?: string;
+    wifiAvailability?: CertaintyLevel;
+    wifiSpeed?: SpeedLevel;
+    noiseLevel?: NoiseLevel;
+    talkingAllowed?: CertaintyLevel;
+    meetingSpace?: CertaintyLevel;
+    plugsQuantity?: QuantityLevel;
+    comfortLevel?: ComfortLevel;
+    priceModel?: PricingModel;
+  };
+  sortBy?: {
+    key: 'createdBy' | 'sortBy';
+    dir: 'asc' | 'desc';
+  };
+  page?: number;
+  perPage?: number;
 };
 
 export type ReportPlaceRequest = {

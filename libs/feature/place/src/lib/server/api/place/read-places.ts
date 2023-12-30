@@ -3,79 +3,69 @@ import { firestore } from 'firebase-admin';
 import { NextResponse } from 'next/server';
 import geohash from 'ngeohash';
 
-import { FirestorePlace, Place } from '../../../shared';
+import { readQueryString } from '~workspace/lib/shared/utils';
+
+import { FirestorePlace, Place, ReadPlacesRequest } from '../../../shared';
 
 export async function readPlaces(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
+    const requestParams = readQueryString<ReadPlacesRequest>(searchParams);
 
-    const southParam = searchParams.get('south');
-    const northParam = searchParams.get('north');
-    const westParam = searchParams.get('west');
-    const eastParam = searchParams.get('east');
-    const wifiAvailability = searchParams.get('wifiAvailability');
-    const wifiSpeed = searchParams.get('wifiSpeed');
-    const noiseLevel = searchParams.get('noiseLevel');
-    const talkingAllowed = searchParams.get('talkingAllowed');
-    const plugsQuantity = searchParams.get('plugsQuantity');
-    const comfortLevel = searchParams.get('comfortLevel');
-    const priceModel = searchParams.get('priceModel');
-    const meetingSpace = searchParams.get('meetingSpace');
+    const { filters, sortBy, page = 1, perPage = 50 } = requestParams;
 
-    if (!southParam || !northParam || !westParam || !eastParam) {
-      return NextResponse.json(
-        { error: 'place.api.error.boundsNotProvided' },
-        { status: 400 }
-      );
-    }
+    const query = firestore().collection('places');
 
-    const south = parseFloat(southParam);
-    const north = parseFloat(northParam);
-    const west = parseFloat(westParam);
-    const east = parseFloat(eastParam);
+    if (filters.south && filters.north && filters.west && filters.east) {
+      if (
+        isNaN(filters.south) ||
+        isNaN(filters.north) ||
+        isNaN(filters.west) ||
+        isNaN(filters.east)
+      ) {
+        return NextResponse.json(
+          { error: 'place.api.error.invalidBounds' },
+          { status: 400 }
+        );
+      }
 
-    // Validate bounds are valid numbers
-    if (isNaN(south) || isNaN(north) || isNaN(west) || isNaN(east)) {
-      return NextResponse.json(
-        { error: 'place.api.error.invalidBounds' },
-        { status: 400 }
-      );
+      const minGeohash = geohash.encode(filters.south, filters.west);
+      const maxGeohash = geohash.encode(filters.north, filters.east);
+      query
+        .where('geohash', '>=', minGeohash)
+        .where('geohash', '<=', maxGeohash);
     }
 
-    const minGeohash = geohash.encode(south, west);
-    const maxGeohash = geohash.encode(north, east);
-
-    let query = firestore()
-      .collection('places')
-      .where('geohash', '>=', minGeohash)
-      .where('geohash', '<=', maxGeohash);
-
-    // Apply additional filters if they exist
-    if (wifiAvailability) {
-      query = query.where('wifiAvailability', '==', wifiAvailability);
+    if (filters.wifiAvailability) {
+      query.where('wifiAvailability', '==', filters.wifiAvailability);
     }
-    if (wifiSpeed) {
-      query = query.where('wifiSpeed', '==', wifiSpeed);
+    if (filters.wifiSpeed) {
+      query.where('wifiSpeed', '==', filters.wifiSpeed);
     }
-    if (noiseLevel) {
-      query = query.where('noiseLevel', '==', noiseLevel);
+    if (filters.noiseLevel) {
+      query.where('noiseLevel', '==', filters.noiseLevel);
     }
-    if (talkingAllowed) {
-      query = query.where('talkingAllowed', '==', talkingAllowed);
+    if (filters.talkingAllowed) {
+      query.where('talkingAllowed', '==', filters.talkingAllowed);
     }
-    if (plugsQuantity) {
-      query = query.where('plugsQuantity', '==', plugsQuantity);
+    if (filters.plugsQuantity) {
+      query.where('plugsQuantity', '==', filters.plugsQuantity);
     }
-    if (comfortLevel) {
-      query = query.where('comfortLevel', '==', comfortLevel);
+    if (filters.comfortLevel) {
+      query.where('comfortLevel', '==', filters.comfortLevel);
     }
-    if (priceModel) {
-      query = query.where('priceModel', '==', priceModel);
+    if (filters.priceModel) {
+      query.where('priceModel', '==', filters.priceModel);
     }
-    if (meetingSpace) {
-      query = query.where('meetingSpace', '==', meetingSpace);
+    if (filters.meetingSpace) {
+      query.where('meetingSpace', '==', filters.meetingSpace);
+    }
+    if (sortBy?.key) {
+      query.orderBy(sortBy.key, sortBy.dir === 'desc' ? 'desc' : 'asc');
     }
 
+    const startAt = (page - 1) * perPage;
+    query.startAt(startAt).limit(perPage);
     const querySnapshot = await query.get();
 
     const places: Place[] = [];

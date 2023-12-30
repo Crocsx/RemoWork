@@ -17,14 +17,14 @@ export const PlaceFilters = ({
   filters,
   filterChangeHandler,
 }: {
-  filters: ReadPlacesRequest;
-  filterChangeHandler: (filter: ReadPlacesRequest) => void;
+  filters: ReadPlacesRequest['filters'];
+  filterChangeHandler: (filter: ReadPlacesRequest['filters']) => void;
 }) => {
   const t = useTranslations();
   const handleChipClick = useCallback(
-    <K extends keyof ReadPlacesRequest>(
+    <K extends keyof ReadPlacesRequest['filters']>(
       key: K,
-      value: ReadPlacesRequest[K]
+      value: ReadPlacesRequest['filters'][K]
     ) => {
       const newFilters = { ...filters };
       if (newFilters[key] === value) {
