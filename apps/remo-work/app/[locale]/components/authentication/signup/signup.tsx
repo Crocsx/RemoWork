@@ -17,6 +17,9 @@ import { IconAlertTriangle } from '@tabler/icons-react';
 import { getAuth } from 'firebase/auth';
 import { useTranslations } from 'next-intl';
 
+import { notifications } from '~workspace/lib/shared/ui';
+import { ErrorUtils } from '~workspace/lib/shared/utils';
+
 import { Fields } from './fields';
 import { FormContext, FormType, validator } from './validator';
 
@@ -36,7 +39,13 @@ export const Signup = () => {
   });
 
   const submitHandler = ({ email, password }: FormType) => {
-    createUserWithEmailAndPassword(email, password);
+    try {
+      createUserWithEmailAndPassword(email, password);
+    } catch (e) {
+      notifications.error({
+        message: ErrorUtils.getErrorMessage(e),
+      });
+    }
   };
 
   return (

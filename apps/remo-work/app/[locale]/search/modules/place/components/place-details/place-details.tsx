@@ -75,27 +75,28 @@ export const PlaceDetails = ({
           <PlaceEditModal place={place} details={details} />
         </AuthRestricted>
       </Flex>
-      <ScrollArea scrollbars="y" style={{ flex: 1 }}>
+      <ScrollArea scrollbars="y" offsetScrollbars="y" style={{ flex: 1 }}>
         <Flex direction="column" gap="sm">
           <LoadingOverlay visible={loading} />
           <Group pos="relative">
             <Rating
-              bottom={0}
+              top={0}
               right={0}
               p="md"
               readOnly={true}
               value={PlaceUtils.ratePlace(place)}
               size="lg"
               pos="absolute"
+              style={{ zIndex: 1 }}
             />
             <Carousel
               loop
               withIndicators
               height={rem(240)}
               dragFree
-              w="100%"
               slideGap="md"
               align="start"
+              w="100%"
             >
               {[
                 ...(details?.photos?.slice(0, 3).map((photo) =>

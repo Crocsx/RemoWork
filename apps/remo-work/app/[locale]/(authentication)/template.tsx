@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react';
 
-import { Anchor, Flex, rem } from '@mantine/core';
-import { Icon123 } from '@tabler/icons-react';
+import { Anchor, Flex } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 
 import { useAuthCtx } from '~workspace/lib/common/auth';
+import { Image } from '~workspace/lib/shared/ui';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const { authenticated } = useAuthCtx();
@@ -21,7 +21,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <Flex direction="column" align="center">
       <Anchor href="/" mt="xl">
-        <Icon123 width={rem(60)} />
+        <Image
+          src="/images/logo-column.svg"
+          alt="logo"
+          width={360}
+          height={120}
+        />
       </Anchor>
       {children}
     </Flex>

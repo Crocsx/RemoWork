@@ -30,7 +30,12 @@ export const Header = ({
             </>
           )}
           <UnstyledButton component="a" href="/">
-            <Image src="/images/logo.png" alt="logo" width={180} height={32} />
+            <Image
+              src="/images/logo-line.svg"
+              alt="logo"
+              width={180}
+              height={32}
+            />
           </UnstyledButton>
         </Group>
         {aside}
