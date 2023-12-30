@@ -4,6 +4,8 @@ import { Burger, Container, Group, UnstyledButton } from '@mantine/core';
 
 import { Image } from '~workspace/lib/shared/ui';
 
+import logoInline from '~workspace/app/remo-work/public/images/logo-inline.svg';
+
 export const Header = ({
   withBurgerControl,
   mobileOpened,
@@ -30,12 +32,7 @@ export const Header = ({
             </>
           )}
           <UnstyledButton component="a" href="/">
-            <Image
-              src="/images/logo-line.svg"
-              alt="logo"
-              width={180}
-              height={32}
-            />
+            <Image src={logoInline} alt="logo" height={32} />
           </UnstyledButton>
         </Group>
         {aside}

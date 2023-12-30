@@ -28,6 +28,7 @@
     "paths": {
       "~workspace/app/remo-work/app/*": ["apps/remo-work/app/[locale]/*"],
       "~workspace/app/remo-work/src": ["apps/remo-work/src/index.ts"],
+      "~workspace/app/remo-work/public/*": ["apps/remo-work/public/*"],
       "~workspace/lib/common/auth": ["libs/common/auth/src/index.ts"],
       "~workspace/lib/common/auth/server": ["libs/common/auth/src/server.ts"],
       "~workspace/lib/external/firebase": [
