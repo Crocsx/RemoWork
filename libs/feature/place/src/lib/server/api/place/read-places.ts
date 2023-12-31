@@ -12,9 +12,10 @@ export async function readPlaces(req: Request) {
     const { searchParams } = new URL(req.url);
     const requestParams = readQueryString<ReadPlacesRequest>(searchParams);
 
-    const { filters, sortBy, page = 1, perPage = 50 } = requestParams;
+    const { filters, sortBy, fromDocId, perPage = 20 } = requestParams;
 
-    const query = firestore().collection('places');
+    let query: firestore.Query<firestore.DocumentData, firestore.DocumentData> =
+      firestore().collection('places');
 
     if (filters.south && filters.north && filters.west && filters.east) {
       if (
@@ -31,41 +32,49 @@ export async function readPlaces(req: Request) {
 
       const minGeohash = geohash.encode(filters.south, filters.west);
       const maxGeohash = geohash.encode(filters.north, filters.east);
-      query
+      query = query
         .where('geohash', '>=', minGeohash)
         .where('geohash', '<=', maxGeohash);
     }
 
     if (filters.wifiAvailability) {
-      query.where('wifiAvailability', '==', filters.wifiAvailability);
+      query = query.where('wifiAvailability', '==', filters.wifiAvailability);
     }
     if (filters.wifiSpeed) {
-      query.where('wifiSpeed', '==', filters.wifiSpeed);
+      query = query.where('wifiSpeed', '==', filters.wifiSpeed);
     }
     if (filters.noiseLevel) {
-      query.where('noiseLevel', '==', filters.noiseLevel);
+      query = query.where('noiseLevel', '==', filters.noiseLevel);
     }
     if (filters.talkingAllowed) {
-      query.where('talkingAllowed', '==', filters.talkingAllowed);
+      query = query.where('talkingAllowed', '==', filters.talkingAllowed);
     }
     if (filters.plugsQuantity) {
-      query.where('plugsQuantity', '==', filters.plugsQuantity);
+      query = query.where('plugsQuantity', '==', filters.plugsQuantity);
     }
     if (filters.comfortLevel) {
-      query.where('comfortLevel', '==', filters.comfortLevel);
+      query = query.where('comfortLevel', '==', filters.comfortLevel);
     }
     if (filters.priceModel) {
-      query.where('priceModel', '==', filters.priceModel);
+      query = query.where('priceModel', '==', filters.priceModel);
     }
     if (filters.meetingSpace) {
-      query.where('meetingSpace', '==', filters.meetingSpace);
+      query = query.where('meetingSpace', '==', filters.meetingSpace);
     }
     if (sortBy?.key) {
-      query.orderBy(sortBy.key, sortBy.dir === 'desc' ? 'desc' : 'asc');
+      query = query.orderBy(sortBy.key, sortBy.dir === 'desc' ? 'desc' : 'asc');
+    }
+    if (fromDocId) {
+      const lastDoc = await firestore()
+        .collection('places')
+        .doc(fromDocId)
+        .get();
+      if (lastDoc.exists) {
+        query = query.startAfter(lastDoc);
+      }
     }
 
-    const startAt = (page - 1) * perPage;
-    query.startAt(startAt).limit(perPage);
+    query = query.limit(perPage);
     const querySnapshot = await query.get();
 
     const places: Place[] = [];

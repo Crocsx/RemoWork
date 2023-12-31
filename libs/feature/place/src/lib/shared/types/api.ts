@@ -26,7 +26,7 @@ export type ReadPlacesRequest = {
     key: 'createdBy' | 'sortBy';
     dir: 'asc' | 'desc';
   };
-  page?: number;
+  fromDocId?: string;
   perPage?: number;
 };
 

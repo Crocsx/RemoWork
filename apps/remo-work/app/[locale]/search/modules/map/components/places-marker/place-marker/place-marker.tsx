@@ -43,7 +43,7 @@ export const PlaceMarker = ({
       options={style}
     >
       {opened && (
-        <InfoWindow>
+        <InfoWindow options={{ disableAutoPan: true }}>
           <Group w={rem(240)}>
             <PlaceCard place={place} service={service} />
           </Group>
