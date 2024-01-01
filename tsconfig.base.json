@@ -27,12 +27,16 @@
     "baseUrl": ".",
     "paths": {
       "~workspace/app/remo-work/app/*": ["apps/remo-work/app/[locale]/*"],
-      "~workspace/app/remo-work/src": ["apps/remo-work/src/index.ts"],
       "~workspace/app/remo-work/public/*": ["apps/remo-work/public/*"],
+      "~workspace/app/remo-work/src": ["apps/remo-work/src/index.ts"],
       "~workspace/lib/common/auth": ["libs/common/auth/src/index.ts"],
       "~workspace/lib/common/auth/server": ["libs/common/auth/src/server.ts"],
       "~workspace/lib/external/firebase": [
         "libs/external/firebase/src/index.ts"
+      ],
+      "~workspace/lib/external/google": ["libs/external/google/src/index.ts"],
+      "~workspace/lib/external/google/server": [
+        "libs/external/google/src/server.ts"
       ],
       "~workspace/lib/feature/map": ["libs/feature/map/src/index.ts"],
       "~workspace/lib/feature/place": ["libs/feature/place/src/index.ts"],

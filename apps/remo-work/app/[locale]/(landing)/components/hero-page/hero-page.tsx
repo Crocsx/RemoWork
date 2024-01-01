@@ -18,9 +18,8 @@ export const Heropage = () => {
       src={logoColumn.src}
       h="calc(100vh - 60px)"
       style={{
-        backgroundPositionY: '-125px',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'auto',
+        backgroundSize: 'cover',
       }}
       pb="md"
     >

@@ -3,18 +3,18 @@ import { useEffect } from 'react';
 import { Fieldset, TagsInput, TextInput } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
-import {
-  CertaintyLevel,
-  ComfortLevel,
-  NoiseLevel,
-  PricingModel,
-  QuantityLevel,
-  SpeedLevel,
-} from '~workspace/lib/feature/place';
 import { SegmentedControl } from '~workspace/lib/shared/ui';
 
 import { PlaceDetailsPreview } from './preview/place-details-preview';
 import { useFormContext } from './validator';
+import {
+  CertaintyLevel,
+  PricingModel,
+  SpeedLevel,
+  NoiseLevel,
+  QuantityLevel,
+  ComfortLevel,
+} from '../../../shared';
 
 export const Fields = ({
   details,

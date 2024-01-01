@@ -7,7 +7,6 @@
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "unused-imports/no-unused-imports": "error",
-
         "unused-imports/no-unused-vars": [
           "warn",
           {
@@ -74,7 +73,6 @@
           {
             "allow": [],
             "enforceBuildableLibDependency": true,
-            "allowCircularSelfDependency": true,
             "depConstraints": [
               {
                 "sourceTag": "type:no-dep",

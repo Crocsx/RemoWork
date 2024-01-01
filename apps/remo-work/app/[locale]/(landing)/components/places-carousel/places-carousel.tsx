@@ -5,11 +5,12 @@ import { useTranslations } from 'next-intl';
 import { Place, ReadPlacesRequest } from '~workspace/lib/feature/place';
 import { createQueryString } from '~workspace/lib/shared/utils';
 
-import { PlaceCard } from './place-card';
+import { PlaceCarouselCard } from './place-carousel-card';
 
 export const PlacesCarousel = async () => {
   const t = useTranslations();
   const params = createQueryString<ReadPlacesRequest>({
+    filters: {},
     sortBy: {
       field: 'createdAt',
       dir: 'asc',
@@ -41,7 +42,7 @@ export const PlacesCarousel = async () => {
       >
         {places?.map((props) => (
           <CarouselSlide key={props.id}>
-            <PlaceCard {...props} />
+            <PlaceCarouselCard {...props} />
           </CarouselSlide>
         ))}
       </Carousel>

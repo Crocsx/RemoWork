@@ -1,19 +1,20 @@
-import { useAuthState } from 'react-firebase-hooks/auth';
-
-import { getAuth } from 'firebase/auth';
+import { useAuthCtx } from '../../context';
+import { AuthContextType } from '../../context/auth/auth-context';
 
 export const AuthRestricted = ({
   children,
 }: {
-  children: React.ReactNode | ((isAuthenticated: boolean) => React.ReactNode);
+  children:
+    | React.ReactNode
+    | ((isAuthenticated: AuthContextType) => React.ReactNode);
 }) => {
-  const [user] = useAuthState(getAuth());
+  const { self, verified, authenticated } = useAuthCtx();
 
   if (typeof children === 'function') {
-    return <>{children(!!user)}</>;
+    return <>{children({ self, verified, authenticated })}</>;
   }
 
-  if (!user) {
+  if (!authenticated || !verified) {
     return null;
   }
 

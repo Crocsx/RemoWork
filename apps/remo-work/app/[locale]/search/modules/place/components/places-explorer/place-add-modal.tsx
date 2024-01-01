@@ -105,13 +105,8 @@ export const PlaceAddModal = ({
         )}
       </Modal>
       <AuthRestricted>
-        {(isAuthenticated) => (
-          <Button
-            type="button"
-            fullWidth
-            onClick={open}
-            disabled={!isAuthenticated}
-          >
+        {({ verified }) => (
+          <Button type="button" fullWidth onClick={open} disabled={!verified}>
             {t('shared.action.add', {
               entity: t('shared.entity.place', { count: 1 }),
             })}

@@ -13,7 +13,7 @@ import { useTranslations } from 'next-intl';
 import { Place, PlaceIcons } from '~workspace/lib/feature/place';
 import { Image } from '~workspace/lib/shared/ui';
 
-export const PlaceCard = ({
+export const PlaceCarouselCard = ({
   illustration,
   id,
   name,
@@ -24,12 +24,12 @@ export const PlaceCard = ({
   const t = useTranslations();
   return (
     <Card withBorder radius="md" p="md">
-      <CardSection h={rem(220)} pos="relative">
+      <CardSection h={rem(245)} pos="relative">
         <Image src={illustration} alt={name} fill sizes="350px" />
       </CardSection>
 
       <CardSection p="md">
-        <Group gap="sm">
+        <Group gap={0}>
           <Group justify="apart">
             <Text fz="lg" fw={500}>
               {name}
@@ -38,12 +38,13 @@ export const PlaceCard = ({
               {country}
             </Badge>
           </Group>
-          <Text fz="sm"> {address}</Text>
+          <Text fz="sm">{address}</Text>
           <Text
             fw="700"
             style={{ textTransform: 'uppercase' }}
             fz="xs"
             c="dimmed"
+            py="sm"
           >
             {t('shared.entity.detail', { count: 2 })}
           </Text>

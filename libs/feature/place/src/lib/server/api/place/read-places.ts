@@ -90,7 +90,6 @@ export async function readPlaces(req: Request) {
         ...placeData,
       });
     });
-    console.log(places);
     return NextResponse.json(places, { status: 200 });
   } catch (error) {
     Sentry.captureException(error);

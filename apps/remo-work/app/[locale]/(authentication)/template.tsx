@@ -11,11 +11,11 @@ import { Image } from '~workspace/lib/shared/ui';
 import logoColumn from '~workspace/app/remo-work/public/images/logo-column.svg';
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  const { authenticated } = useAuthCtx();
+  const { self, authenticated } = useAuthCtx();
   const router = useRouter();
 
   useEffect(() => {
-    if (authenticated) {
+    if (authenticated && self?.emailVerified) {
       router.push('/search');
     }
   }, [authenticated, router]);

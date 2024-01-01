@@ -24,7 +24,7 @@ import {
   pricingModelColor,
   quantityLevelColor,
   speedLevelColor,
-} from '~workspace/lib/feature/place';
+} from '../../../shared';
 
 export const PlaceIcons = ({ place }: { place: Place }) => {
   const t = useTranslations();

@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 
 import {
@@ -34,9 +35,12 @@ export const Recovery = () => {
     validate: validator(t),
   });
 
-  const submitHandler = ({ email }: FormType) => {
-    sendPasswordResetEmail(email);
-  };
+  const submitHandler = useCallback(
+    ({ email }: FormType) => {
+      sendPasswordResetEmail(email);
+    },
+    [sendPasswordResetEmail]
+  );
 
   return (
     <Container size={420} my={40}>

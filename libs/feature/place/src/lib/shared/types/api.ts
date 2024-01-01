@@ -6,7 +6,7 @@ import { QuantityLevel } from './quantity';
 import { SpeedLevel } from './wifi';
 
 export type ReadPlacesRequest = {
-  filters?: {
+  filters: {
     south?: number;
     east?: number;
     north?: number;

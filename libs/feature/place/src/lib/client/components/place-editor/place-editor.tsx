@@ -28,9 +28,9 @@ export const PlaceEditor = ({
   details: google.maps.places.PlaceResult;
   mode: 'creation' | 'edition';
 }) => {
-  const isCreation = useMemo(() => mode === 'creation', [mode]);
   const t = useTranslations();
   const axios = useAxiosCtx();
+  const isCreation = useMemo(() => mode === 'creation', [mode]);
   const { loading, execute } = useApiRequestLazy({
     operation: useCallback(
       async (values: FormType) =>
