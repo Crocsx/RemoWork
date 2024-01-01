@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const createQueryString = (filter: Record<any, any>) => {
+export const createQueryString = <T extends Record<any, any>>(filter: T) => {
   const params = new URLSearchParams();
 
   Object.entries(filter).forEach(([key, value]) => {

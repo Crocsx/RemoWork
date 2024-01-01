@@ -12,7 +12,11 @@ export const FeatureCard = ({
 }) => {
   return (
     <Card key={title} shadow="md" radius="md" padding="xl">
-      <Icon style={{ width: rem(50), height: rem(50) }} stroke={2} />
+      <Icon
+        style={{ width: rem(50), height: rem(50) }}
+        stroke={2}
+        color={'var(--mantine-primary-color-6)'}
+      />
       <Text fz="lg" fw={500} mt="md">
         {title}
       </Text>

@@ -2,85 +2,68 @@ import {
   Card,
   Text,
   Group,
-  Badge,
   Button,
-  ActionIcon,
   CardSection,
   rem,
+  Badge,
 } from '@mantine/core';
-import { IconHeart } from '@tabler/icons-react';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
+import { Place, PlaceIcons } from '~workspace/lib/feature/place';
 import { Image } from '~workspace/lib/shared/ui';
 
 export const PlaceCard = ({
-  image,
-  title,
-  description,
+  illustration,
+  id,
+  name,
   country,
-  badges,
-}: {
-  image: string;
-  title: string;
-  description: string;
-  country: string;
-  badges: { emoji: string; label: string }[];
-}) => {
+  address,
+  ...rest
+}: Place) => {
+  const t = useTranslations();
   return (
     <Card withBorder radius="md" p="md">
-      <CardSection h={rem(180)} pos="relative">
-        <Image src={image} alt={title} fill sizes="350px" />
+      <CardSection h={rem(220)} pos="relative">
+        <Image src={illustration} alt={name} fill sizes="350px" />
       </CardSection>
 
       <CardSection p="md">
-        <Group>
+        <Group gap="sm">
           <Group justify="apart">
             <Text fz="lg" fw={500}>
-              {title}
+              {name}
             </Text>
             <Badge size="sm" variant="light">
               {country}
             </Badge>
           </Group>
-          <Text fz="sm" mt="xs">
-            {description}
-          </Text>
-        </Group>
-        <Group>
+          <Text fz="sm"> {address}</Text>
           <Text
-            mt="md"
             fw="700"
             style={{ textTransform: 'uppercase' }}
             fz="xs"
             c="dimmed"
           >
-            Perfect for you, if you enjoy
+            {t('shared.entity.detail', { count: 2 })}
           </Text>
-          <Group gap={7} mt={5}>
-            {badges.map((badge) => (
-              <Badge
-                variant="light"
-                key={badge.label}
-                leftSection={badge.emoji}
-              >
-                {badge.label}
-              </Badge>
-            ))}
+          <Group>
+            <PlaceIcons place={{ illustration, name, id, country, ...rest }} />
           </Group>
         </Group>
       </CardSection>
 
       <Group mt="xs">
-        <Button radius="md" style={{ flex: 1 }}>
-          Show details
+        <Button
+          radius="md"
+          style={{ flex: 1 }}
+          component={Link}
+          href={`/search?placeId=${id}`}
+        >
+          {t('shared.action.show', {
+            entity: t('shared.entity.detail', { count: 1 }),
+          })}
         </Button>
-        <ActionIcon variant="default" radius="md" size={36}>
-          <IconHeart
-            color="var(--mantine-color-red-6)"
-            width={rem(20)}
-            height={rem(20)}
-            stroke={1.5}
-          />
-        </ActionIcon>
       </Group>
     </Card>
   );

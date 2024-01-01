@@ -6,7 +6,7 @@ import { QuantityLevel } from './quantity';
 import { SpeedLevel } from './wifi';
 
 export type ReadPlacesRequest = {
-  filters: {
+  filters?: {
     south?: number;
     east?: number;
     north?: number;
@@ -23,8 +23,8 @@ export type ReadPlacesRequest = {
     priceModel?: PricingModel;
   };
   sortBy?: {
-    key: 'createdBy' | 'sortBy';
-    dir: 'asc' | 'desc';
+    field: 'createdAt' | 'updatedAt';
+    dir?: 'asc' | 'desc';
   };
   fromDocId?: string;
   perPage?: number;

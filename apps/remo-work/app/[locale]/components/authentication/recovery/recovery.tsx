@@ -57,7 +57,7 @@ export const Recovery = () => {
                 mt="xl"
                 color="red"
                 title={t('shared.action.error', {
-                  entity: t('shared.button.signup'),
+                  entity: t('shared.button.signin'),
                 })}
                 icon={<IconAlertTriangle />}
               >

@@ -21,6 +21,7 @@ import {
   getAuth,
 } from 'firebase/auth';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import { notifications } from '~workspace/lib/shared/ui';
@@ -31,6 +32,7 @@ import { FormContext, FormType, validator } from './validator';
 
 export const SignIn = () => {
   const t = useTranslations();
+  const router = useRouter();
 
   const [signInWithEmailAndPassword, _, loading, error] =
     useSignInWithEmailAndPassword(getAuth());
@@ -49,14 +51,17 @@ export const SignIn = () => {
         getAuth().setPersistence(
           rememberMe ? browserLocalPersistence : browserSessionPersistence
         );
-        await signInWithEmailAndPassword(email, password);
+        const response = await signInWithEmailAndPassword(email, password);
+        if (response?.user) {
+          router.push('/search');
+        }
       } catch (e) {
         notifications.error({
           message: ErrorUtils.getErrorMessage(e),
         });
       }
     },
-    [signInWithEmailAndPassword]
+    [router, signInWithEmailAndPassword]
   );
 
   return (
@@ -84,7 +89,7 @@ export const SignIn = () => {
                 mt="xl"
                 color="red"
                 title={t('shared.action.error', {
-                  entity: t('shared.button.signup'),
+                  entity: t('shared.button.signin'),
                 })}
                 icon={<IconAlertTriangle />}
               >

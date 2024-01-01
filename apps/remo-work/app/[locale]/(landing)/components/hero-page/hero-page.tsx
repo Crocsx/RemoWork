@@ -17,7 +17,11 @@ export const Heropage = () => {
     <BackgroundImage
       src={logoColumn.src}
       h="calc(100vh - 60px)"
-      style={{ backgroundPositionY: '-125px' }}
+      style={{
+        backgroundPositionY: '-125px',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'auto',
+      }}
       pb="md"
     >
       <Overlay

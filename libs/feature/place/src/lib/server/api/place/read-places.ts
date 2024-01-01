@@ -17,7 +17,7 @@ export async function readPlaces(req: Request) {
     let query: firestore.Query<firestore.DocumentData, firestore.DocumentData> =
       firestore().collection('places');
 
-    if (filters.south && filters.north && filters.west && filters.east) {
+    if (filters?.south && filters?.north && filters?.west && filters?.east) {
       if (
         isNaN(filters.south) ||
         isNaN(filters.north) ||
@@ -37,32 +37,35 @@ export async function readPlaces(req: Request) {
         .where('geohash', '<=', maxGeohash);
     }
 
-    if (filters.wifiAvailability) {
+    if (filters?.wifiAvailability) {
       query = query.where('wifiAvailability', '==', filters.wifiAvailability);
     }
-    if (filters.wifiSpeed) {
+    if (filters?.wifiSpeed) {
       query = query.where('wifiSpeed', '==', filters.wifiSpeed);
     }
-    if (filters.noiseLevel) {
+    if (filters?.noiseLevel) {
       query = query.where('noiseLevel', '==', filters.noiseLevel);
     }
-    if (filters.talkingAllowed) {
+    if (filters?.talkingAllowed) {
       query = query.where('talkingAllowed', '==', filters.talkingAllowed);
     }
-    if (filters.plugsQuantity) {
+    if (filters?.plugsQuantity) {
       query = query.where('plugsQuantity', '==', filters.plugsQuantity);
     }
-    if (filters.comfortLevel) {
+    if (filters?.comfortLevel) {
       query = query.where('comfortLevel', '==', filters.comfortLevel);
     }
-    if (filters.priceModel) {
+    if (filters?.priceModel) {
       query = query.where('priceModel', '==', filters.priceModel);
     }
-    if (filters.meetingSpace) {
+    if (filters?.meetingSpace) {
       query = query.where('meetingSpace', '==', filters.meetingSpace);
     }
-    if (sortBy?.key) {
-      query = query.orderBy(sortBy.key, sortBy.dir === 'desc' ? 'desc' : 'asc');
+    if (sortBy?.field) {
+      query = query.orderBy(
+        sortBy.field,
+        sortBy.dir === 'desc' ? 'desc' : 'asc'
+      );
     }
     if (fromDocId) {
       const lastDoc = await firestore()
@@ -87,7 +90,7 @@ export async function readPlaces(req: Request) {
         ...placeData,
       });
     });
-
+    console.log(places);
     return NextResponse.json(places, { status: 200 });
   } catch (error) {
     Sentry.captureException(error);

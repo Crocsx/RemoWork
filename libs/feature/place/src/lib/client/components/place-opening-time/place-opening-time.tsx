@@ -1,5 +1,5 @@
 import { Flex, Text } from '@mantine/core';
-import { useTranslations } from 'use-intl';
+import { useTranslations } from 'next-intl';
 
 import { TimeUtils } from '~workspace/lib/shared/utils';
 
