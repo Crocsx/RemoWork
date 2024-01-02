@@ -53,7 +53,9 @@ export const Signup = () => {
       try {
         const response = await createUserWithEmailAndPassword(email, password);
         if (response?.user) {
-          const sent = await sendEmailVerification();
+          const sent = await sendEmailVerification({
+            url: window.location.origin,
+          });
           setVerificationSent(sent);
         }
       } catch (e) {

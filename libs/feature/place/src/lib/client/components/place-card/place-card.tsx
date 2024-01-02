@@ -86,7 +86,7 @@ export const PlaceCard = ({
           </Flex>
         )}
       </Flex>
-      <Flex justify="space-between">
+      <Flex justify="space-between" align="center">
         {goToHandler && (
           <Group>
             <Button size="compact-md" onClick={() => goToHandler(place)}>
