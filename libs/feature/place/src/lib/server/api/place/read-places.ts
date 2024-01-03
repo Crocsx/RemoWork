@@ -14,7 +14,7 @@ export async function readPlaces(req: Request) {
 
     const { filters, sortBy, fromDocId, perPage = 20 } = requestParams;
 
-    let query: firestore.Query<firestore.DocumentData, firestore.DocumentData> =
+    let query: firestore.Query<firestore.DocumentData> =
       firestore().collection('places');
 
     if (filters?.south && filters?.north && filters?.west && filters?.east) {
