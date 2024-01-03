@@ -7,28 +7,39 @@ export const isAuthenticated = async (req: Request) => {
     const tokenId = req.headers.get('Authorization')?.replace('Bearer ', '');
 
     if (!tokenId) {
-      return NextResponse.json(
-        { error: 'shared.api.error.unauthorized' },
-        { status: 401 }
-      );
+      return {
+        user: null,
+        error: NextResponse.json(
+          { error: 'shared.api.error.unauthorized' },
+          { status: 401 }
+        ),
+      };
     }
 
     const decodedClaims = await auth().verifyIdToken(tokenId, true);
 
     if (!decodedClaims) {
-      return NextResponse.json(
-        { error: 'shared.api.error.unauthorized' },
-        { status: 401 }
-      );
+      return {
+        user: null,
+        error: NextResponse.json(
+          { error: 'shared.api.error.unauthorized' },
+          { status: 401 }
+        ),
+      };
     }
 
-    return null;
+    return {
+      user: decodedClaims,
+    };
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);
-    return NextResponse.json(
-      { error: 'shared.api.error.internalError' },
-      { status: 500 }
-    );
+    return {
+      user: null,
+      error: NextResponse.json(
+        { error: 'shared.api.error.internalError' },
+        { status: 500 }
+      ),
+    };
   }
 };

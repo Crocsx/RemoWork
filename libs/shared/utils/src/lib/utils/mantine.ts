@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const combineValidators =
   (...validators: any[]) =>
-  (value: string) => {
+  (...params: any[]) => {
     const errors = validators
-      .map((validator) => validator(value))
+      .map((validator) => {
+        return validator(...params);
+      })
       .filter((result) => result !== null);
 
     return errors.length > 0 ? errors[0] : null;

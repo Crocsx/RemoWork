@@ -1,15 +1,21 @@
 import * as Sentry from '@sentry/nextjs';
 import { firestore } from 'firebase-admin';
+import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 import { NextResponse } from 'next/server';
 import geohash from 'ngeohash';
 
 import { Place } from '../../../shared/types';
 
-export async function updatePlace(req: Request) {
+export async function updatePlace(
+  req: Request,
+  user: DecodedIdToken,
+  { params }: { params: { id: string } }
+) {
   try {
-    const { latitude, longitude, ...place }: Place = await req.json();
+    const id = params.id;
+    const { latitude, longitude, id: _, ...place }: Place = await req.json();
 
-    if (!place.id) {
+    if (!id || typeof id !== 'string') {
       return NextResponse.json(
         { error: 'place.api.error.idRequired' },
         { status: 400 }
@@ -31,7 +37,7 @@ export async function updatePlace(req: Request) {
     }
 
     const collectionRef = firestore().collection('places');
-    const docRef = await collectionRef.doc(place.id).get();
+    const docRef = await collectionRef.doc(id).get();
 
     if (!docRef.exists) {
       return NextResponse.json(
@@ -42,8 +48,10 @@ export async function updatePlace(req: Request) {
 
     docRef.ref.update({
       ...place,
+      id,
       geohash: geohash.encode(latitude, longitude),
       updatedAt: Date.now(),
+      updatedBy: user.uid,
     });
 
     return NextResponse.json(docRef.data(), {

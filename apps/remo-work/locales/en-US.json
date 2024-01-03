@@ -1,6 +1,10 @@
 {
   "core": {
     "page": {
+      "verificationSent": {
+        "title": "Email has been sent",
+        "description": "To verify your account, please click on the link received by email"
+      },
       "signup": {
         "title": "Let's get you in!",
         "description": "Already have an account ? <link> Login instead </link>",
@@ -17,6 +21,35 @@
         "rememberMe": "Remember Me",
         "recovery": "Forgot Password ?"
       },
+      "home": {
+        "hero": {
+          "title": "Find Your Perfect Remote Work Spot",
+          "description": "Connect with a diverse selection of locations offering top-notch WiFi, comfortable ambiance, and essential amenities, tailored for digital nomads, freelancers, and anyone seeking a productive change of scenery."
+        },
+        "feature": {
+          "title": "WORK ANYWHERE, ANYTIME",
+          "catch": "Tailor Your Remote Work Experience",
+          "description": "In a world where work is no longer tied to a specific place, we bridges the gap between comfort and productivity. Find locations that resonate with your work style and preferences.",
+          "bullet": {
+            "worldwide": {
+              "title": "Explore Workspaces Worldwide",
+              "description": "Whether you're in your hometown or halfway across the globe, we connects you to local workspaces with global standards."
+            },
+            "tailored": {
+              "title": "Tailored Search",
+              "description": "Every remote worker has unique needs. We provides detailed information on noise levels, comfort, and facilities, so you can choose a spot that feels right for you."
+            },
+            "community": {
+              "title": "Community and Collaboration",
+              "description": "Engage with a community of like-minded remote workers. Share tips, find collaborative spaces, and exchange information on the best working spots in town."
+            }
+          }
+        },
+        "place": {
+          "title": "Latest places added",
+          "description": "Explore the latest spots added by fellow remote workers like you"
+        }
+      },
       "map": {
         "module": {
           "place": {
@@ -26,40 +59,44 @@
               "field": {
                 "priceModel": "Price Model",
                 "wifiAvailability": "WiFi Available",
-                "WifiName": "WiFi Name",
+                "wifiName": "WiFi Name",
                 "wifiPassword": "WiFi Password",
                 "wifiSpeed": "WiFi Speed",
                 "noiseLevel": "Noise Level",
                 "talkingAllowed": "Talking Allowed",
                 "plugsQuantity": "Plugs Quantity",
                 "comfortLevel": "Comfort Level",
+                "meetingSpace": "Meeting Space",
                 "tags": "Tags"
-              },
-              "notification": {
-                "placeNotOperational": {
-                  "title": "The place unavailable",
-                  "description": "This place is marked as temporary or permanently closed."
-                },
-                "placeSaved": {
-                  "title": "Place Saved !",
-                  "description": "It will now be visible on the map"
-                },
-                "placeFailedToSaved": {
-                  "title": "Place couldn't be saved",
-                  "description": "Please try again error : {error}"
-                }
               }
             },
             "viewer": {
               "button": {
-                "openOnGoogleMap": "View on Map"
+                "openOnGoogleMap": "View on Map",
+                "closedAllDay": "Closed All Day"
+              },
+              "field": {
+                "priceModel": "Price Model",
+                "wifiAvailability": "WiFi Available",
+                "wifiName": "WiFi Name",
+                "wifiPassword": "WiFi Password",
+                "wifiSpeed": "WiFi Speed",
+                "noiseLevel": "Noise Level",
+                "talkingAllowed": "Talking Allowed",
+                "plugsQuantity": "Plugs Quantity",
+                "comfortLevel": "Comfort Level",
+                "meetingSpace": "Meeting Space",
+                "openingTime": "Opening Time",
+                "address": "Address",
+                "tags": "Tags"
               },
               "noPlaceFound": "No places founds around you",
               "filter": {
-                "wifiAvailability": "With Wifi",
-                "noiseLevel": "Quiet",
-                "talkingAllowed": "Meeting Allowed",
-                "plugsQuantity": "Has Plugs",
+                "wifiSpeed": "Fast Wifi",
+                "noiseLevel": "Very Quiet",
+                "talkingAllowed": "Talking Allowed",
+                "plugsQuantity": "Has Many Plugs",
+                "meetingSpace": "Has Meeting Space",
                 "comfortLevel": "Comfy Sits",
                 "priceModel": "Is Free"
               }

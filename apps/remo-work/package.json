@@ -1,0 +1,32 @@
+{
+  "name": "remo-work",
+  "version": "0.0.1",
+  "dependencies": {
+    "@mantine/carousel": "7.3.2",
+    "@mantine/core": "7.3.2",
+    "@mantine/form": "7.3.2",
+    "@mantine/hooks": "7.3.2",
+    "@mantine/notifications": "7.3.2",
+    "@nx/next": "17.2.6",
+    "@react-google-maps/api": "2.19.2",
+    "@sentry/nextjs": "7.89.0",
+    "@sentry/react": "7.89.0",
+    "@tabler/icons-react": "2.44.0",
+    "axios": "1.6.2",
+    "firebase": "10.7.1",
+    "firebase-admin": "12.0.0",
+    "next": "13.4.1",
+    "next-intl": "3.3.2",
+    "next-usequerystate": "1.13.2",
+    "ngeohash": "0.6.3",
+    "nodemailer": "6.9.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-firebase-hooks": "5.1.1",
+    "react-google-autocomplete": "2.7.3",
+    "typescript": "5.2.2"
+  },
+  "scripts": {
+    "start": "next start"
+  }
+}

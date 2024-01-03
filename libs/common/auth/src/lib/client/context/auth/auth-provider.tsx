@@ -32,6 +32,7 @@ export const AuthProvider = ({
       value={{
         self: user,
         authenticated: !!user,
+        verified: user?.emailVerified || false,
       }}
     >
       <LoadingOverlay

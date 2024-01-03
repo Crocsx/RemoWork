@@ -28,7 +28,8 @@
     "**/*.jsx",
     "next-env.d.ts",
     "../../apps/remo-work/.next/types/**/*.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "../../dist/apps/remo-work/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

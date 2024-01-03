@@ -6,17 +6,23 @@ import { MarkerProps } from '@react-google-maps/api';
 export const useMarkerStyles = ({
   options,
 }: {
-  options?: Omit<MarkerProps, 'position'>;
+  options?: Omit<MarkerProps, 'position' | 'icon'> & {
+    icon: Partial<string | google.maps.Icon | google.maps.Symbol | undefined>;
+  };
 }) => {
   const theme = useMantineTheme();
   const markerStyle = useMemo<Omit<MarkerProps, 'position'>>(
     () => ({
-      icon: {
-        url: 'data:image/svg+xml;utf-8, <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor" /></svg>',
-        fillColor: theme.colors[theme.primaryColor]?.[6],
-        fillOpacity: 1,
-      },
       ...options,
+      icon: {
+        fillColor: theme.colors[theme.primaryColor]?.[6],
+        strokeColor: theme.colors[theme.primaryColor]?.[6],
+        fillOpacity: 1,
+        anchor: new google.maps.Point(12, 24),
+        scale: 1.4,
+        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+        ...(typeof options?.icon === 'object' && options?.icon),
+      },
     }),
     [options, theme.colors, theme.primaryColor]
   );

@@ -3,75 +3,81 @@ import { firestore } from 'firebase-admin';
 import { NextResponse } from 'next/server';
 import geohash from 'ngeohash';
 
-import { FirestorePlace, Place } from '../../../shared';
+import { readQueryString } from '~workspace/lib/shared/utils';
+
+import { FirestorePlace, Place, ReadPlacesRequest } from '../../../shared';
 
 export async function readPlaces(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
+    const requestParams = readQueryString<ReadPlacesRequest>(searchParams);
 
-    const southParam = searchParams.get('south');
-    const northParam = searchParams.get('north');
-    const westParam = searchParams.get('west');
-    const eastParam = searchParams.get('east');
-    const wifiAvailability = searchParams.get('wifiAvailability');
-    const wifiSpeed = searchParams.get('wifiSpeed');
-    const noiseLevel = searchParams.get('noiseLevel');
-    const talkingAllowed = searchParams.get('talkingAllowed');
-    const plugsQuantity = searchParams.get('plugsQuantity');
-    const comfortLevel = searchParams.get('comfortLevel');
-    const priceModel = searchParams.get('priceModel');
+    const { filters, sortBy, fromDocId, perPage = 20 } = requestParams;
 
-    if (!southParam || !northParam || !westParam || !eastParam) {
-      return NextResponse.json(
-        { error: 'place.api.error.boundsNotProvided' },
-        { status: 400 }
+    let query: firestore.Query<firestore.DocumentData> =
+      firestore().collection('places');
+
+    if (filters?.south && filters?.north && filters?.west && filters?.east) {
+      if (
+        isNaN(filters.south) ||
+        isNaN(filters.north) ||
+        isNaN(filters.west) ||
+        isNaN(filters.east)
+      ) {
+        return NextResponse.json(
+          { error: 'place.api.error.invalidBounds' },
+          { status: 400 }
+        );
+      }
+
+      const minGeohash = geohash.encode(filters.south, filters.west);
+      const maxGeohash = geohash.encode(filters.north, filters.east);
+      query = query
+        .where('geohash', '>=', minGeohash)
+        .where('geohash', '<=', maxGeohash);
+    }
+
+    if (filters?.wifiAvailability) {
+      query = query.where('wifiAvailability', '==', filters.wifiAvailability);
+    }
+    if (filters?.wifiSpeed) {
+      query = query.where('wifiSpeed', '==', filters.wifiSpeed);
+    }
+    if (filters?.noiseLevel) {
+      query = query.where('noiseLevel', '==', filters.noiseLevel);
+    }
+    if (filters?.talkingAllowed) {
+      query = query.where('talkingAllowed', '==', filters.talkingAllowed);
+    }
+    if (filters?.plugsQuantity) {
+      query = query.where('plugsQuantity', '==', filters.plugsQuantity);
+    }
+    if (filters?.comfortLevel) {
+      query = query.where('comfortLevel', '==', filters.comfortLevel);
+    }
+    if (filters?.priceModel) {
+      query = query.where('priceModel', '==', filters.priceModel);
+    }
+    if (filters?.meetingSpace) {
+      query = query.where('meetingSpace', '==', filters.meetingSpace);
+    }
+    if (sortBy?.field) {
+      query = query.orderBy(
+        sortBy.field,
+        sortBy.dir === 'desc' ? 'desc' : 'asc'
       );
     }
-
-    const south = parseFloat(southParam);
-    const north = parseFloat(northParam);
-    const west = parseFloat(westParam);
-    const east = parseFloat(eastParam);
-
-    // Validate bounds are valid numbers
-    if (isNaN(south) || isNaN(north) || isNaN(west) || isNaN(east)) {
-      return NextResponse.json(
-        { error: 'place.api.error.invalidBounds' },
-        { status: 400 }
-      );
+    if (fromDocId) {
+      const lastDoc = await firestore()
+        .collection('places')
+        .doc(fromDocId)
+        .get();
+      if (lastDoc.exists) {
+        query = query.startAfter(lastDoc);
+      }
     }
 
-    const minGeohash = geohash.encode(south, west);
-    const maxGeohash = geohash.encode(north, east);
-
-    let query = firestore()
-      .collection('places')
-      .where('geohash', '>=', minGeohash)
-      .where('geohash', '<=', maxGeohash);
-
-    // Apply additional filters if they exist
-    if (wifiAvailability) {
-      query = query.where('wifiAvailability', '==', wifiAvailability);
-    }
-    if (wifiSpeed) {
-      query = query.where('wifiSpeed', '==', wifiSpeed);
-    }
-    if (noiseLevel) {
-      query = query.where('noiseLevel', '==', noiseLevel);
-    }
-    if (talkingAllowed) {
-      query = query.where('talkingAllowed', '==', talkingAllowed);
-    }
-    if (plugsQuantity) {
-      query = query.where('plugsQuantity', '==', plugsQuantity);
-    }
-    if (comfortLevel) {
-      query = query.where('comfortLevel', '==', comfortLevel);
-    }
-    if (priceModel) {
-      query = query.where('priceModel', '==', priceModel);
-    }
-
+    query = query.limit(perPage);
     const querySnapshot = await query.get();
 
     const places: Place[] = [];
@@ -84,7 +90,6 @@ export async function readPlaces(req: Request) {
         ...placeData,
       });
     });
-
     return NextResponse.json(places, { status: 200 });
   } catch (error) {
     Sentry.captureException(error);

@@ -36,6 +36,18 @@
         }
       }
     },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "firebase hosting:channel:deploy --project remo-work {args.channelId}"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "firebase deploy --project remo-work"
+      }
+    },
     "export": {
       "executor": "@nx/next:export",
       "options": {

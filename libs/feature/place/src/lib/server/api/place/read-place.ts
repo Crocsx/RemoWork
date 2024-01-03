@@ -1,11 +1,16 @@
 import * as Sentry from '@sentry/nextjs';
 import { firestore } from 'firebase-admin';
 import { NextResponse } from 'next/server';
+import geohash from 'ngeohash';
 
-export async function readPlace(req: Request) {
+import { FirestorePlace } from '../../../shared';
+
+export async function readPlace(
+  _: Request,
+  { params }: { params: { id: string } }
+) {
   try {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get('id');
+    const id = params.id;
     if (!id || typeof id !== 'string') {
       return NextResponse.json(
         { error: 'place.api.error.idRequired' },
@@ -23,9 +28,17 @@ export async function readPlace(req: Request) {
       );
     }
 
-    const placeData = docSnapshot.data();
+    const placeData = docSnapshot.data() as FirestorePlace;
+    const { latitude, longitude } = geohash.decode(placeData.geohash);
 
-    return NextResponse.json(placeData, { status: 200 });
+    return NextResponse.json(
+      {
+        latitude,
+        longitude,
+        ...placeData,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);

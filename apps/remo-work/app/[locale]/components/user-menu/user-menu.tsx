@@ -20,7 +20,7 @@ export const UserMenu = ({ fallback }: { fallback: React.ReactNode }) => {
 
   return (
     <Menu
-      width={260}
+      width={rem(260)}
       position="bottom-end"
       transitionProps={{ transition: 'pop-top-right' }}
       withinPortal

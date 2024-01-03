@@ -2,31 +2,31 @@
 
 import { useState, useEffect } from 'react';
 
+import { AxiosResponse } from 'axios';
+
 export const useApiRequest = <R>({
   operation,
 }: {
-  operation: () => Promise<R>;
+  operation: () => Promise<AxiosResponse<R>>;
 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<unknown>(null);
-  const [data, setData] = useState<R>();
+  const [response, setResponse] = useState<AxiosResponse<R>>();
 
   const execute = async () => {
     setLoading(true);
     try {
-      const result = await operation();
-      setLoading(false);
-      setData(result);
+      setResponse(await operation());
     } catch (e) {
       setError(e);
+    } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    console.log('test');
     execute();
   }, []);
 
-  return { data, loading, error };
+  return { response, loading, error };
 };

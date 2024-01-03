@@ -11,6 +11,7 @@ export interface FirestorePlace {
   geohash: string;
   illustration?: string;
   address?: string;
+  country?: string;
   priceModel?: PricingModel;
   wifiAvailability?: CertaintyLevel;
   wifiLogin?: string;
@@ -20,7 +21,9 @@ export interface FirestorePlace {
   talkingAllowed?: CertaintyLevel;
   plugsQuantity?: QuantityLevel;
   comfortLevel?: ComfortLevel;
+  createdBy?: string;
   createdAt?: string;
+  updatedBy?: string;
   updatedAt?: string;
 }
 
@@ -29,6 +32,7 @@ export interface Place {
   name: string;
   longitude: number;
   latitude: number;
+  country?: string;
   illustration?: string;
   address?: string;
   priceModel?: PricingModel;
@@ -40,6 +44,9 @@ export interface Place {
   talkingAllowed?: CertaintyLevel;
   plugsQuantity?: QuantityLevel;
   comfortLevel?: ComfortLevel;
+  meetingSpace?: CertaintyLevel;
+  createdBy?: string;
   createdAt?: string;
+  updatedBy?: string;
   updatedAt?: string;
 }

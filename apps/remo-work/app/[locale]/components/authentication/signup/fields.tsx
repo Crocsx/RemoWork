@@ -46,6 +46,7 @@ export function Fields() {
 
       <Group justify="space-between" mt="lg">
         <Checkbox
+          {...getInputProps('tos')}
           label={t.rich('core.page.signup.tos', {
             privacy: (chunks) => (
               <Anchor component={Link} size="sm" href={'/privacy'}>
