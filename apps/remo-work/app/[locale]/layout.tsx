@@ -1,5 +1,7 @@
 import { ColorSchemeScript } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { notFound } from 'next/navigation';
 
 import './global.css';
@@ -24,7 +26,9 @@ export default function RootLayout({
       <body className="bg-primary-3">
         <Providers locale={locale}>
           {children}
+          <Analytics />
           <Notifications />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
