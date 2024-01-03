@@ -5,9 +5,10 @@ import { Flex, Group, Anchor, Text, Button, rem, Badge } from '@mantine/core';
 import { IconPin } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 
-import { Place, PlaceUtils } from '~workspace/lib/feature/place';
 import { Image } from '~workspace/lib/shared/ui';
 
+import { Place } from '../../../shared';
+import { PlaceUtils } from '../../utils/place.utils';
 import { PlaceIcons } from '../place-icons';
 import { PlaceOpeningTime } from '../place-opening-time';
 

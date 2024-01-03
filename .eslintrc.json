@@ -73,6 +73,7 @@
           {
             "allow": [],
             "enforceBuildableLibDependency": true,
+            "allowCircularSelfDependency": true,
             "depConstraints": [
               {
                 "sourceTag": "type:no-dep",

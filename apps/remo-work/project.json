@@ -8,6 +8,12 @@
       "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
+      "dependsOn": [
+        {
+          "target": "generate:i18n",
+          "projects": "self"
+        }
+      ],
       "options": {
         "outputPath": "dist/apps/remo-work"
       },
@@ -21,6 +27,12 @@
     "serve": {
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
+      "dependsOn": [
+        {
+          "target": "generate:i18n",
+          "projects": "self"
+        }
+      ],
       "options": {
         "buildTarget": "remo-work:build",
         "dev": true
@@ -36,13 +48,23 @@
         }
       }
     },
-    "preview": {
+    "generate:i18n": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "node apps/remo-work/prebuild.js "
+          }
+        ]
+      }
+    },
+    "deploy:preview": {
       "executor": "nx:run-commands",
       "options": {
         "command": "firebase hosting:channel:deploy --project remo-work {args.channelId}"
       }
     },
-    "deploy": {
+    "deploy:production": {
       "executor": "nx:run-commands",
       "options": {
         "command": "firebase deploy --project remo-work"
