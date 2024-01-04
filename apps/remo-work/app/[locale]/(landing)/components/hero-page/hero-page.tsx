@@ -3,9 +3,9 @@ import {
   Text,
   Container,
   Button,
-  Overlay,
   Flex,
   BackgroundImage,
+  rem,
 } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
@@ -23,35 +23,45 @@ export const Heropage = () => {
       }}
       pb="md"
     >
-      <Overlay
-        color="#000"
-        opacity={0.65}
-        pos="absolute"
-        w="100%"
-        h="100%"
-        zIndex={1}
-      />
-
       <Flex
         direction="column"
         justify="end"
         pos="relative"
-        pb="md"
-        h="100%"
+        py="md"
         style={{ zIndex: 2 }}
       >
         <Title
-          c="var(--mantine-color-white)"
           ta="center"
           order={1}
           px="md"
+          tt="uppercase"
           mb="xs"
+          fz={{ base: rem(28), lg: rem(48) }}
+          c="secondary.8"
         >
-          {t('core.page.home.hero.title')}
+          {t.rich('core.page.home.hero.title', {
+            important: (chunks) => (
+              <Text
+                fw="bold"
+                tt="uppercase"
+                fz={{ base: rem(32), lg: rem(64) }}
+                c="secondary.8"
+              >
+                {chunks}
+              </Text>
+            ),
+          })}
         </Title>
 
         <Container size={640}>
-          <Text size="md" c="var(--mantine-color-gray-0)" ta="center">
+          <Text
+            fz={{ base: rem(16), lg: rem(18) }}
+            size="md"
+            ta="center"
+            tt="uppercase"
+            fw="bold"
+            c="secondary.8"
+          >
             {t('core.page.home.hero.description')}
           </Text>
         </Container>
@@ -62,10 +72,8 @@ export const Heropage = () => {
           px="md"
           direction={{ base: 'column', md: 'row' }}
         >
-          <Button component="a" size="lg" href="/search">
-            {t('shared.action.goTo', {
-              entity: t('shared.entity.map', { count: 1 }),
-            })}
+          <Button component="a" size="lg" href="/explore">
+            {t('shared.button.explore')}
           </Button>
         </Flex>
       </Flex>

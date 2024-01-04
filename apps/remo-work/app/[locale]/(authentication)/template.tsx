@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthCtx } from '~workspace/lib/common/auth';
 import { Image } from '~workspace/lib/shared/ui';
 
-import logoColumn from '~workspace/app/remo-work/public/images/logo-column.svg';
+import logo from '~workspace/app/remo-work/public/images/logo.svg';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const { self, authenticated } = useAuthCtx();
@@ -16,14 +16,14 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (authenticated && self?.emailVerified) {
-      router.push('/search');
+      router.push('/explore');
     }
-  }, [authenticated, router]);
+  }, [authenticated, router, self?.emailVerified]);
 
   return (
     <Flex direction="column" align="center">
       <Anchor href="/" mt="xl">
-        <Image src={logoColumn} alt="logo" height={120} />
+        <Image src={logo} alt="logo" height={120} />
       </Anchor>
       {children}
     </Flex>

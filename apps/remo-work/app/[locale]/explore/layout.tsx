@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
             collapsed: { mobile: !mobileOpened, desktop: false },
           }}
         >
-          <AppShellHeader>
+          <AppShellHeader bg="secondary.1">
             <Header
               withBurgerControl
               mobileOpened={mobileOpened}
@@ -46,7 +46,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
               aside={
                 <UserMenu
                   fallback={
-                    <Group ml="xl" visibleFrom="sm">
+                    <Group ml="xl">
                       <Button component={Link} href="/signin">
                         {t('shared.button.signin')}
                       </Button>
@@ -56,7 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
               }
             />
           </AppShellHeader>
-          <AppShellNavbar p="md">
+          <AppShellNavbar p="md" bg="secondary.1">
             <Places />
           </AppShellNavbar>
           <AppShellMain pt={`calc(${rem(60)})`} h={`calc(100vh - 60px)`}>

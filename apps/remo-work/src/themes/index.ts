@@ -1,1 +1,1 @@
-export * from './blue';
+export * from './coral';

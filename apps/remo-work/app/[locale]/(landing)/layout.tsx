@@ -4,7 +4,6 @@ import {
   AppShellMain,
   Button,
   Group,
-  rem,
 } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
@@ -21,12 +20,12 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
         offset: true,
       }}
     >
-      <AppShellHeader>
+      <AppShellHeader bg="secondary.1">
         <Header
           aside={
             <UserMenu
               fallback={
-                <Group ml="xl" gap={0} visibleFrom="sm">
+                <Group ml="xl" gap={0}>
                   <Button component="a" href="/signin">
                     {t('shared.button.signin')}
                   </Button>
@@ -36,7 +35,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
           }
         />
       </AppShellHeader>
-      <AppShellMain pt={`calc(${rem(60)})`}>
+      <AppShellMain bg="secondary.1">
         {children}
         <Footer />
       </AppShellMain>

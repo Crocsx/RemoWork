@@ -12,7 +12,6 @@ declare global {
       NEXT_FIREBASE_ADMIN_PRIVATE_CLIENT_EMAIL: string;
       NEXT_FIREBASE_ADMIN_PRIVATE_KEY: string;
       NEXT_PUBLIC_API_ENDPOINT: string;
-      NEXT_CSFR_TOKEN: string;
       SENTRY_AUTH_TOKEN: string;
       NEXT_GOOGLE_MAIL_ADDRESS: string;
       NEXT_GOOGLE_MAIL_PASSWORD: string;

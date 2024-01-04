@@ -53,7 +53,7 @@ export const SignIn = () => {
         );
         const response = await signInWithEmailAndPassword(email, password);
         if (response?.user) {
-          router.push('/search');
+          router.push('/explore');
         }
       } catch (e) {
         notifications.error({

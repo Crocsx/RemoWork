@@ -23,25 +23,44 @@
       },
       "home": {
         "hero": {
-          "title": "Find Your Perfect Remote Work Spot",
-          "description": "Connect with a diverse selection of locations offering top-notch WiFi, comfortable ambiance, and essential amenities, tailored for digital nomads, freelancers, and anyone seeking a productive change of scenery."
+          "title": "Discover your ideal workplace <important>Anytime, Anywhere</important>",
+          "description": "Discover prime locations with fast Wi-Fi, cozy vibes, and all the essentials for digital nomads, freelancers, or anyone looking for a refreshing workspace."
         },
         "feature": {
-          "title": "WORK ANYWHERE, ANYTIME",
-          "catch": "Tailor Your Remote Work Experience",
-          "description": "In a world where work is no longer tied to a specific place, we bridges the gap between comfort and productivity. Find locations that resonate with your work style and preferences.",
+          "title": "Tailor Your Remote Work Experience",
+          "description": "Work is no longer tied to a specific place, we help you find your next favorite place to enhance your productivity. Find locations that resonate with your work style and preferences.",
           "bullet": {
-            "worldwide": {
-              "title": "Explore Workspaces Worldwide",
-              "description": "Whether you're in your hometown or halfway across the globe, we connects you to local workspaces with global standards."
+            "explore": {
+              "title": "Explore",
+              "description": "Whether you're in your hometown or halfway across the globe, we connects you to local workspaces with global standards.",
+              "badge": {
+                "bar": "Bar",
+                "restaurant": "Restaurant",
+                "park": "Park",
+                "coffee": "Coffee",
+                "hotel": "Hotel",
+                "coworking": "Coworking"
+              }
             },
-            "tailored": {
-              "title": "Tailored Search",
-              "description": "Every remote worker has unique needs. We provides detailed information on noise levels, comfort, and facilities, so you can choose a spot that feels right for you."
+            "search": {
+              "title": "Search",
+              "description": "Every remote worker has unique needs. We provides detailed information on noise levels, comfort, and facilities, so you can choose a spot that feels right for you.",
+              "badge": {
+                "wifi": "Wifi",
+                "noise": "Noise",
+                "plug": "Plug",
+                "meeting": "Meeting Space",
+                "comfort": "Comfort"
+              }
             },
-            "community": {
-              "title": "Community and Collaboration",
-              "description": "Engage with a community of like-minded remote workers. Share tips, find collaborative spaces, and exchange information on the best working spots in town."
+            "collaborate": {
+              "title": "Collaborate",
+              "description": "Engage with a community of like-minded remote workers. Share tips, find collaborative spaces, and exchange information on the best working spots in town.",
+              "badge": {
+                "add": "Add Places",
+                "discuss": "Discuss",
+                "rate": "Rate"
+              }
             }
           }
         },

@@ -23,13 +23,13 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body className="bg-primary-3">
+      <body>
         <Providers locale={locale}>
           {children}
           <Notifications />
         </Providers>
-          <Analytics />
-          <SpeedInsights />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -120,7 +120,7 @@ export const Signup = () => {
               </Title>
               <Text>{t('core.page.verificationSent.description')}</Text>
             </Group>
-            <Button component={Link} href="/search">
+            <Button component={Link} href="/explore">
               {t('shared.action.goTo', {
                 entity: t('shared.entity.map', { count: 1 }),
               })}

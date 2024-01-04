@@ -1,10 +1,17 @@
 'use client';
 
-import { Burger, Container, Group, UnstyledButton } from '@mantine/core';
+import {
+  Burger,
+  Container,
+  Group,
+  UnstyledButton,
+  Text,
+  Flex,
+} from '@mantine/core';
 
 import { Image } from '~workspace/lib/shared/ui';
 
-import logoInline from '~workspace/app/remo-work/public/images/logo-inline.svg';
+import logo from '~workspace/app/remo-work/public/images/logo.svg';
 
 export const Header = ({
   withBurgerControl,
@@ -32,7 +39,12 @@ export const Header = ({
             </>
           )}
           <UnstyledButton component="a" href="/">
-            <Image src={logoInline} alt="logo" height={32} />
+            <Flex justify="center" align="center">
+              <Text fw="bold" mr="sm" tt="uppercase">
+                Remo-Work
+              </Text>
+              <Image src={logo} alt="logo" height={32} />
+            </Flex>
           </UnstyledButton>
         </Group>
         {aside}

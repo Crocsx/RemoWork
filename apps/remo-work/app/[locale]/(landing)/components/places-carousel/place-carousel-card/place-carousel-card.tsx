@@ -59,7 +59,7 @@ export const PlaceCarouselCard = ({
           radius="md"
           style={{ flex: 1 }}
           component={Link}
-          href={`/search?placeId=${id}`}
+          href={`/explore?placeId=${id}`}
         >
           {t('shared.action.show', {
             entity: t('shared.entity.detail', { count: 1 }),

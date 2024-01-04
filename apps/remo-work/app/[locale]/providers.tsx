@@ -7,7 +7,7 @@ import { AuthProvider } from '~workspace/lib/common/auth';
 import { FirebaseProvider } from '~workspace/lib/external/firebase';
 import { AxiosProvider, TimezoneUtils } from '~workspace/lib/shared/utils';
 
-import { messageLoader, themeBlue } from '~workspace/app/remo-work/src';
+import { messageLoader, themeCoral } from '~workspace/app/remo-work/src';
 
 export default async function Providers({
   children,
@@ -19,7 +19,7 @@ export default async function Providers({
   const messages = await messageLoader(locale);
 
   return (
-    <MantineProvider theme={themeBlue}>
+    <MantineProvider theme={themeCoral}>
       <FirebaseProvider
         config={{
           apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
