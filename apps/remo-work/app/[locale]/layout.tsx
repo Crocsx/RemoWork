@@ -26,10 +26,10 @@ export default function RootLayout({
       <body className="bg-primary-3">
         <Providers locale={locale}>
           {children}
-          <Analytics />
           <Notifications />
-          <SpeedInsights />
         </Providers>
+          <Analytics />
+          <SpeedInsights />
       </body>
     </html>
   );
