@@ -39,7 +39,7 @@ export function Map() {
         mapContainerStyle={{ width: '100%', height: '100%' }}
         options={{
           disableDefaultUI: true,
-          minZoom: 15,
+          minZoom: 7,
           styles: [
             {
               featureType: 'poi.business',

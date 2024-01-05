@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
             collapsed: { mobile: !mobileOpened, desktop: false },
           }}
         >
-          <AppShellHeader bg="secondary.1">
+          <AppShellHeader>
             <Header
               withBurgerControl
               mobileOpened={mobileOpened}
@@ -56,7 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
               }
             />
           </AppShellHeader>
-          <AppShellNavbar p="md" bg="secondary.1">
+          <AppShellNavbar p="md">
             <Places />
           </AppShellNavbar>
           <AppShellMain pt={`calc(${rem(60)})`} h={`calc(100vh - 60px)`}>

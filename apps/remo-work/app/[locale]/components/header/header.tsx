@@ -7,11 +7,8 @@ import {
   UnstyledButton,
   Text,
   Flex,
+  useMantineTheme,
 } from '@mantine/core';
-
-import { Image } from '~workspace/lib/shared/ui';
-
-import logo from '~workspace/app/remo-work/public/images/logo.svg';
 
 export const Header = ({
   withBurgerControl,
@@ -24,6 +21,10 @@ export const Header = ({
   toggleMobile?: () => void;
   aside?: React.ReactNode;
 }) => {
+  const {
+    other: { logo },
+  } = useMantineTheme();
+
   return (
     <Container fluid py="sm">
       <Group justify="space-between">
@@ -43,7 +44,7 @@ export const Header = ({
               <Text fw="bold" mr="sm" tt="uppercase">
                 Remo-Work
               </Text>
-              <Image src={logo} alt="logo" height={32} />
+              {logo({ width: '2rem', height: '2rem' })}
             </Flex>
           </UnstyledButton>
         </Group>

@@ -48,6 +48,7 @@ export const PlaceFilters = ({
       </Chip>
       <Chip
         size="xs"
+        color="primary"
         checked={filters.noiseLevel === NoiseLevel.QUIET}
         onClick={() => handleChipClick('noiseLevel', NoiseLevel.QUIET)}
       >

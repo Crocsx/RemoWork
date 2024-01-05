@@ -1,0 +1,30 @@
+{
+  "name": "shared-icons",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/icons/src",
+  "projectType": "library",
+  "tags": ["type:shared"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/shared/icons/jest.config.ts"
+      }
+    },
+    "svg:generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx @svgr/cli -- libs/shared/icons/src/lib/svg/sources"
+          }
+        ]
+      }
+    }
+  }
+}

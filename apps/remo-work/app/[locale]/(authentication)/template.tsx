@@ -2,17 +2,17 @@
 
 import { useEffect } from 'react';
 
-import { Anchor, Flex } from '@mantine/core';
+import { Anchor, Flex, useMantineTheme } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 
 import { useAuthCtx } from '~workspace/lib/common/auth';
-import { Image } from '~workspace/lib/shared/ui';
-
-import logo from '~workspace/app/remo-work/public/images/logo.svg';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const { self, authenticated } = useAuthCtx();
   const router = useRouter();
+  const {
+    other: { logo },
+  } = useMantineTheme();
 
   useEffect(() => {
     if (authenticated && self?.emailVerified) {
@@ -23,7 +23,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <Flex direction="column" align="center">
       <Anchor href="/" mt="xl">
-        <Image src={logo} alt="logo" height={120} />
+        {logo({ width: '5rem', height: '5rem' })}
       </Anchor>
       {children}
     </Flex>

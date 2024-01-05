@@ -70,12 +70,19 @@ export const Signup = () => {
   return (
     <Container size={420} my={40}>
       {!verificationSent ? (
-        <Paper withBorder shadow="md" p="md" mt="md" radius="md">
+        <Paper
+          withBorder
+          shadow="md"
+          p="md"
+          mt="md"
+          radius="md"
+          bg="secondary.2"
+        >
           <Group mb="md" justify="center">
             <Title order={2} ta="center">
               {t('core.page.signup.title')}
             </Title>
-            <Text c="dimmed" size="sm" ta="center" mt={5}>
+            <Text size="sm" ta="center" mt={5}>
               {t.rich('core.page.signup.description', {
                 link: (chunks) => (
                   <Anchor size="sm" href="/signin">
@@ -112,7 +119,14 @@ export const Signup = () => {
           </FormContext>
         </Paper>
       ) : (
-        <Paper withBorder shadow="md" p="md" mt="md" radius="md">
+        <Paper
+          withBorder
+          shadow="md"
+          p="md"
+          mt="md"
+          radius="md"
+          bg="secondary.2"
+        >
           <Flex direction="column" align="center" gap="md">
             <Group mb="md" justify="center">
               <Title order={2} ta="center">

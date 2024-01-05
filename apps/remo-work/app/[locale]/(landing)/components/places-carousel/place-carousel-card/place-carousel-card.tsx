@@ -39,13 +39,7 @@ export const PlaceCarouselCard = ({
             </Badge>
           </Group>
           <Text fz="sm">{address}</Text>
-          <Text
-            fw="700"
-            style={{ textTransform: 'uppercase' }}
-            fz="xs"
-            c="dimmed"
-            py="sm"
-          >
+          <Text fw="700" style={{ textTransform: 'uppercase' }} fz="xs" py="sm">
             {t('shared.entity.detail', { count: 2 })}
           </Text>
           <Group>

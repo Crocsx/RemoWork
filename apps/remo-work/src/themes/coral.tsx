@@ -1,4 +1,8 @@
-import { MantineColorsTuple, createTheme } from '@mantine/core';
+import { SVGProps } from 'react';
+
+import { Fieldset, MantineColorsTuple, createTheme } from '@mantine/core';
+
+import { RemoWorkLogoIcon } from '~workspace/lib/shared/icons';
 
 const primary: MantineColorsTuple = [
   '#FDECE9', // Lightest Primary
@@ -36,7 +40,26 @@ export const themeCoral = createTheme({
   primaryColor: 'primary',
   defaultRadius: 'xl',
   cursorType: 'pointer',
-  fontFamily: 'Arial, sans-serif',
-  fontFamilyMonospace: 'Consolas, "Lucida Console", Monaco, monospace',
-  headings: { fontFamily: 'Arial, sans-serif' },
+  fontFamily: 'Open Sans, Roboto, "Helvetica Neue", sans-serif',
+  fontFamilyMonospace:
+    '"Fira Code", "Fira Mono", "Droid Sans Mono", "Courier New", monospace',
+  headings: { fontFamily: 'Lato, "Segoe UI", "Helvetica Neue", sans-serif' },
+  white: secondary[0],
+  black: secondary[9],
+  components: {
+    Fieldset: Fieldset.extend({
+      styles: {
+        root: {
+          borderRadius: 0,
+          border: 0,
+          background: 'transparent',
+        },
+      },
+    }),
+  },
+  other: {
+    logo: (props: SVGProps<SVGSVGElement>) => (
+      <RemoWorkLogoIcon fill={primary[7]} {...props} />
+    ),
+  },
 });

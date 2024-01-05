@@ -44,12 +44,12 @@ export const Recovery = () => {
 
   return (
     <Container size={420} my={40}>
-      <Paper withBorder shadow="md" p="md" mt="md" radius="md">
+      <Paper withBorder shadow="md" p="md" mt="md" radius="md" bg="secondary.2">
         <Group mb="md" justify="center">
           <Title order={2} ta="center">
             {t('core.page.recovery.title')}
           </Title>
-          <Text c="dimmed" size="sm" ta="center" mt={5}>
+          <Text size="sm" ta="center" mt={5}>
             {t('core.page.recovery.description')}
           </Text>
         </Group>

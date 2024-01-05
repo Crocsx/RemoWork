@@ -37,7 +37,6 @@ export const Heropage = () => {
           tt="uppercase"
           mb="xs"
           fz={{ base: rem(28), lg: rem(48) }}
-          c="secondary.8"
         >
           {t.rich('core.page.home.hero.title', {
             important: (chunks) => (
@@ -45,7 +44,6 @@ export const Heropage = () => {
                 fw="bold"
                 tt="uppercase"
                 fz={{ base: rem(32), lg: rem(64) }}
-                c="secondary.8"
               >
                 {chunks}
               </Text>
@@ -60,7 +58,6 @@ export const Heropage = () => {
             ta="center"
             tt="uppercase"
             fw="bold"
-            c="secondary.8"
           >
             {t('core.page.home.hero.description')}
           </Text>

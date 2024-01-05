@@ -28,7 +28,7 @@ export const PlacesCarousel = async () => {
         {t('core.page.home.place.title')}
       </Title>
 
-      <Text c="dimmed" ta="center" mt="md" maw={rem(600)} m="auto">
+      <Text ta="center" mt="md" maw={rem(600)} m="auto">
         {t('core.page.home.place.description')}
       </Text>
       <Carousel
