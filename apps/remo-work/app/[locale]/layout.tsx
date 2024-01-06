@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 
 import './global.css';
 
+export { metadata } from './metadata';
 import Providers from './providers';
 import { IntlLocale, intlConfig } from '../../next.intl.config';
 

@@ -13,7 +13,6 @@ import {
   rem,
 } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
@@ -24,6 +23,7 @@ import {
   PlaceOpeningTime,
   PlaceUtils,
 } from '~workspace/lib/feature/place';
+import { Image } from '~workspace/lib/shared/ui';
 import {
   EMPTY_DEFAULT,
   useApiRequest,

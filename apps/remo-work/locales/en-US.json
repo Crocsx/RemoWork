@@ -1,19 +1,28 @@
 {
   "core": {
     "page": {
-      "verificationSent": {
-        "title": "Email has been sent",
-        "description": "To verify your account, please click on the link received by email"
-      },
       "signup": {
         "title": "Let's get you in!",
         "description": "Already have an account ? <link> Login instead </link>",
-        "tos": "I accept the <terms>Terms of Use</terms> & <privacy>Privacy Policy</privacy>"
+        "tos": "I accept the <terms>Terms of Use</terms> & <privacy>Privacy Policy</privacy>",
+        "notification": {
+          "emailSent": {
+            "title": "Email has been sent",
+            "description": "To verify your account, please click on the link received by email"
+          }
+        }
       },
       "recovery": {
         "title": "Forgot your password ?",
         "description": "Enter your email to get a reset link",
-        "return": "Back to login"
+        "return": "Back to login",
+        "notification": {
+          "emailSent": {
+            "title": "Email has been sent",
+            "description": "If your email exist, use the link you received by email to recover your password",
+            "resend": "Haven't receive the email ? {timer, plural, =0 {<interaction>resent</interaction>} =1 {<interaction>resend in # second</interaction>} other {<interaction>resend in # seconds</interaction>}}"
+          }
+        }
       },
       "signin": {
         "title": "Welcome back!",
@@ -109,7 +118,7 @@
                 "address": "Address",
                 "tags": "Tags"
               },
-              "noPlaceFound": "No places founds around you",
+              "refineYourSearch": "Please change your filters or map location",
               "filter": {
                 "wifiSpeed": "Fast Wifi",
                 "noiseLevel": "Very Quiet",

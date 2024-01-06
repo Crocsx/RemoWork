@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
-import logoColumn from '~workspace/app/remo-work/public/images/hero.png';
+import logoColumn from '~workspace/app/remo-work/public/images/hero.webp';
 
 export const Heropage = () => {
   const t = useTranslations();

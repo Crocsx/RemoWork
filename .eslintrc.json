@@ -81,30 +81,28 @@
               },
               {
                 "sourceTag": "type:util",
-                "onlyDependOnLibsWithTags": ["type:util"]
+                "onlyDependOnLibsWithTags": []
               },
               {
                 "sourceTag": "type:ui",
                 "onlyDependOnLibsWithTags": ["type:util"]
               },
               {
+                "sourceTag": "type:shared",
+                "onlyDependOnLibsWithTags": ["type:util"]
+              },
+              {
                 "sourceTag": "type:external",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+                "onlyDependOnLibsWithTags": ["type:shared"]
               },
               {
                 "sourceTag": "type:common",
-                "onlyDependOnLibsWithTags": [
-                  "type:ui",
-                  "type:util",
-                  "type:external"
-                ]
+                "onlyDependOnLibsWithTags": ["type:shared", "type:external"]
               },
               {
                 "sourceTag": "type:feature",
                 "onlyDependOnLibsWithTags": [
                   "type:shared",
-                  "type:ui",
-                  "type:util",
                   "type:external",
                   "type:common"
                 ]
@@ -113,8 +111,7 @@
                 "sourceTag": "type:app",
                 "onlyDependOnLibsWithTags": [
                   "type:feature",
-                  "type:ui",
-                  "type:util",
+                  "type:shared",
                   "type:common",
                   "type:external",
                   "type:routing"

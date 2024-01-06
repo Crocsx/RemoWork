@@ -31,7 +31,7 @@ import { FormContext, FormType, validator } from './validator';
 
 export const Signup = () => {
   const t = useTranslations();
-  const [verificationSent, setVerificationSent] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const [createUserWithEmailAndPassword, _, creating, errorCreation] =
     useCreateUserWithEmailAndPassword(getAuth());
   const [sendEmailVerification, sendingEmail, errorSendEmail] =
@@ -56,7 +56,7 @@ export const Signup = () => {
           const sent = await sendEmailVerification({
             url: window.location.origin,
           });
-          setVerificationSent(sent);
+          setEmailSent(sent);
         }
       } catch (e) {
         notifications.error({
@@ -69,7 +69,7 @@ export const Signup = () => {
 
   return (
     <Container size={420} my={40}>
-      {!verificationSent ? (
+      {!emailSent ? (
         <Paper
           withBorder
           shadow="md"
@@ -130,9 +130,11 @@ export const Signup = () => {
           <Flex direction="column" align="center" gap="md">
             <Group mb="md" justify="center">
               <Title order={2} ta="center">
-                {t('core.page.verificationSent.title')}
+                {t('core.page.signup.notification.emailSent.title')}
               </Title>
-              <Text>{t('core.page.verificationSent.description')}</Text>
+              <Text>
+                {t('core.page.signup.notification.emailSent.description')}
+              </Text>
             </Group>
             <Button component={Link} href="/explore">
               {t('shared.action.goTo', {

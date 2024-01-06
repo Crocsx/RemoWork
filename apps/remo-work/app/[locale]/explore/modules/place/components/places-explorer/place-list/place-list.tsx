@@ -1,6 +1,14 @@
 import { useCallback } from 'react';
 
-import { Card, Grid, LoadingOverlay, ScrollArea, Text } from '@mantine/core';
+import {
+  Card,
+  Flex,
+  Grid,
+  LoadingOverlay,
+  ScrollArea,
+  Text,
+} from '@mantine/core';
+import { IconSearchOff } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 
 import { Place, PlaceCard } from '~workspace/lib/feature/place';
@@ -24,31 +32,48 @@ export const PlaceList = () => {
   );
 
   return (
-    <ScrollArea h="100%" type="auto" offsetScrollbars scrollbars="y">
+    <>
       <LoadingOverlay visible={loading} />
-      {places.length === 0 && (
-        <Text>{t('core.page.map.module.place.viewer.noPlaceFound')}</Text>
+      {places.length === 0 ? (
+        <Flex
+          direction="column"
+          w="100%"
+          h="100%"
+          align="center"
+          justify="center"
+        >
+          <IconSearchOff size={48}></IconSearchOff>
+          <Text>
+            {t('shared.action.notFound', {
+              entity: t('shared.entity.place', { count: 2 }),
+            })}
+          </Text>
+          <Text>{t('core.page.map.module.place.viewer.refineYourSearch')}</Text>
+        </Flex>
+      ) : (
+        <ScrollArea h="100%" type="auto" offsetScrollbars scrollbars="y">
+          <Grid>
+            {places?.map((p) => (
+              <Grid.Col span={{ base: 12, md: 6, xl: 4 }} key={p.id}>
+                <Card withBorder h="100%">
+                  <PlaceCard
+                    place={p}
+                    service={service}
+                    goToHandler={goToPlace}
+                    onSelect={() => {
+                      map?.panTo({
+                        lat: p.latitude,
+                        lng: p.longitude,
+                      });
+                      setSelectedPlaceId(p.id);
+                    }}
+                  />
+                </Card>
+              </Grid.Col>
+            ))}
+          </Grid>
+        </ScrollArea>
       )}
-      <Grid>
-        {places?.map((p) => (
-          <Grid.Col span={{ base: 12, md: 6, xl: 4 }} key={p.id}>
-            <Card withBorder h="100%">
-              <PlaceCard
-                place={p}
-                service={service}
-                goToHandler={goToPlace}
-                onSelect={() => {
-                  map?.panTo({
-                    lat: p.latitude,
-                    lng: p.longitude,
-                  });
-                  setSelectedPlaceId(p.id);
-                }}
-              />
-            </Card>
-          </Grid.Col>
-        ))}
-      </Grid>
-    </ScrollArea>
+    </>
   );
 };

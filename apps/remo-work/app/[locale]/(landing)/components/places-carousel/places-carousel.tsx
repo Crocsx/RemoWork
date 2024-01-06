@@ -23,7 +23,7 @@ export const PlacesCarousel = async () => {
   const places: Place[] = await res.json();
 
   return (
-    <Container size="xl" py="xl">
+    <Container size="lg" py="xl">
       <Title order={2} ta="center" mt="sm">
         {t('core.page.home.place.title')}
       </Title>
@@ -39,6 +39,16 @@ export const PlacesCarousel = async () => {
         slidesToScroll={1}
         controlSize="32"
         mt={50}
+        nextControlProps={{
+          style: {
+            background: 'var(--mantine-primary-color-5)',
+          },
+        }}
+        previousControlProps={{
+          style: {
+            background: 'var(--mantine-primary-color-5)',
+          },
+        }}
       >
         {places?.map((props) => (
           <CarouselSlide key={props.id}>

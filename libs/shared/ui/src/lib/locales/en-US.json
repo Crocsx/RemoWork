@@ -30,7 +30,8 @@
       "edit": "Edit {entity}",
       "signin": "Login {entity}",
       "search": "Search {entity}",
-      "login": "Signup {entity}"
+      "login": "Signup {entity}",
+      "notFound": "No {entity} found"
     },
     "execution": {
       "updated": "Updated {entity}",
