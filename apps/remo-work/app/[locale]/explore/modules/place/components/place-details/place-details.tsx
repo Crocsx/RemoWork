@@ -75,9 +75,9 @@ export const PlaceDetails = ({
           <PlaceEditModal place={place} details={details} />
         </AuthRestricted>
       </Flex>
-      <ScrollArea scrollbars="y" offsetScrollbars="y" style={{ flex: 1 }}>
+      <ScrollArea scrollbars="y" style={{ flex: 1 }}>
         <Flex direction="column" gap="sm">
-          <LoadingOverlay visible={loading} />
+          <LoadingOverlay visible={loading} bg="secondary.0" />
           <Group pos="relative">
             <Rating
               top={0}

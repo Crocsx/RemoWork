@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 
-import { Button, Modal, Text } from '@mantine/core';
+import { Button, Modal, Text, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useTranslations } from 'next-intl';
 
@@ -106,11 +106,16 @@ export const PlaceAddModal = ({
       </Modal>
       <AuthRestricted>
         {({ verified }) => (
-          <Button type="button" fullWidth onClick={open} disabled={!verified}>
-            {t('shared.action.add', {
-              entity: t('shared.entity.place', { count: 1 }),
-            })}
-          </Button>
+          <Tooltip
+            label={t('core.generic.restrictedToVerifiedUser')}
+            disabled={verified}
+          >
+            <Button type="button" fullWidth onClick={open} disabled={!verified}>
+              {t('shared.action.add', {
+                entity: t('shared.entity.place', { count: 1 }),
+              })}
+            </Button>
+          </Tooltip>
         )}
       </AuthRestricted>
     </>

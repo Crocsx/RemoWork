@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
         offset: true,
       }}
     >
-      <AppShellHeader>
+      <AppShellHeader bg="secondary.0">
         <Header
           aside={
             <UserMenu
@@ -35,7 +35,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
           }
         />
       </AppShellHeader>
-      <AppShellMain>
+      <AppShellMain bg="secondary.0">
         {children}
         <Footer />
       </AppShellMain>

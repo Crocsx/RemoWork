@@ -83,7 +83,7 @@
           "place": {
             "editor": {
               "title": "Add a new Place",
-              "description": "Search a place below, then provide as much info as you can to create a new place",
+              "description": "Search a place by name using the input below, then provide information on the place. Please try to be accurate about it",
               "field": {
                 "priceModel": "Price Model",
                 "wifiAvailability": "WiFi Available",
@@ -137,6 +137,9 @@
         "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
         "return": "Take me back to home page"
       }
+    },
+    "generic": {
+      "restrictedToVerifiedUser": "Create and verify your account before adding a place"
     }
   }
 }

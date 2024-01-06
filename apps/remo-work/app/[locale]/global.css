@@ -6,3 +6,18 @@
 body {
   color: var(--mantine-color-secondary-8);
 }
+
+::-webkit-scrollbar-thumb {
+  width: 0.75rem;
+  background-color: var(--mantine-color-primary-5);
+  border-radius: var(--mantine-radius-default);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--mantine-white);
+  margin: 0.45rem;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--mantine-white);
+}

@@ -1,6 +1,12 @@
 import { SVGProps } from 'react';
 
-import { Fieldset, MantineColorsTuple, createTheme } from '@mantine/core';
+import {
+  Fieldset,
+  LoadingOverlay,
+  MantineColorsTuple,
+  Modal,
+  createTheme,
+} from '@mantine/core';
 
 import { RemoWorkLogoIcon } from '~workspace/lib/shared/icons';
 
@@ -38,14 +44,12 @@ const palette = {
 export const themeCoral = createTheme({
   colors: palette,
   primaryColor: 'primary',
-  defaultRadius: 'xl',
+  defaultRadius: 'lg',
   cursorType: 'pointer',
   fontFamily: 'Open Sans, Roboto, "Helvetica Neue", sans-serif',
   fontFamilyMonospace:
     '"Fira Code", "Fira Mono", "Droid Sans Mono", "Courier New", monospace',
   headings: { fontFamily: 'Lato, "Segoe UI", "Helvetica Neue", sans-serif' },
-  white: secondary[0],
-  black: secondary[9],
   components: {
     Fieldset: Fieldset.extend({
       styles: {
@@ -53,6 +57,25 @@ export const themeCoral = createTheme({
           borderRadius: 0,
           border: 0,
           background: 'transparent',
+        },
+      },
+    }),
+    LoadingOverlay: LoadingOverlay.extend({
+      styles: {
+        overlay: {
+          background: 'var(--mantine-color-secondary-0)',
+        },
+      },
+    }),
+    Modal: Modal.extend({
+      styles: {
+        content: {
+          background: 'var(--mantine-color-secondary-0)',
+        },
+        header: { background: 'var(--mantine-color-secondary-0)' },
+        title: {
+          fontSize: '1.25rem',
+          fontWeight: 'bold',
         },
       },
     }),

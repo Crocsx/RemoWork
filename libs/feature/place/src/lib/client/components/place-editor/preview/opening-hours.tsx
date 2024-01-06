@@ -28,7 +28,7 @@ const DisplayOpeningHours = ({
         return (
           <Flex key={day} align="center" gap="md" fz="xs">
             {open ? (
-              <Badge>
+              <Badge color="secondary">
                 {formatTime(open?.time)} - {formatTime(close?.time)}
               </Badge>
             ) : (

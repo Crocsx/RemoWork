@@ -45,7 +45,7 @@ export const MapProvider = ({
         service,
       }}
     >
-      <LoadingOverlay visible={!isLoaded} />
+      <LoadingOverlay visible={!isLoaded} bg="secondary.0" />
       {isLoaded && children}
     </MapContext.Provider>
   );

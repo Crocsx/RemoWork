@@ -54,6 +54,7 @@ export const Fields = ({
       />
       <SegmentedControl
         mt="sm"
+        color="primary"
         label={t('core.page.map.module.place.editor.field.priceModel')}
         data={[
           {
@@ -73,6 +74,7 @@ export const Fields = ({
       />
       <SegmentedControl
         mt="sm"
+        color="primary"
         label={t('core.page.map.module.place.editor.field.wifiAvailability')}
         data={[
           {
@@ -94,6 +96,7 @@ export const Fields = ({
         <>
           <SegmentedControl
             mt="sm"
+            color="primary"
             label={t('core.page.map.module.place.editor.field.wifiSpeed')}
             data={[
               {
@@ -120,17 +123,24 @@ export const Fields = ({
           <TextInput
             mt="sm"
             label={t('shared.entity.name', { count: 1 })}
+            placeholder={t('shared.action.name', {
+              entity: t('shared.entity.wifi', { count: 1 }),
+            })}
             {...getInputProps('wifiLogin')}
           />
           <TextInput
             mt="sm"
             label={t('shared.entity.password', { count: 1 })}
+            placeholder={t('shared.action.name', {
+              entity: t('shared.entity.password', { count: 1 }),
+            })}
             {...getInputProps('wifiPassword')}
           />
         </>
       )}
       <SegmentedControl
         mt="sm"
+        color="primary"
         label={t('core.page.map.module.place.editor.field.noiseLevel')}
         data={[
           {
@@ -153,6 +163,7 @@ export const Fields = ({
 
       <SegmentedControl
         mt="sm"
+        color="primary"
         label={t('core.page.map.module.place.editor.field.talkingAllowed')}
         data={[
           {
@@ -179,6 +190,7 @@ export const Fields = ({
 
       <SegmentedControl
         mt="sm"
+        color="primary"
         label={t('core.page.map.module.place.editor.field.meetingSpace')}
         data={[
           {
@@ -205,6 +217,7 @@ export const Fields = ({
 
       <SegmentedControl
         mt="sm"
+        color="primary"
         label={t('core.page.map.module.place.editor.field.plugsQuantity')}
         data={[
           {
@@ -231,6 +244,7 @@ export const Fields = ({
 
       <SegmentedControl
         mt="sm"
+        color="primary"
         label={t('core.page.map.module.place.editor.field.comfortLevel')}
         data={[
           {

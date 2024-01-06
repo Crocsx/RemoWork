@@ -58,7 +58,7 @@ export const FirebaseProvider = ({
         ready,
       }}
     >
-      <LoadingOverlay visible={loading || !ready} />
+      <LoadingOverlay visible={loading || !ready} bg="secondary.0" />
       {ready && children}
     </FirebaseContext.Provider>
   );

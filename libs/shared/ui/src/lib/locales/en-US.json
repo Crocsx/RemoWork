@@ -31,6 +31,7 @@
       "signin": "Login {entity}",
       "search": "Search {entity}",
       "login": "Signup {entity}",
+      "name": "{entity} Name",
       "notFound": "No {entity} found"
     },
     "execution": {

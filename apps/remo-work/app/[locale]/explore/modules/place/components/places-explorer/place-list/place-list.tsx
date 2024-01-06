@@ -33,7 +33,7 @@ export const PlaceList = () => {
 
   return (
     <>
-      <LoadingOverlay visible={loading} />
+      <LoadingOverlay visible={loading} bg="secondary.0" />
       {places.length === 0 ? (
         <Flex
           direction="column"
@@ -51,7 +51,7 @@ export const PlaceList = () => {
           <Text>{t('core.page.map.module.place.viewer.refineYourSearch')}</Text>
         </Flex>
       ) : (
-        <ScrollArea h="100%" type="auto" offsetScrollbars scrollbars="y">
+        <ScrollArea h="100%" type="auto" scrollbars="y">
           <Grid>
             {places?.map((p) => (
               <Grid.Col span={{ base: 12, md: 6, xl: 4 }} key={p.id}>

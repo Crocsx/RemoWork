@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
+      <body style={{ background: 'var(--mantine-color-secondary-0)' }}>
         <Providers locale={locale}>
           {children}
           <Notifications />

@@ -36,6 +36,7 @@ export const AuthProvider = ({
       }}
     >
       <LoadingOverlay
+        bg="secondary.0"
         visible={loading}
         zIndex={1000}
         overlayProps={{ radius: 'sm', blur: 2 }}

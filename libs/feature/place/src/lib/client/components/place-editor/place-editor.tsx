@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useMemo } from 'react';
 
-import { Group, Button, Flex } from '@mantine/core';
+import { Button, Flex } from '@mantine/core';
 import { Form } from '@mantine/form';
 import { useTranslations } from 'next-intl';
 
@@ -91,17 +91,15 @@ export const PlaceEditor = ({
       <Form onSubmit={submitHandler} form={form} noValidate>
         <Flex direction="column">
           <Fields details={details} />
-          <Group justify="space-between" mt="xl">
-            <Button type="submit" loading={loading}>
-              {mode === 'creation'
-                ? t('shared.action.add', {
-                    entity: t('shared.entity.place', { count: 1 }),
-                  })
-                : t('shared.action.edit', {
-                    entity: t('shared.entity.place', { count: 1 }),
-                  })}
-            </Button>
-          </Group>
+          <Button type="submit" loading={loading} justify="end" ml="auto">
+            {mode === 'creation'
+              ? t('shared.action.add', {
+                  entity: t('shared.entity.place', { count: 1 }),
+                })
+              : t('shared.action.edit', {
+                  entity: t('shared.entity.place', { count: 1 }),
+                })}
+          </Button>
         </Flex>
       </Form>
     </FormContext>
