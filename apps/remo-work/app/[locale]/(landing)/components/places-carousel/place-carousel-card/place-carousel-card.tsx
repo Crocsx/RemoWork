@@ -23,7 +23,7 @@ export const PlaceCarouselCard = ({
 }: Place) => {
   const t = useTranslations();
   return (
-    <Card withBorder radius="md" p="md">
+    <Card withBorder radius="md" p="md" bg="secondary.2">
       <CardSection h={rem(245)} pos="relative">
         <Image src={illustration} alt={name} fill sizes="350px" />
       </CardSection>
@@ -34,9 +34,11 @@ export const PlaceCarouselCard = ({
             <Text fz="lg" fw={500}>
               {name}
             </Text>
-            <Badge size="sm" variant="light">
-              {country}
-            </Badge>
+            {country && (
+              <Badge size="sm" variant="light">
+                {country}
+              </Badge>
+            )}
           </Group>
           <Text fz="sm">{address}</Text>
           <Text fw="700" style={{ textTransform: 'uppercase' }} fz="xs" py="sm">

@@ -14,6 +14,7 @@ import {
 export interface FormType {
   id?: string;
   name?: string;
+  country?: string;
   longitude?: number;
   latitude?: number;
   illustration?: string;

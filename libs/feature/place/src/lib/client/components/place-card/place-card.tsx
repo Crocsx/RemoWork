@@ -62,14 +62,15 @@ export const PlaceCard = ({
                 truncate="end"
                 style={{ flex: 1 }}
               >
-                <Text truncate="end">{place.name}</Text>
+                <Text truncate="end" fw="bold">
+                  {place.name}
+                </Text>
               </Anchor>
               {hasOpenInfo && (
                 <Badge
                   color={isOpen ? 'green' : 'red'}
                   fz="xs"
                   size="sm"
-                  variant="outline"
                   miw="fit-content"
                 >
                   {t('shared.enum.open', {

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Group, rem, useMantineTheme } from '@mantine/core';
+import { Group, MantineThemeColors, rem, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { InfoWindow, Marker } from '@react-google-maps/api';
 
@@ -22,9 +22,11 @@ export const PlaceMarker = ({
     options: {
       icon: {
         fillColor: selected
-          ? theme.colors[theme.primaryColor]?.[6]
-          : theme.colors[theme.black]?.[6],
-        strokeColor: theme.colors[theme.black]?.[6],
+          ? (theme.colors as MantineThemeColors)['primary']?.[6]
+          : (theme.colors as MantineThemeColors)['secondary']?.[6],
+        strokeColor: selected
+          ? (theme.colors as MantineThemeColors)['primary']?.[8]
+          : (theme.colors as MantineThemeColors)['secondary']?.[8],
       },
     },
   });

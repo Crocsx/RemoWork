@@ -55,7 +55,7 @@ export const PlaceList = () => {
           <Grid>
             {places?.map((p) => (
               <Grid.Col span={{ base: 12, md: 6, xl: 4 }} key={p.id}>
-                <Card withBorder h="100%">
+                <Card withBorder h="100%" bg="secondary.2">
                   <PlaceCard
                     place={p}
                     service={service}

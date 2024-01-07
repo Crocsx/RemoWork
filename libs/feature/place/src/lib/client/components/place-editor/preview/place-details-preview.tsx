@@ -35,7 +35,7 @@ export const PlaceDetailsPreview = ({
                 maxHeight: 640,
                 maxWidth: 360,
               })
-            ) || 'https://placehold.co/640x360'),
+            ) || ['']),
           ].map((image, i) => (
             <Carousel.Slide key={i}>
               <Image
