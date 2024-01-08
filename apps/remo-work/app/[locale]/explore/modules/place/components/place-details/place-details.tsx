@@ -66,7 +66,7 @@ export const PlaceDetails = ({
   }, [service, placeId]);
 
   return (
-    <Flex direction="column" mah="100%" gap="sm">
+    <Flex direction="column" flex="1" gap="sm">
       <Flex justify="space-between">
         <Button variant="outline" onClick={back}>
           <IconArrowLeft />
@@ -142,68 +142,101 @@ export const PlaceDetails = ({
               title={t(
                 'core.page.map.module.place.viewer.field.wifiAvailability'
               )}
-              value={t('shared.enum.certaintyLevel', {
-                certainty: place?.wifiAvailability,
-              })}
+              value={
+                place?.wifiAvailability
+                  ? t('shared.enum.certaintyLevel', {
+                      certainty: place?.wifiAvailability,
+                    })
+                  : EMPTY_DEFAULT
+              }
             />
-            {place?.wifiAvailability !== CertaintyLevel.NO}
-            {
-              <>
-                <PlaceDetailField
-                  title={t('core.page.map.module.place.viewer.field.wifiSpeed')}
-                  value={t('shared.enum.speedLevel', {
-                    speed: place?.wifiSpeed,
-                  })}
-                />
-                <PlaceDetailField
-                  title={t('core.page.map.module.place.viewer.field.wifiName')}
-                  value={place?.wifiLogin || EMPTY_DEFAULT}
-                />
-                <PlaceDetailField
-                  title={t(
-                    'core.page.map.module.place.viewer.field.wifiPassword'
-                  )}
-                  value={place?.wifiPassword || EMPTY_DEFAULT}
-                />
-              </>
-            }
+            {!!place?.wifiAvailability &&
+              place?.wifiAvailability !== CertaintyLevel.NO && (
+                <>
+                  <PlaceDetailField
+                    title={t(
+                      'core.page.map.module.place.viewer.field.wifiSpeed'
+                    )}
+                    value={
+                      place?.wifiSpeed
+                        ? t('shared.enum.speedLevel', {
+                            speed: place?.wifiSpeed,
+                          })
+                        : EMPTY_DEFAULT
+                    }
+                  />
+                  <PlaceDetailField
+                    title={t(
+                      'core.page.map.module.place.viewer.field.wifiName'
+                    )}
+                    value={place?.wifiLogin || EMPTY_DEFAULT}
+                  />
+                  <PlaceDetailField
+                    title={t(
+                      'core.page.map.module.place.viewer.field.wifiPassword'
+                    )}
+                    value={place?.wifiPassword || EMPTY_DEFAULT}
+                  />
+                </>
+              )}
             <PlaceDetailField
               title={t('core.page.map.module.place.viewer.field.noiseLevel')}
-              value={t('shared.enum.noiseLevel', {
-                noise: place?.noiseLevel,
-              })}
+              value={
+                place?.noiseLevel
+                  ? t('shared.enum.noiseLevel', {
+                      noise: place?.noiseLevel,
+                    })
+                  : EMPTY_DEFAULT
+              }
             />
             <PlaceDetailField
               title={t('core.page.map.module.place.viewer.field.meetingSpace')}
-              value={t('shared.enum.certaintyLevel', {
-                certainty: place?.meetingSpace,
-              })}
+              value={
+                place?.meetingSpace
+                  ? t('shared.enum.certaintyLevel', {
+                      certainty: place?.meetingSpace,
+                    })
+                  : EMPTY_DEFAULT
+              }
             />
             <PlaceDetailField
               title={t(
                 'core.page.map.module.place.viewer.field.talkingAllowed'
               )}
-              value={t('shared.enum.certaintyLevel', {
-                certainty: place?.talkingAllowed,
-              })}
+              value={
+                place?.talkingAllowed
+                  ? t('shared.enum.certaintyLevel', {
+                      certainty: place?.talkingAllowed,
+                    })
+                  : EMPTY_DEFAULT
+              }
             />
             <PlaceDetailField
               title={t('core.page.map.module.place.viewer.field.plugsQuantity')}
-              value={t('shared.enum.quantityLevel', {
-                quantity: place?.plugsQuantity,
-              })}
+              value={
+                place?.plugsQuantity
+                  ? t('shared.enum.quantityLevel', {
+                      quantity: place?.plugsQuantity,
+                    })
+                  : EMPTY_DEFAULT
+              }
             />
             <PlaceDetailField
               title={t('core.page.map.module.place.viewer.field.comfortLevel')}
-              value={t('shared.enum.comfortLevel', {
-                comfort: place?.comfortLevel,
-              })}
+              value={
+                place?.comfortLevel
+                  ? t('shared.enum.comfortLevel', {
+                      comfort: place?.comfortLevel,
+                    })
+                  : EMPTY_DEFAULT
+              }
             />
             <PlaceDetailField
               title={t('core.page.map.module.place.viewer.field.tags')}
-              value={place?.tags?.map((tag) => (
-                <Badge key={tag}>{tag}</Badge>
-              ))}
+              value={
+                place?.tags?.map((tag) => <Badge key={tag}>{tag}</Badge>) ||
+                EMPTY_DEFAULT
+              }
             />
           </Grid>
         </Flex>

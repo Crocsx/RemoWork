@@ -23,7 +23,7 @@ export const Fields = ({
   const { getInputProps, values, setFieldValue } = useFormContext();
 
   return (
-    <Fieldset>
+    <Fieldset px="0px">
       <PlaceDetailsPreview details={details} />
       <TextInput
         mt="sm"
@@ -85,52 +85,53 @@ export const Fields = ({
             getInputProps(`wifiAvailability`).onChange(values);
         }}
       />
-      {values.wifiAvailability !== CertaintyLevel.NO && (
-        <>
-          <SegmentedControl
-            mt="sm"
-            color="primary"
-            label={t('core.page.map.module.place.editor.field.wifiSpeed')}
-            data={[
-              {
-                label: t('shared.enum.speedLevel', {
-                  speed: SpeedLevel.SLOW,
-                }),
-                value: SpeedLevel.SLOW,
-              },
-              {
-                label: t('shared.enum.speedLevel', {
-                  speed: SpeedLevel.AVERAGE,
-                }),
-                value: SpeedLevel.AVERAGE,
-              },
-              {
-                label: t('shared.enum.speedLevel', {
-                  speed: SpeedLevel.FAST,
-                }),
-                value: SpeedLevel.FAST,
-              },
-            ]}
-            {...getInputProps('wifiSpeed')}
-          />
-          <TextInput
-            mt="sm"
-            label={t('shared.entity.name', { count: 1 })}
-            placeholder={t('shared.action.name', {
-              entity: t('shared.entity.wifi', { count: 1 }),
-            })}
-            {...getInputProps('wifiLogin')}
-          />
-          <TextInput
-            mt="sm"
-            label={t('shared.entity.password', { count: 1 })}
-            placeholder={t('shared.action.name', {
-              entity: t('shared.entity.password', { count: 1 }),
-            })}
-            {...getInputProps('wifiPassword')}
-          />
-        </>
-      )}
+      {!!values.wifiAvailability &&
+        values.wifiAvailability !== CertaintyLevel.NO && (
+          <>
+            <SegmentedControl
+              mt="sm"
+              color="primary"
+              label={t('core.page.map.module.place.editor.field.wifiSpeed')}
+              data={[
+                {
+                  label: t('shared.enum.speedLevel', {
+                    speed: SpeedLevel.SLOW,
+                  }),
+                  value: SpeedLevel.SLOW,
+                },
+                {
+                  label: t('shared.enum.speedLevel', {
+                    speed: SpeedLevel.AVERAGE,
+                  }),
+                  value: SpeedLevel.AVERAGE,
+                },
+                {
+                  label: t('shared.enum.speedLevel', {
+                    speed: SpeedLevel.FAST,
+                  }),
+                  value: SpeedLevel.FAST,
+                },
+              ]}
+              {...getInputProps('wifiSpeed')}
+            />
+            <TextInput
+              mt="sm"
+              label={t('shared.entity.name', { count: 1 })}
+              placeholder={t('shared.action.name', {
+                entity: t('shared.entity.wifi', { count: 1 }),
+              })}
+              {...getInputProps('wifiLogin')}
+            />
+            <TextInput
+              mt="sm"
+              label={t('shared.entity.password', { count: 1 })}
+              placeholder={t('shared.action.name', {
+                entity: t('shared.entity.password', { count: 1 }),
+              })}
+              {...getInputProps('wifiPassword')}
+            />
+          </>
+        )}
       <SegmentedControl
         mt="sm"
         color="primary"
