@@ -16,6 +16,7 @@
       "add": "Add {entity}",
       "confirm": "Confirm {entity}",
       "report": "Report {entity}",
+      "change": "Change {entity}",
       "goTo": "Go To {entity}",
       "archive": "Archive {entity}",
       "merge": "Merge {entity}",

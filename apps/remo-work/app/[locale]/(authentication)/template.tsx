@@ -16,7 +16,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (authenticated && self?.emailVerified) {
-      router.push('/explore');
+      // router.push('/explore');
     }
   }, [authenticated, router, self?.emailVerified]);
 

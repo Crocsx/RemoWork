@@ -1,6 +1,20 @@
 {
   "core": {
     "page": {
+      "verified": {
+        "title": "Email is Verified !",
+        "description": "Thank you ! You can now fully participate with the community !"
+      },
+      "reset": {
+        "title": "Reset Password",
+        "description": "Input your new password below",
+        "notification": {
+          "confirmed": {
+            "title": "Password has been reset !",
+            "description": "You can now login with your new password"
+          }
+        }
+      },
       "signup": {
         "title": "Let's get you in!",
         "description": "Already have an account ? <link> Login instead </link>",

@@ -54,7 +54,7 @@ export const Signup = () => {
         const response = await createUserWithEmailAndPassword(email, password);
         if (response?.user) {
           const sent = await sendEmailVerification({
-            url: window.location.origin,
+            url: `${window.location.origin}/signin`,
           });
           setEmailSent(sent);
         }

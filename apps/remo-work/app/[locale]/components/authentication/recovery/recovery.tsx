@@ -53,7 +53,9 @@ export const Recovery = () => {
 
   const submitHandler = useCallback(
     async ({ email }: FormType) => {
-      await sendPasswordResetEmail(email);
+      await sendPasswordResetEmail(email, {
+        url: `${window.location.origin}/signin`,
+      });
       setEmailSent(true);
       start();
     },
