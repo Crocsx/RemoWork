@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useIdToken } from 'react-firebase-hooks/auth';
 
 import { LoadingOverlay } from '@mantine/core';
 import * as Sentry from '@sentry/nextjs';
@@ -14,7 +14,7 @@ export const AuthProvider = ({
 }: {
   children: React.ReactNode | React.ReactNode[];
 }) => {
-  const [user, loading] = useAuthState(getAuth());
+  const [user, loading] = useIdToken(getAuth());
 
   useEffect(() => {
     const { email, uid } = user || {};

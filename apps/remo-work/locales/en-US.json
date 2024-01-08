@@ -5,6 +5,12 @@
         "title": "Email is Verified !",
         "description": "Thank you ! You can now fully participate with the community !"
       },
+      "action": {
+        "error": {
+          "title": "Invalid URL Parameters",
+          "description": "Please verifying the url, or reexecute the operation from the start"
+        }
+      },
       "reset": {
         "title": "Reset Password",
         "description": "Input your new password below",
