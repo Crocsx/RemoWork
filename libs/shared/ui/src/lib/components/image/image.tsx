@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 import { Flex, Group, Image as MantineImage } from '@mantine/core';
 import { IconPhotoOff } from '@tabler/icons-react';
 import NextImage from 'next/image';
@@ -11,10 +15,16 @@ export const Image = ({
   src?: string | null;
   alt: string;
 }) => {
-  return isValidUrl(src) ? (
-    <MantineImage component={NextImage} src={src} {...rest} />
+  const [error, setError] = useState(false);
+  return isValidUrl(src) && !error ? (
+    <MantineImage
+      component={NextImage}
+      src={src}
+      {...rest}
+      onError={() => setError(true)}
+    />
   ) : (
-    <Group w={rest?.width || rest.sizes} h={'100%'} bg="primary.1">
+    <Group w="100%" h="100%" bg="primary.1">
       <Flex flex="1" justify="center" align="center">
         <IconPhotoOff size={32} stroke="var(--mantine-color-primary-9)" />
       </Flex>

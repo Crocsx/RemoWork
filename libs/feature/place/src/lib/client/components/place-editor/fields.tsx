@@ -1,12 +1,10 @@
-import { useEffect } from 'react';
-
 import { Fieldset, TagsInput, TextInput } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
 import { SegmentedControl } from '~workspace/lib/shared/ui';
 
+import { useFormContext } from './place-editor.validator';
 import { PlaceDetailsPreview } from './preview/place-details-preview';
-import { useFormContext } from './validator';
 import {
   CertaintyLevel,
   PricingModel,
@@ -22,20 +20,7 @@ export const Fields = ({
   details: google.maps.places.PlaceResult;
 }) => {
   const t = useTranslations();
-  const { getInputProps, values, setFieldValue, resetDirty } = useFormContext();
-
-  useEffect(() => {
-    if (values.wifiAvailability === CertaintyLevel.NO) {
-      setFieldValue('wifiLogin', undefined);
-      setFieldValue('wifiPassword', undefined);
-    }
-  }, [setFieldValue, values.wifiAvailability]);
-
-  useEffect(() => {
-    if (values.id) {
-      resetDirty();
-    }
-  }, [resetDirty, values.id]);
+  const { getInputProps, values, setFieldValue } = useFormContext();
 
   return (
     <Fieldset>
@@ -91,6 +76,14 @@ export const Fields = ({
           },
         ]}
         {...getInputProps('wifiAvailability')}
+        onChange={(values) => {
+          if (values === CertaintyLevel.NO) {
+            setFieldValue('wifiLogin', undefined);
+            setFieldValue('wifiPassword', undefined);
+          }
+          if (getInputProps(`wifiAvailability`).onChange)
+            getInputProps(`wifiAvailability`).onChange(values);
+        }}
       />
       {values.wifiAvailability !== CertaintyLevel.NO && (
         <>

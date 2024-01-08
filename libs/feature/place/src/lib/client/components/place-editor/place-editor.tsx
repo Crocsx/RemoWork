@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { Button, Flex } from '@mantine/core';
 import { Form } from '@mantine/form';
@@ -13,20 +13,25 @@ import {
 } from '~workspace/lib/shared/utils';
 
 import { Fields } from './fields';
-import { FormContext, FormType, useForm, validator } from './validator';
+import {
+  FormContextProvider,
+  FormType,
+  useForm,
+  validator,
+} from './place-editor.validator';
 
 export const PlaceEditor = ({
-  initialValues,
   onCreated,
   onUpdated,
   details,
   mode = 'creation',
+  initialValues = {},
 }: {
-  initialValues?: FormType;
   onCreated?: () => void;
   onUpdated?: () => void;
   details: google.maps.places.PlaceResult;
   mode: 'creation' | 'edition';
+  initialValues?: FormType;
 }) => {
   const t = useTranslations();
   const axios = useAxiosCtx();
@@ -79,6 +84,13 @@ export const PlaceEditor = ({
     validate: validator(t),
   });
 
+  useEffect(() => {
+    if (initialValues.id !== form.values.id) {
+      form.setInitialValues(initialValues);
+      form.reset();
+    }
+  }, [form, initialValues, initialValues.id]);
+
   const submitHandler = useCallback(
     async ({ ...values }: FormType) => {
       await execute(values);
@@ -87,7 +99,7 @@ export const PlaceEditor = ({
   );
 
   return (
-    <FormContext form={form}>
+    <FormContextProvider form={form}>
       <Form onSubmit={submitHandler} form={form} noValidate>
         <Flex direction="column">
           <Fields details={details} />
@@ -102,6 +114,6 @@ export const PlaceEditor = ({
           </Button>
         </Flex>
       </Form>
-    </FormContext>
+    </FormContextProvider>
   );
 };

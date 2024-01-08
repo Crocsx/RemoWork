@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { Button, Modal, Text, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -8,26 +8,17 @@ import { useTranslations } from 'next-intl';
 
 import { AuthRestricted } from '~workspace/lib/common/auth';
 import {
-  Place,
   PlaceEditor,
   PlaceSearchInput,
   PlaceUtils,
 } from '~workspace/lib/feature/place';
 import { notifications } from '~workspace/lib/shared/ui';
 
-export const PlaceAddModal = ({
-  place,
-  map,
-  details = null,
-}: {
-  place?: Place;
-  details?: google.maps.places.PlaceResult | null;
-  map?: google.maps.Map;
-}) => {
+export const PlaceAddModal = ({ map }: { map?: google.maps.Map }) => {
   const [opened, { open, close }] = useDisclosure();
   const t = useTranslations();
   const [selectedPlace, setSelectedPlace] =
-    useState<google.maps.places.PlaceResult | null>(details);
+    useState<google.maps.places.PlaceResult | null>();
 
   const placeSelectHandler = useCallback(
     (place: google.maps.places.PlaceResult) => {
@@ -51,56 +42,66 @@ export const PlaceAddModal = ({
       }
       setSelectedPlace(place);
     },
-    [t]
+    [t, setSelectedPlace]
   );
+
+  const initialValues = useMemo(() => {
+    if (!selectedPlace) return {};
+
+    return {
+      id: selectedPlace.place_id,
+      name: selectedPlace.name,
+      latitude: selectedPlace.geometry?.location?.lat(),
+      longitude: selectedPlace.geometry?.location?.lng(),
+      address: selectedPlace.formatted_address,
+      country: selectedPlace.address_components?.find((c) =>
+        c.types.includes('country')
+      )?.short_name,
+      illustration: selectedPlace.photos?.[0]?.getUrl(),
+    };
+  }, [selectedPlace]);
 
   return (
     <>
       <Modal
         opened={opened}
-        onClose={close}
+        onClose={() => {
+          setSelectedPlace(null);
+          close();
+        }}
         size="xl"
         title={t('core.page.map.module.place.editor.title')}
       >
         <Text>{t('core.page.map.module.place.editor.description')}</Text>
-        {!place && (
-          <PlaceSearchInput
-            widgetOptions={{
-              apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
-              onPlaceSelected: placeSelectHandler,
-              options: {
-                types: ['establishment'],
-                fields: [
-                  'formatted_address',
-                  'business_status',
-                  'name',
-                  'opening_hours',
-                  'place_id',
-                  'geometry',
-                  'photos',
-                ],
-                bounds: map?.getBounds(),
-              },
-            }}
-            label={t('shared.action.search', {
-              entity: t('shared.entity.place', { count: 1 }),
-            })}
-          />
-        )}
-        {selectedPlace && (
+
+        <PlaceSearchInput
+          widgetOptions={{
+            apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
+            onPlaceSelected: placeSelectHandler,
+            options: {
+              types: ['establishment'],
+              fields: [
+                'formatted_address',
+                'business_status',
+                'name',
+                'opening_hours',
+                'place_id',
+                'geometry',
+                'photos',
+              ],
+              bounds: map?.getBounds(),
+            },
+          }}
+          label={t('shared.action.search', {
+            entity: t('shared.entity.place', { count: 1 }),
+          })}
+        />
+        {!!selectedPlace && (
           <PlaceEditor
             mode="creation"
             onCreated={close}
             details={selectedPlace}
-            initialValues={{
-              id: selectedPlace.place_id,
-              name: selectedPlace.name,
-              latitude: selectedPlace.geometry?.location?.lat(),
-              longitude: selectedPlace.geometry?.location?.lng(),
-              address: selectedPlace.formatted_address,
-              illustration: selectedPlace.photos?.[0]?.getUrl(),
-              ...place,
-            }}
+            initialValues={initialValues}
           />
         )}
       </Modal>

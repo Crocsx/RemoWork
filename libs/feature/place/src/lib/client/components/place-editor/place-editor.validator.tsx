@@ -32,7 +32,7 @@ export interface FormType {
   tags?: string[];
 }
 
-export const [FormContext, useFormContext, useForm] =
+export const [FormContextProvider, useFormContext, useForm] =
   createFormContext<FormType>();
 
 export const validator: (

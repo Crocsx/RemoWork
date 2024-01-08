@@ -21,6 +21,7 @@ export interface FirestorePlace {
   talkingAllowed?: CertaintyLevel;
   plugsQuantity?: QuantityLevel;
   comfortLevel?: ComfortLevel;
+  tags?: string[];
   createdBy?: string;
   createdAt?: string;
   updatedBy?: string;
@@ -45,6 +46,7 @@ export interface Place {
   plugsQuantity?: QuantityLevel;
   comfortLevel?: ComfortLevel;
   meetingSpace?: CertaintyLevel;
+  tags?: string[];
   createdBy?: string;
   createdAt?: string;
   updatedBy?: string;

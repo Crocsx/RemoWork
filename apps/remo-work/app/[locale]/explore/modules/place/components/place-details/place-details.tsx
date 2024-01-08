@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Carousel } from '@mantine/carousel';
 import {
   Anchor,
+  Badge,
   Button,
   Flex,
   Grid,
@@ -65,7 +66,7 @@ export const PlaceDetails = ({
   }, [service, placeId]);
 
   return (
-    <Flex direction="column" style={{ flex: 1 }} gap="sm">
+    <Flex direction="column" mah="100%" gap="sm">
       <Flex justify="space-between">
         <Button variant="outline" onClick={back}>
           <IconArrowLeft />
@@ -75,7 +76,7 @@ export const PlaceDetails = ({
           <PlaceEditModal place={place} details={details} />
         </AuthRestricted>
       </Flex>
-      <ScrollArea scrollbars="y" style={{ flex: 1 }}>
+      <ScrollArea scrollbars="y" offsetScrollbars="y" style={{ flex: 1 }}>
         <Flex direction="column" gap="sm">
           <LoadingOverlay visible={loading} bg="secondary.0" />
           <Group pos="relative">
@@ -118,6 +119,10 @@ export const PlaceDetails = ({
             </Carousel>
           </Group>
           <Grid>
+            <PlaceDetailField
+              title={t('shared.entity.name', { count: 1 })}
+              value={place?.name}
+            />
             <PlaceDetailField
               title={t('core.page.map.module.place.viewer.field.openingTime')}
               value={<PlaceOpeningTime openingHours={details?.opening_hours} />}
@@ -193,6 +198,12 @@ export const PlaceDetails = ({
               value={t('shared.enum.comfortLevel', {
                 comfort: place?.comfortLevel,
               })}
+            />
+            <PlaceDetailField
+              title={t('core.page.map.module.place.viewer.field.tags')}
+              value={place?.tags?.map((tag) => (
+                <Badge key={tag}>{tag}</Badge>
+              ))}
             />
           </Grid>
         </Flex>
