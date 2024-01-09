@@ -1,10 +1,10 @@
 import { PlaceMarker } from './place-marker';
-import { usePlaceCtx } from '../../../place';
-import { useMapCtx } from '../../context';
+import { useMapCtx, usePlaceCtx } from '../../../context';
 
 export const PlacesMarker = () => {
   const { service } = useMapCtx();
   const { places, selectedPlaceId } = usePlaceCtx();
+  const { setSelectedPlaceId } = usePlaceCtx();
 
   return (
     <>
@@ -13,6 +13,7 @@ export const PlacesMarker = () => {
           key={p.id}
           place={p}
           service={service}
+          onClickHandler={() => setSelectedPlaceId(p.id)}
           selected={selectedPlaceId === p.id}
         />
       ))}

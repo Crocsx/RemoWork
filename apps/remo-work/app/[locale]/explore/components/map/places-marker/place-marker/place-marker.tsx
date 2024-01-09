@@ -11,10 +11,12 @@ export const PlaceMarker = ({
   place,
   service,
   selected,
+  onClickHandler,
 }: {
   place: Place;
   service?: google.maps.places.PlacesService;
   selected: boolean;
+  onClickHandler: () => void;
 }) => {
   const [opened, { open, close }] = useDisclosure();
   const theme = useMantineTheme();
@@ -42,6 +44,7 @@ export const PlaceMarker = ({
       position={position}
       onMouseOver={open}
       onMouseOut={close}
+      onClick={onClickHandler}
       options={style}
     >
       {opened && (

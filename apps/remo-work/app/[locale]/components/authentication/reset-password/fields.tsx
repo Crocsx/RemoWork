@@ -10,12 +10,6 @@ export function Fields() {
   return (
     <Fieldset>
       <TextInput
-        required
-        label={t('shared.entity.email', { count: 1 })}
-        placeholder="your@email.com"
-        {...getInputProps('email')}
-      />
-      <TextInput
         withAsterisk
         label={t('shared.entity.password', { count: 1 })}
         placeholder={t('shared.entity.password', { count: 1 })}

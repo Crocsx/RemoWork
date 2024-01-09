@@ -13,8 +13,7 @@ import { useTranslations } from 'next-intl';
 
 import { Place, PlaceCard } from '~workspace/lib/feature/place';
 
-import { useMapCtx } from '../../../../map';
-import { usePlaceCtx } from '../../../context';
+import { usePlaceCtx, useMapCtx } from '../../../../context';
 
 export const PlaceList = () => {
   const t = useTranslations();

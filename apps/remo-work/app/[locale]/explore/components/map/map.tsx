@@ -6,8 +6,8 @@ import { GoogleMap } from '@react-google-maps/api';
 
 import { CurrentLocationMarker, Hud } from '~workspace/lib/feature/map';
 
-import { PlacesMarker } from './components';
-import { DEFAULT_LOCATION, useMapCtx } from './context';
+import { PlacesMarker } from './places-marker';
+import { DEFAULT_LOCATION, useMapCtx } from '../../context';
 
 export function Map() {
   const theme = useMantineTheme();

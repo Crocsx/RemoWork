@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 
 import { useMapBoundsChanged } from '~workspace/lib/feature/map';
 
-import { PlaceDetails, PlacesExplorer } from './components';
-import { usePlaceCtx } from './context';
-import { useMapCtx } from '../map';
+import { PlaceDetails } from './place-details';
+import { PlacesExplorer } from './places-explorer';
+import { useMapCtx, usePlaceCtx } from '../../context';
 
 export const Places = () => {
   const { map, service } = useMapCtx();

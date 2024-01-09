@@ -3,8 +3,7 @@
 import { PlaceAddModal } from './place-add-modal';
 import { PlaceFilters } from './place-filters';
 import { PlaceList } from './place-list';
-import { useMapCtx } from '../../../map';
-import { usePlaceCtx } from '../../context';
+import { usePlaceCtx, useMapCtx } from '../../../context';
 
 export const PlacesExplorer = () => {
   const { map } = useMapCtx();

@@ -12,7 +12,7 @@ import {
   useAxiosCtx,
 } from '~workspace/lib/shared/utils';
 
-import { PlaceContext } from './place-context';
+import { PlaceContext } from '.';
 
 export const PlaceProvider = ({
   children,
