@@ -2,14 +2,13 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { AxiosResponse } from 'axios';
 import { useQueryState, parseAsJson } from 'next-usequerystate';
 
 import { Place, ReadPlacesRequest } from '~workspace/lib/feature/place';
 import {
+  FetchInstance,
   createQueryString,
   useApiRequestLazy,
-  useAxiosCtx,
 } from '~workspace/lib/shared/utils';
 
 import { PlaceContext } from '.';
@@ -26,7 +25,6 @@ export const PlaceProvider = ({
   const [selectedPlaceId, setSelectedPlaceId] = useQueryState('placeId', {
     history: 'push',
   });
-  const axios = useAxiosCtx();
 
   const {
     loading,
@@ -34,18 +32,15 @@ export const PlaceProvider = ({
     execute: loadPlaces,
   } = useApiRequestLazy({
     onSuccess: useCallback(
-      (response: AxiosResponse<Place[]>) => {
-        setPlaces(response.data);
+      (response: Place[]) => {
+        setPlaces(response);
       },
       [setPlaces]
     ),
-    operation: useCallback(
-      (filters: ReadPlacesRequest) => {
-        const params = createQueryString(filters);
-        return axios.get(`/places?${params}`);
-      },
-      [axios]
-    ),
+    operation: useCallback((filters: ReadPlacesRequest) => {
+      const params = createQueryString(filters);
+      return FetchInstance.get<Place[]>(`/places?${params}`);
+    }, []),
   });
 
   useEffect(() => {

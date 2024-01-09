@@ -8,8 +8,8 @@ import { useTranslations } from 'next-intl';
 import { notifications } from '~workspace/lib/shared/ui';
 import {
   ErrorUtils,
+  FetchInstance,
   useApiRequestLazy,
-  useAxiosCtx,
 } from '~workspace/lib/shared/utils';
 
 import { Fields } from './fields';
@@ -34,15 +34,14 @@ export const PlaceEditor = ({
   initialValues?: FormType;
 }) => {
   const t = useTranslations();
-  const axios = useAxiosCtx();
   const isCreation = useMemo(() => mode === 'creation', [mode]);
   const { loading, execute } = useApiRequestLazy({
     operation: useCallback(
       async (values: FormType) =>
         isCreation
-          ? axios.put(`/places`, values)
-          : axios.post(`/places/${values.id}`, values),
-      [axios, isCreation]
+          ? FetchInstance.put(`/places`, values)
+          : FetchInstance.post(`/places/${values.id}`, values),
+      [isCreation]
     ),
     onSuccess: useCallback(() => {
       notifications.success({

@@ -4,11 +4,14 @@ import { useCallback } from 'react';
 
 import { Text, Button, Textarea, Fieldset, Group } from '@mantine/core';
 import { Form, useForm } from '@mantine/form';
-import axios from 'axios';
 import { useTranslations } from 'next-intl';
 
 import { notifications } from '~workspace/lib/shared/ui';
-import { useApiRequestLazy, ErrorUtils } from '~workspace/lib/shared/utils';
+import {
+  useApiRequestLazy,
+  ErrorUtils,
+  FetchInstance,
+} from '~workspace/lib/shared/utils';
 
 import { FormType, validator } from './validator';
 
@@ -29,7 +32,7 @@ export const PlaceReport = ({
   const { loading, execute } = useApiRequestLazy({
     operation: useCallback(
       async ({ reason, placeId }: FormType) =>
-        axios.post(`/places/${placeId}/report`, {
+        FetchInstance.post(`/places/${placeId}/report`, {
           reason,
         }),
       []

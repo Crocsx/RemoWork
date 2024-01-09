@@ -27,8 +27,8 @@ import {
 import { Image } from '~workspace/lib/shared/ui';
 import {
   EMPTY_DEFAULT,
+  FetchInstance,
   useApiRequest,
-  useAxiosCtx,
 } from '~workspace/lib/shared/utils';
 
 import { PlaceDetailField } from './place-details-field';
@@ -44,11 +44,10 @@ export const PlaceDetails = ({
 }) => {
   const { back } = useRouter();
   const t = useTranslations();
-  const axios = useAxiosCtx();
   const [details, setDetails] =
     useState<google.maps.places.PlaceResult | null>();
-  const { loading, response: { data: place } = {} } = useApiRequest<Place>({
-    operation: () => axios.get(`/places/${placeId}`),
+  const { loading, response: place } = useApiRequest<Place>({
+    operation: () => FetchInstance.get<Place>(`/places/${placeId}`),
   });
 
   useEffect(() => {

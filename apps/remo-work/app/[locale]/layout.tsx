@@ -7,8 +7,12 @@ import { notFound } from 'next/navigation';
 import './global.css';
 
 export { metadata } from './metadata';
+import { FetchInstance } from '~workspace/lib/shared/utils';
+
 import Providers from './providers';
 import { IntlLocale, intlConfig } from '../../next.intl.config';
+
+FetchInstance.initialize(process.env.NEXT_PUBLIC_API_ENDPOINT);
 
 export default function RootLayout({
   children,

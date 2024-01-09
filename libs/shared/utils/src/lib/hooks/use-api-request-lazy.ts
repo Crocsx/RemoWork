@@ -2,15 +2,13 @@
 
 import { useState, useCallback } from 'react';
 
-import { AxiosResponse } from 'axios';
-
 export const useApiRequestLazy = <P, R>({
   operation,
   onSuccess,
   onFailure,
 }: {
-  operation: (payload: P) => Promise<AxiosResponse<R>>;
-  onSuccess?: (response: AxiosResponse<R>) => void;
+  operation: (payload: P) => Promise<R>;
+  onSuccess?: (response: R) => void;
   onFailure?: (e: unknown) => void;
 }) => {
   const [loading, setLoading] = useState(false);

@@ -5,9 +5,11 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import { AuthProvider } from '~workspace/lib/common/auth';
 import { FirebaseProvider } from '~workspace/lib/external/firebase';
-import { AxiosProvider, TimezoneUtils } from '~workspace/lib/shared/utils';
+import { FetchInstance, TimezoneUtils } from '~workspace/lib/shared/utils';
 
 import { messageLoader, themeCoral } from '~workspace/app/remo-work/src';
+
+FetchInstance.initialize(process.env.NEXT_PUBLIC_API_ENDPOINT);
 
 export default async function Providers({
   children,
@@ -38,13 +40,7 @@ export default async function Providers({
             messages={messages}
             timeZone={TimezoneUtils.getRecommendedTimezone()}
           >
-            <AxiosProvider
-              config={{
-                baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT,
-              }}
-            >
-              {children}
-            </AxiosProvider>
+            {children}
           </NextIntlClientProvider>
         </AuthProvider>
       </FirebaseProvider>
