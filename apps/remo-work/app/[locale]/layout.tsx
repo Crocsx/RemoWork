@@ -29,8 +29,12 @@ export default function RootLayout({
           {children}
           <Notifications />
         </Providers>
-        <Analytics />
-        <SpeedInsights />
+        {process.env.NEXT_PUBLIC_ENV === 'PRODUCTION' && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        )}
       </body>
     </html>
   );
