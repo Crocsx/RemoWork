@@ -123,11 +123,11 @@ export const PlaceDetails = ({
               value={place?.name}
             />
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.openingTime')}
+              title={t('core.page.explore.place.viewer.field.openingTime')}
               value={<PlaceOpeningTime openingHours={details?.opening_hours} />}
             />
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.address')}
+              title={t('core.page.explore.place.viewer.field.address')}
               value={
                 <Anchor
                   href={`https://maps.googleapis.com/maps/api/directions/json?origin=${place?.latitude},${place?.longitude}&destination=place_id:${place?.id}`}
@@ -138,9 +138,7 @@ export const PlaceDetails = ({
               }
             />
             <PlaceDetailField
-              title={t(
-                'core.page.map.module.place.viewer.field.wifiAvailability'
-              )}
+              title={t('core.page.explore.place.viewer.field.wifiAvailability')}
               value={
                 place?.wifiAvailability
                   ? t('shared.enum.certaintyLevel', {
@@ -153,9 +151,7 @@ export const PlaceDetails = ({
               place?.wifiAvailability !== CertaintyLevel.NO && (
                 <>
                   <PlaceDetailField
-                    title={t(
-                      'core.page.map.module.place.viewer.field.wifiSpeed'
-                    )}
+                    title={t('core.page.explore.place.viewer.field.wifiSpeed')}
                     value={
                       place?.wifiSpeed
                         ? t('shared.enum.speedLevel', {
@@ -165,21 +161,19 @@ export const PlaceDetails = ({
                     }
                   />
                   <PlaceDetailField
-                    title={t(
-                      'core.page.map.module.place.viewer.field.wifiName'
-                    )}
+                    title={t('core.page.explore.place.viewer.field.wifiName')}
                     value={place?.wifiLogin || EMPTY_DEFAULT}
                   />
                   <PlaceDetailField
                     title={t(
-                      'core.page.map.module.place.viewer.field.wifiPassword'
+                      'core.page.explore.place.viewer.field.wifiPassword'
                     )}
                     value={place?.wifiPassword || EMPTY_DEFAULT}
                   />
                 </>
               )}
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.noiseLevel')}
+              title={t('core.page.explore.place.viewer.field.noiseLevel')}
               value={
                 place?.noiseLevel
                   ? t('shared.enum.noiseLevel', {
@@ -189,7 +183,7 @@ export const PlaceDetails = ({
               }
             />
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.meetingSpace')}
+              title={t('core.page.explore.place.viewer.field.meetingSpace')}
               value={
                 place?.meetingSpace
                   ? t('shared.enum.certaintyLevel', {
@@ -199,9 +193,7 @@ export const PlaceDetails = ({
               }
             />
             <PlaceDetailField
-              title={t(
-                'core.page.map.module.place.viewer.field.talkingAllowed'
-              )}
+              title={t('core.page.explore.place.viewer.field.talkingAllowed')}
               value={
                 place?.talkingAllowed
                   ? t('shared.enum.certaintyLevel', {
@@ -211,7 +203,7 @@ export const PlaceDetails = ({
               }
             />
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.plugsQuantity')}
+              title={t('core.page.explore.place.viewer.field.plugsQuantity')}
               value={
                 place?.plugsQuantity
                   ? t('shared.enum.quantityLevel', {
@@ -221,7 +213,7 @@ export const PlaceDetails = ({
               }
             />
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.comfortLevel')}
+              title={t('core.page.explore.place.viewer.field.comfortLevel')}
               value={
                 place?.comfortLevel
                   ? t('shared.enum.comfortLevel', {
@@ -231,7 +223,7 @@ export const PlaceDetails = ({
               }
             />
             <PlaceDetailField
-              title={t('core.page.map.module.place.viewer.field.tags')}
+              title={t('core.page.explore.place.viewer.field.tags')}
               value={
                 place?.tags?.map((tag) => <Badge key={tag}>{tag}</Badge>) ||
                 EMPTY_DEFAULT

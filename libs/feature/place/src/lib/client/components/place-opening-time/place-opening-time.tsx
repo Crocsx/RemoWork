@@ -18,7 +18,7 @@ export const PlaceOpeningTime = ({
     <Flex direction="column">
       {(todayOpening || [])?.length === 0 ? (
         <Text fz="sm">
-          {t('core.page.map.module.place.viewer.button.closedAllDay')}
+          {t('core.page.explore.place.viewer.button.closedAllDay')}
         </Text>
       ) : (
         todayOpening?.map(({ open, close }) => {

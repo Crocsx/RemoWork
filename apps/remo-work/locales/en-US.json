@@ -98,56 +98,62 @@
           "description": "Explore the latest spots added by fellow remote workers like you"
         }
       },
-      "map": {
-        "module": {
-          "place": {
-            "editor": {
-              "title": "Add a new Place",
-              "description": "Search a place by name using the input below, then provide information on the place. Please try to be accurate about it",
-              "field": {
-                "priceModel": "Price Model",
-                "wifiAvailability": "WiFi Available",
-                "wifiName": "WiFi Name",
-                "wifiPassword": "WiFi Password",
-                "wifiSpeed": "WiFi Speed",
-                "noiseLevel": "Noise Level",
-                "talkingAllowed": "Talking Allowed",
-                "plugsQuantity": "Plugs Quantity",
-                "comfortLevel": "Comfort Level",
-                "meetingSpace": "Meeting Space",
-                "tags": "Tags"
-              }
+      "explore": {
+        "place": {
+          "editor": {
+            "title": "Add a new Place",
+            "description": "Search a place by name using the input below, then provide information on the place. Please try to be accurate about it",
+            "field": {
+              "priceModel": "Price Model",
+              "wifiAvailability": "WiFi Available",
+              "wifiName": "WiFi Name",
+              "wifiPassword": "WiFi Password",
+              "wifiSpeed": "WiFi Speed",
+              "noiseLevel": "Noise Level",
+              "talkingAllowed": "Talking Allowed",
+              "plugsQuantity": "Plugs Quantity",
+              "comfortLevel": "Comfort Level",
+              "meetingSpace": "Meeting Space",
+              "tags": "Tags"
+            }
+          },
+          "viewer": {
+            "button": {
+              "openOnGoogleMap": "View on Map",
+              "closedAllDay": "Closed All Day"
             },
-            "viewer": {
-              "button": {
-                "openOnGoogleMap": "View on Map",
-                "closedAllDay": "Closed All Day"
-              },
-              "field": {
-                "priceModel": "Price Model",
-                "wifiAvailability": "WiFi Available",
-                "wifiName": "WiFi Name",
-                "wifiPassword": "WiFi Password",
-                "wifiSpeed": "WiFi Speed",
-                "noiseLevel": "Noise Level",
-                "talkingAllowed": "Talking Allowed",
-                "plugsQuantity": "Plugs Quantity",
-                "comfortLevel": "Comfort Level",
-                "meetingSpace": "Meeting Space",
-                "openingTime": "Opening Time",
-                "address": "Address",
-                "tags": "Tags"
-              },
-              "refineYourSearch": "Please change your filters or map location",
-              "filter": {
-                "wifiSpeed": "Fast Wifi",
-                "noiseLevel": "Very Quiet",
-                "talkingAllowed": "Talking Allowed",
-                "plugsQuantity": "Has Many Plugs",
-                "meetingSpace": "Has Meeting Space",
-                "comfortLevel": "Comfy Sits",
-                "priceModel": "Is Free"
-              }
+            "field": {
+              "priceModel": "Price Model",
+              "wifiAvailability": "WiFi Available",
+              "wifiName": "WiFi Name",
+              "wifiPassword": "WiFi Password",
+              "wifiSpeed": "WiFi Speed",
+              "noiseLevel": "Noise Level",
+              "talkingAllowed": "Talking Allowed",
+              "plugsQuantity": "Plugs Quantity",
+              "comfortLevel": "Comfort Level",
+              "meetingSpace": "Meeting Space",
+              "openingTime": "Opening Time",
+              "address": "Address",
+              "tags": "Tags"
+            },
+            "refineYourSearch": "Please change your filters or map location",
+            "filter": {
+              "wifiSpeed": "Fast Wifi",
+              "noiseLevel": "Very Quiet",
+              "talkingAllowed": "Talking Allowed",
+              "plugsQuantity": "Has Many Plugs",
+              "meetingSpace": "Has Meeting Space",
+              "comfortLevel": "Comfy Sits",
+              "priceModel": "Is Free"
+            }
+          }
+        },
+        "map": {
+          "notification": {
+            "maxZoom": {
+              "title": "Please Zoom In",
+              "description": "Please zoom closer to see the working places on the map"
             }
           }
         }

@@ -44,7 +44,7 @@ export const PlaceFilters = ({
         checked={filters.wifiSpeed === SpeedLevel.FAST}
         onClick={() => handleChipClick('wifiSpeed', SpeedLevel.FAST)}
       >
-        {t('core.page.map.module.place.viewer.filter.wifiSpeed')}
+        {t('core.page.explore.place.viewer.filter.wifiSpeed')}
       </Chip>
       <Chip
         size="xs"
@@ -52,28 +52,28 @@ export const PlaceFilters = ({
         checked={filters.noiseLevel === NoiseLevel.QUIET}
         onClick={() => handleChipClick('noiseLevel', NoiseLevel.QUIET)}
       >
-        {t('core.page.map.module.place.viewer.filter.noiseLevel')}
+        {t('core.page.explore.place.viewer.filter.noiseLevel')}
       </Chip>
       <Chip
         size="xs"
         checked={filters.talkingAllowed === CertaintyLevel.YES}
         onClick={() => handleChipClick('talkingAllowed', CertaintyLevel.YES)}
       >
-        {t('core.page.map.module.place.viewer.filter.talkingAllowed')}
+        {t('core.page.explore.place.viewer.filter.talkingAllowed')}
       </Chip>
       <Chip
         size="xs"
         checked={filters.meetingSpace === CertaintyLevel.YES}
         onClick={() => handleChipClick('meetingSpace', CertaintyLevel.YES)}
       >
-        {t('core.page.map.module.place.viewer.filter.meetingSpace')}
+        {t('core.page.explore.place.viewer.filter.meetingSpace')}
       </Chip>
       <Chip
         size="xs"
         checked={filters.plugsQuantity === QuantityLevel.MANY}
         onClick={() => handleChipClick('plugsQuantity', QuantityLevel.MANY)}
       >
-        {t('core.page.map.module.place.viewer.filter.plugsQuantity')}
+        {t('core.page.explore.place.viewer.filter.plugsQuantity')}
       </Chip>
       <Chip
         size="xs"
@@ -82,14 +82,14 @@ export const PlaceFilters = ({
           handleChipClick('comfortLevel', ComfortLevel.COMFORTABLE)
         }
       >
-        {t('core.page.map.module.place.viewer.filter.comfortLevel')}
+        {t('core.page.explore.place.viewer.filter.comfortLevel')}
       </Chip>
       <Chip
         size="xs"
         checked={filters.priceModel === PricingModel.FREE}
         onClick={() => handleChipClick('priceModel', PricingModel.FREE)}
       >
-        {t('core.page.map.module.place.viewer.filter.priceModel')}
+        {t('core.page.explore.place.viewer.filter.priceModel')}
       </Chip>
     </Flex>
   );

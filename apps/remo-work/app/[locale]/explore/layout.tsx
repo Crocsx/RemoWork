@@ -20,6 +20,8 @@ import {
 } from '~workspace/app/remo-work/app/explore/_context';
 import { Header, UserMenu } from '~workspace/app/remo-work/src';
 
+import { MAX_ZOOM } from './_config';
+
 export default function Layout({ children }: { children: React.ReactNode[] }) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const t = useTranslations();
@@ -31,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode[] }) {
         libraries: ['places'],
       }}
     >
-      <PlaceProvider maxZoom={15}>
+      <PlaceProvider maxZoom={MAX_ZOOM}>
         <AppShell
           header={{ height: 60 }}
           navbar={{

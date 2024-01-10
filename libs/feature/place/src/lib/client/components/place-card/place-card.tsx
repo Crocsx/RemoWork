@@ -104,7 +104,7 @@ export const PlaceCard = ({
             target="_blank"
             maw="fit-content"
           >
-            {t('core.page.map.module.place.viewer.button.openOnGoogleMap')}
+            {t('core.page.explore.place.viewer.button.openOnGoogleMap')}
           </Anchor>
         )}
       </Flex>

@@ -50,7 +50,7 @@ export const PlaceList = () => {
               entity: t('shared.entity.place', { count: 2 }),
             })}
           </Text>
-          <Text>{t('core.page.map.module.place.viewer.refineYourSearch')}</Text>
+          <Text>{t('core.page.explore.place.viewer.refineYourSearch')}</Text>
         </Flex>
       ) : (
         <ScrollArea h="100%" type="auto" scrollbars="y">

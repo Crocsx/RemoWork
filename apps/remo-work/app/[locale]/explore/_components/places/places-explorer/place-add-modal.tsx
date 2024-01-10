@@ -70,9 +70,9 @@ export const PlaceAddModal = ({ map }: { map?: google.maps.Map }) => {
           close();
         }}
         size="xl"
-        title={t('core.page.map.module.place.editor.title')}
+        title={t('core.page.explore.place.editor.title')}
       >
-        <Text>{t('core.page.map.module.place.editor.description')}</Text>
+        <Text>{t('core.page.explore.place.editor.description')}</Text>
 
         <PlaceSearchInput
           widgetOptions={{

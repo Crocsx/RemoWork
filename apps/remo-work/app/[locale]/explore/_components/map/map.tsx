@@ -1,8 +1,10 @@
 'use client';
 import { useCallback, useEffect } from 'react';
 
-import { useMantineTheme } from '@mantine/core';
+import { Alert, useMantineTheme } from '@mantine/core';
 import { GoogleMap } from '@react-google-maps/api';
+import { IconAlertTriangle } from '@tabler/icons-react';
+import { useTranslations } from 'next-intl';
 
 import {
   CurrentLocationMarker,
@@ -10,6 +12,7 @@ import {
   useMapBoundsChanged,
 } from '~workspace/lib/feature/map';
 
+import { MAX_ZOOM } from '~workspace/app/remo-work/app/explore/_config';
 import {
   DEFAULT_LOCATION,
   useMapCtx,
@@ -17,9 +20,9 @@ import {
 } from '~workspace/app/remo-work/app/explore/_context';
 
 import { PlacesMarker } from './places-marker';
-
 export function Map() {
   const theme = useMantineTheme();
+  const t = useTranslations();
   const { setMap, map, setCurrentLocation } = useMapCtx();
   const { setFilters, filters } = usePlaceCtx();
   const bounds = useMapBoundsChanged(map);
@@ -83,6 +86,22 @@ export function Map() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
+        {(map?.getZoom() || 0) < MAX_ZOOM && (
+          <Alert
+            mt="xl"
+            color="yellow"
+            title={t('core.page.explore.map.notification.maxZoom.title')}
+            pos="absolute"
+            p="md"
+            left="25%"
+            right="25%"
+            mx="auto"
+            variant="filled"
+            icon={<IconAlertTriangle />}
+          >
+            {t('core.page.explore.map.notification.maxZoom.description')}
+          </Alert>
+        )}
         {map && (
           <>
             <Hud map={map} />

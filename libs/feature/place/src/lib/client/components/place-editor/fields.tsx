@@ -40,7 +40,7 @@ export const Fields = ({
       <SegmentedControl
         mt="sm"
         color="primary"
-        label={t('core.page.map.module.place.editor.field.priceModel')}
+        label={t('core.page.explore.place.editor.field.priceModel')}
         data={[
           {
             label: t('shared.enum.priceModel', {
@@ -60,7 +60,7 @@ export const Fields = ({
       <SegmentedControl
         mt="sm"
         color="primary"
-        label={t('core.page.map.module.place.editor.field.wifiAvailability')}
+        label={t('core.page.explore.place.editor.field.wifiAvailability')}
         data={[
           {
             label: t('shared.enum.certaintyLevel', {
@@ -91,7 +91,7 @@ export const Fields = ({
             <SegmentedControl
               mt="sm"
               color="primary"
-              label={t('core.page.map.module.place.editor.field.wifiSpeed')}
+              label={t('core.page.explore.place.editor.field.wifiSpeed')}
               data={[
                 {
                   label: t('shared.enum.speedLevel', {
@@ -135,7 +135,7 @@ export const Fields = ({
       <SegmentedControl
         mt="sm"
         color="primary"
-        label={t('core.page.map.module.place.editor.field.noiseLevel')}
+        label={t('core.page.explore.place.editor.field.noiseLevel')}
         data={[
           {
             label: t('shared.enum.noiseLevel', { noise: NoiseLevel.QUIET }),
@@ -158,7 +158,7 @@ export const Fields = ({
       <SegmentedControl
         mt="sm"
         color="primary"
-        label={t('core.page.map.module.place.editor.field.talkingAllowed')}
+        label={t('core.page.explore.place.editor.field.talkingAllowed')}
         data={[
           {
             label: t('shared.enum.certaintyLevel', {
@@ -185,7 +185,7 @@ export const Fields = ({
       <SegmentedControl
         mt="sm"
         color="primary"
-        label={t('core.page.map.module.place.editor.field.meetingSpace')}
+        label={t('core.page.explore.place.editor.field.meetingSpace')}
         data={[
           {
             label: t('shared.enum.certaintyLevel', {
@@ -212,7 +212,7 @@ export const Fields = ({
       <SegmentedControl
         mt="sm"
         color="primary"
-        label={t('core.page.map.module.place.editor.field.plugsQuantity')}
+        label={t('core.page.explore.place.editor.field.plugsQuantity')}
         data={[
           {
             label: t('shared.enum.quantityLevel', {
@@ -239,7 +239,7 @@ export const Fields = ({
       <SegmentedControl
         mt="sm"
         color="primary"
-        label={t('core.page.map.module.place.editor.field.comfortLevel')}
+        label={t('core.page.explore.place.editor.field.comfortLevel')}
         data={[
           {
             label: t('shared.enum.comfortLevel', {
@@ -264,7 +264,7 @@ export const Fields = ({
       />
       <TagsInput
         mt="sm"
-        label={t('core.page.map.module.place.editor.field.tags')}
+        label={t('core.page.explore.place.editor.field.tags')}
         {...getInputProps('tags')}
       />
     </Fieldset>
