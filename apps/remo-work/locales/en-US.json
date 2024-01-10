@@ -152,8 +152,8 @@
         "map": {
           "notification": {
             "maxZoom": {
-              "title": "Please Zoom In",
-              "description": "Please zoom closer to see the working places on the map"
+              "title": "Get a little closer",
+              "description": "Zoom closer to see the working places on the map"
             }
           }
         }
