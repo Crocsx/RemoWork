@@ -1,7 +1,7 @@
 import { isAuthenticated } from '~workspace/lib/common/auth/server';
 import { createPlace, readPlaces } from '~workspace/lib/feature/place/server';
 
-import '../initFirebase';
+import '../initFirebaseAdmin';
 
 export const GET = async (req: Request) => {
   return readPlaces(req);

@@ -1,3 +1,5 @@
+import { createQueryString } from '../utils';
+
 export class FetchError extends Error {
   constructor(
     public status: number,
@@ -31,7 +33,7 @@ export class FetchInstance {
   }
 
   private static async request<T>(
-    input: string | URL,
+    path: string | URL,
     method: string,
     payload?: unknown,
     init?: RequestInit
@@ -44,13 +46,17 @@ export class FetchInstance {
       ...init,
     };
 
+    let url = `${FetchInstance.endpoint}${path}`;
+
     if (payload && (method === 'POST' || method === 'PUT')) {
       options.body = JSON.stringify(payload);
     }
 
-    const response = await timeout(
-      fetch(`${FetchInstance.endpoint}test/${input}`, options)
-    );
+    if (payload && method === 'GET') {
+      url = `${url}?${createQueryString(payload)}`;
+    }
+
+    const response = await timeout(fetch(url, options));
 
     if (!response.ok) {
       const body = await response.text();
@@ -60,8 +66,12 @@ export class FetchInstance {
     return (await response.json()) as T;
   }
 
-  static get<T>(input: string | URL, init?: RequestInit): Promise<T> {
-    return FetchInstance.request<T>(input, 'GET', null, init);
+  static get<T>(
+    input: string | URL,
+    queryString?: unknown,
+    init?: RequestInit
+  ): Promise<T> {
+    return FetchInstance.request<T>(input, 'GET', queryString, init);
   }
 
   static post<T>(

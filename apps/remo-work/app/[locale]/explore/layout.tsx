@@ -13,9 +13,12 @@ import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import { Places } from './components';
-import { MapProvider, PlaceProvider } from './context';
-import { Header, UserMenu } from '../components';
+import { Places } from '~workspace/app/remo-work/app/explore/_components';
+import {
+  MapProvider,
+  PlaceProvider,
+} from '~workspace/app/remo-work/app/explore/_context';
+import { Header, UserMenu } from '~workspace/app/remo-work/src';
 
 export default function Layout({ children }: { children: React.ReactNode[] }) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();

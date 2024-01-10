@@ -7,7 +7,7 @@ import {
 } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
-import { Footer, Header, UserMenu } from '../components';
+import { Footer, Header, UserMenu } from '~workspace/app/remo-work/src';
 
 export default function Layout({ children }: { children: React.ReactNode[] }) {
   const t = useTranslations();

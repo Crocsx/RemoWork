@@ -1,7 +1,7 @@
 {
   "name": "@remo-work/source",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "postinstall": "patch-package"

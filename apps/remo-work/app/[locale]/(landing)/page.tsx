@@ -1,4 +1,4 @@
-import { Heropage, FeaturesCards, PlacesCarousel } from './components';
+import { Heropage, FeaturesCards, PlacesCarousel } from './_components';
 
 export default function Page() {
   return (

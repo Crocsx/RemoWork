@@ -1,0 +1,1 @@
+export { initFirebaseAdmin } from './initFirebaseAdmin';

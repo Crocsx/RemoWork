@@ -16,7 +16,10 @@ import { useTranslations } from 'next-intl';
 import { notifications } from '~workspace/lib/shared/ui';
 import { ErrorUtils } from '~workspace/lib/shared/utils';
 
-import { ResetPassword, EmailVerified } from '../../components';
+import {
+  ResetPassword,
+  EmailVerified,
+} from '~workspace/app/remo-work/app/(authentication)/_components';
 
 export default function Page() {
   const t = useTranslations();

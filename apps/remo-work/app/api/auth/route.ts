@@ -1,6 +1,6 @@
 import { checkAuth, setAuth } from '~workspace/lib/common/auth/server';
 
-import '../initFirebase';
+import '../initFirebaseAdmin';
 
 export async function GET(req: Request) {
   return checkAuth(req);
