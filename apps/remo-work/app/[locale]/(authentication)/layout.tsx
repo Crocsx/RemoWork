@@ -1,3 +1,4 @@
+'use client';
 import { AppShell, AppShellMain } from '@mantine/core';
 
 export default function Layout({ children }: { children: React.ReactNode[] }) {

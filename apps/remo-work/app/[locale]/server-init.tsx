@@ -1,13 +1,13 @@
-import { FetchInstance } from '~workspace/lib/shared/utils';
-
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { IntlLocale, intlConfig } from 'apps/remo-work/next.intl.config';
 import { notFound } from 'next/navigation';
 
+import { FetchInstance } from '~workspace/lib/shared/utils';
+
 FetchInstance.initialize(process.env.NEXT_PUBLIC_API_ENDPOINT);
 
-export default async function ServerInit({
+export default function ServerInit({
   children,
   locale,
 }: {

@@ -35,7 +35,7 @@ import { PlaceDetailField } from './place-details-field';
 import { PlaceEditModal } from './place-edit-modal';
 import { PlaceReportModal } from './place-report-modal';
 
-export const PlaceDetails = ({
+export const PlaceDetails = async ({
   service,
   placeId,
 }: {

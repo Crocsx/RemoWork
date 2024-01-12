@@ -1,5 +1,5 @@
 import { Map } from '~workspace/app/remo-work/app/explore/_components';
 
-export default function Page() {
+export default async function Page() {
   return <Map />;
 }
