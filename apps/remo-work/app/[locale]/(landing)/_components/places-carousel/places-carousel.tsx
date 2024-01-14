@@ -2,6 +2,9 @@ import { Carousel, CarouselSlide } from '@mantine/carousel';
 import { Container, Title, Text, rem } from '@mantine/core';
 import { getTranslations } from 'next-intl/server';
 
+import { Place } from '~workspace/lib/feature/place';
+import { FetchInstance } from '~workspace/lib/shared/utils';
+
 import { PlaceCarouselCard } from './place-carousel-card';
 
 export const PlacesCarousel = async () => {
