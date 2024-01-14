@@ -1,14 +1,11 @@
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import { Container, Title, Text, rem } from '@mantine/core';
-import { useTranslations } from 'next-intl';
-
-import { Place } from '~workspace/lib/feature/place';
-import { FetchInstance } from '~workspace/lib/shared/utils';
+import { getTranslations } from 'next-intl/server';
 
 import { PlaceCarouselCard } from './place-carousel-card';
 
 export const PlacesCarousel = async () => {
-  const t = useTranslations();
+  const t = await getTranslations();
   const places = await FetchInstance.get<Place[]>(`/places`, {
     filters: {},
     sortBy: {
