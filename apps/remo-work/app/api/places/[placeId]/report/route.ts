@@ -1,13 +1,13 @@
 import nodemailer from 'nodemailer';
 
 import { isAuthenticated } from '~workspace/lib/common/auth/server';
-import { reportPlace } from '~workspace/lib/feature/place/server';
+import { placeReport } from '~workspace/lib/feature/place/server';
 
 import '../../../initFirebaseAdmin';
 
 export const POST = async (
   req: Request,
-  params: { params: { id: string } }
+  params: { params: { placeId: string } }
 ) => {
   const { error, user } = await isAuthenticated(req);
   if (!user) {
@@ -21,7 +21,7 @@ export const POST = async (
     },
   });
 
-  return reportPlace(req, params, {
+  return placeReport(req, params, {
     userId: user.uid,
     transporter,
     email: process.env.NEXT_GOOGLE_MAIL_ADDRESS,

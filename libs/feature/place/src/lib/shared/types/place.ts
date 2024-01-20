@@ -52,3 +52,11 @@ export interface Place {
   updatedBy?: string;
   updatedAt?: string;
 }
+
+export interface PlaceComment {
+  id: string;
+  comment: string;
+  createdBy: string;
+  createdAt?: string;
+  updatedAt?: string;
+}

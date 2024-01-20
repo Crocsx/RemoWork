@@ -1,0 +1,27 @@
+{
+  "name": "remo-work-functions-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/remo-work-functions-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/remo-work-functions-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "remo-work-functions:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "remo-work-functions:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["remo-work-functions"]
+}

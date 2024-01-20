@@ -5,12 +5,17 @@ import geohash from 'ngeohash';
 
 import { readQueryString } from '~workspace/lib/shared/utils';
 
-import { FirestorePlace, Place, ReadPlacesRequest } from '../../../shared';
+import {
+  FirestorePlace,
+  Place,
+  PlacesGetRequest,
+  PlacesGetResponse,
+} from '../../../shared';
 
-export async function readPlaces(req: Request) {
+export async function placesGet(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
-    const requestParams = readQueryString<ReadPlacesRequest>(searchParams);
+    const requestParams = readQueryString<PlacesGetRequest>(searchParams);
 
     const { filters, sortBy, fromDocId, perPage = 20 } = requestParams;
 
@@ -90,7 +95,7 @@ export async function readPlaces(req: Request) {
         ...placeData,
       });
     });
-    return NextResponse.json(places, { status: 200 });
+    return NextResponse.json<PlacesGetResponse>(places, { status: 200 });
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);

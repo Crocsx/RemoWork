@@ -58,18 +58,6 @@
         ]
       }
     },
-    "deploy:preview": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "firebase hosting:channel:deploy --project remo-work {args.channelId}"
-      }
-    },
-    "deploy:production": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "firebase deploy --project remo-work"
-      }
-    },
     "export": {
       "executor": "@nx/next:export",
       "options": {
@@ -88,5 +76,6 @@
       "outputs": ["{options.outputFile}"]
     }
   },
-  "tags": ["type:app"]
+  "tags": ["type:app"],
+  "implicitDependencies": ["remo-work-functions"]
 }

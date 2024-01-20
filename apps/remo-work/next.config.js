@@ -9,6 +9,9 @@ const nextConfig = {
   nx: {
     svgr: false,
   },
+  experimental: {
+    serverActions: true,
+  },
   images: {
     remotePatterns: [
       {

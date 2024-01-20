@@ -31,11 +31,12 @@ import {
   useApiRequest,
 } from '~workspace/lib/shared/utils';
 
+import { PlaceComments } from './place-comments';
 import { PlaceDetailField } from './place-details-field';
 import { PlaceEditModal } from './place-edit-modal';
 import { PlaceReportModal } from './place-report-modal';
 
-export const PlaceDetails = async ({
+export const PlaceDetails = ({
   service,
   placeId,
 }: {
@@ -229,12 +230,16 @@ export const PlaceDetails = async ({
                 EMPTY_DEFAULT
               }
             />
+            <PlaceDetailField
+              title={t('core.page.explore.place.viewer.field.comment')}
+              value={<PlaceComments placeId={placeId} />}
+            />
           </Grid>
         </Flex>
       </ScrollArea>
       <AuthRestricted>
         <Flex justify="space-between">
-          <PlaceReportModal placeId={place?.id} />
+          <PlaceReportModal placeId={placeId} />
         </Flex>
       </AuthRestricted>
     </Flex>

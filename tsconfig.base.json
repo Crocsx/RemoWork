@@ -41,16 +41,15 @@
       "~workspace/lib/external/google/server": [
         "libs/external/google/src/server.ts"
       ],
-
       "~workspace/lib/feature/map": ["libs/feature/map/src/index.ts"],
       "~workspace/lib/feature/place": ["libs/feature/place/src/index.ts"],
       "~workspace/lib/feature/place/server": [
         "libs/feature/place/src/server.ts"
       ],
       "~workspace/lib/feature/places": ["libs/feature/place/src/index.ts"],
+      "~workspace/lib/shared/icons": ["libs/shared/icons/src/index.ts"],
       "~workspace/lib/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "~workspace/lib/shared/utils": ["libs/shared/utils/src/index.ts"],
-      "~workspace/lib/shared/icons": ["libs/shared/icons/src/index.ts"]
+      "~workspace/lib/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -135,6 +135,7 @@
               "meetingSpace": "Meeting Space",
               "openingTime": "Opening Time",
               "address": "Address",
+              "comment": "Comments",
               "tags": "Tags"
             },
             "refineYourSearch": "Please change your filters or map location",

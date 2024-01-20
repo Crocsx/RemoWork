@@ -4,16 +4,21 @@ import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 import { NextResponse } from 'next/server';
 import geohash from 'ngeohash';
 
-import { Place } from '../../../shared/types';
+import { PlaceUpdateRequest, PlaceUpdateResponse } from '../../../shared';
 
-export async function updatePlace(
+export async function placeUpdate(
   req: Request,
   user: DecodedIdToken,
-  { params }: { params: { id: string } }
+  { params }: { params: { placeId: string } }
 ) {
   try {
-    const id = params.id;
-    const { latitude, longitude, id: _, ...place }: Place = await req.json();
+    const id = params.placeId;
+    const {
+      latitude,
+      longitude,
+      id: _,
+      ...place
+    }: PlaceUpdateRequest = await req.json();
 
     if (!id || typeof id !== 'string') {
       return NextResponse.json(
@@ -54,9 +59,14 @@ export async function updatePlace(
       updatedBy: user.uid,
     });
 
-    return NextResponse.json(docRef.data(), {
-      status: 200,
-    });
+    const updatedDoc = await docRef.ref.get();
+
+    return NextResponse.json<PlaceUpdateResponse>(
+      updatedDoc.data() as PlaceUpdateResponse,
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);

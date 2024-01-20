@@ -1,8 +1,11 @@
 import * as Sentry from '@sentry/nextjs';
 import { firestore } from 'firebase-admin';
 import { NextResponse } from 'next/server';
+import geohash from 'ngeohash';
 
-export async function deletePlace(
+import { FirestorePlace, PlaceGetResponse } from '../../../shared';
+
+export async function placeGet(
   _: Request,
   { params }: { params: { id: string } }
 ) {
@@ -16,17 +19,26 @@ export async function deletePlace(
     }
 
     const collectionRef = firestore().collection('places');
-    const docRef = await collectionRef.doc(id).get();
+    const docSnapshot = await collectionRef.doc(id).get();
 
-    if (!docRef.exists) {
+    if (!docSnapshot.exists) {
       return NextResponse.json(
         { error: 'shared.api.error.notFound' },
         { status: 404 }
       );
     }
 
-    await docRef.ref.delete();
-    return NextResponse.json({ success: true });
+    const placeData = docSnapshot.data() as FirestorePlace;
+    const { latitude, longitude } = geohash.decode(placeData.geohash);
+
+    return NextResponse.json<PlaceGetResponse>(
+      {
+        latitude,
+        longitude,
+        ...placeData,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);

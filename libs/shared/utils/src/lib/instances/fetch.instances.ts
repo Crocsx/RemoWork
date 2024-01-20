@@ -38,13 +38,14 @@ export class FetchInstance {
     payload?: unknown,
     init?: RequestInit
   ): Promise<T> {
-    const headers = { ...FetchInstance.headers, ...init?.headers };
+    const headers = { ...init?.headers, ...FetchInstance.headers };
 
     const options: RequestInit = {
+      ...init,
       method,
       headers,
-      ...init,
     };
+    console.log(options);
 
     let url = `${FetchInstance.endpoint}${path}`;
 

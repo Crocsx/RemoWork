@@ -1,6 +1,6 @@
-export { createPlace } from './create-place';
-export { deletePlace } from './delete-place';
-export { readPlace } from './read-place';
-export { readPlaces } from './read-places';
-export { reportPlace } from './report-place';
-export { updatePlace } from './update-place';
+export { placeAdd } from './place-add';
+export { placeDelete } from './place-delete';
+export { placeGet } from './place-get';
+export { placesGet } from './places-get';
+export { placeReport } from './place-report';
+export { placeUpdate } from './place-update';

@@ -4,11 +4,21 @@ import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 import { NextResponse } from 'next/server';
 import geohash from 'ngeohash';
 
-import { Place } from '../../../shared';
+import { PlaceAddRequest, PlaceAddResponse } from '../../../shared';
 
-export async function createPlace(req: Request, user: DecodedIdToken) {
+export function assignTypes<T extends object>() {
+  return {
+    toFirestore(doc: T): firestore.DocumentData {
+      return doc;
+    },
+    fromFirestore(snapshot: firestore.QueryDocumentSnapshot): T {
+      return snapshot.data()! as T;
+    },
+  };
+}
+export async function placeAdd(req: Request, user: DecodedIdToken) {
   try {
-    const { longitude, latitude, ...place }: Place = await req.json();
+    const { longitude, latitude, ...place }: PlaceAddRequest = await req.json();
 
     if (!place.id) {
       return NextResponse.json(
@@ -42,16 +52,19 @@ export async function createPlace(req: Request, user: DecodedIdToken) {
       );
     }
 
-    const response = await documentRef.set({
+    await documentRef.set({
       ...place,
       geohash: geohash.encode(latitude, longitude),
       createdAt: Date.now(),
       createdBy: user.uid,
     });
 
-    return NextResponse.json(response, {
-      status: 201,
-    });
+    return NextResponse.json<PlaceAddResponse>(
+      (await documentRef.get()).data() as PlaceAddResponse,
+      {
+        status: 201,
+      }
+    );
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);

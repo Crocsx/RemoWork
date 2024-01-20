@@ -40,11 +40,8 @@ export const PlaceCard = ({
     retrievePlace();
   }, [service, place.id]);
 
-  const hasOpenInfo =
-    typeof details?.opening_hours?.isOpen() === 'boolean' ||
-    typeof details?.opening_hours?.open_now === 'boolean';
-  const isOpen =
-    details?.opening_hours?.isOpen() || details?.opening_hours?.open_now;
+  const isOpen = details?.opening_hours?.isOpen(new Date());
+
   return (
     <Flex direction="column" style={{ flexGrow: 1 }} gap="sm">
       <Group h={rem(180)} pos="relative">
@@ -66,7 +63,7 @@ export const PlaceCard = ({
                   {place.name}
                 </Text>
               </Anchor>
-              {hasOpenInfo && (
+              {typeof isOpen === 'boolean' && (
                 <Badge
                   color={isOpen ? 'green' : 'red'}
                   fz="xs"
@@ -74,7 +71,7 @@ export const PlaceCard = ({
                   miw="fit-content"
                 >
                   {t('shared.enum.open', {
-                    open: isOpen?.toString(),
+                    open: isOpen.toString(),
                   })}
                 </Badge>
               )}

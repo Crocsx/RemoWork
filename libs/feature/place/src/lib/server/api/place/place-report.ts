@@ -3,9 +3,11 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import util from 'util';
 
-export async function reportPlace(
+import { PlaceReportResponse } from '../../../shared';
+
+export async function placeReport(
   req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: { placeId: string } },
   {
     userId,
     email,
@@ -13,7 +15,7 @@ export async function reportPlace(
   }: { userId: string; email: string; transporter: nodemailer.Transporter }
 ) {
   try {
-    const id = params.id;
+    const id = params.placeId;
     if (!id || typeof id !== 'string') {
       return NextResponse.json(
         { error: 'place.api.error.idRequired' },
@@ -34,7 +36,10 @@ export async function reportPlace(
       text: `The place ${id} has been reported for the following reason ${reason} by ${userId}`,
     });
 
-    return NextResponse.json(null, { status: 200 });
+    return NextResponse.json<PlaceReportResponse>(
+      { sent: true },
+      { status: 200 }
+    );
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);

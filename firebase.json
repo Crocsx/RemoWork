@@ -1,0 +1,14 @@
+{
+  "firestore": {
+    "rules": "apps/remo-work/firestore.rules",
+    "indexes": "apps/remo-work//firestore.indexes.json"
+  },
+  "functions": [
+    {
+      "codebase": "remo-work-functions",
+      "source": "dist/apps/remo-work-functions",
+      "runtime": "nodejs18",
+      "ignore": ["*.local"]
+    }
+  ]
+}

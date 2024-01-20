@@ -31,8 +31,10 @@ export const AuthProvider = ({
 
   useEffect(() => {
     const setToken = async () => {
-      const tokenId = (await user?.getIdToken()) || '';
-      FetchInstance.headers.set('Authorization', `Bearer ${tokenId}`);
+      FetchInstance.headers.set(
+        'Authorization',
+        `Bearer ${await user?.getIdToken()}`
+      );
     };
     setToken();
   }, [user]);

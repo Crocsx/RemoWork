@@ -1,34 +1,29 @@
 import { isAuthenticated } from '~workspace/lib/common/auth/server';
 import {
-  deletePlace,
-  readPlace,
-  updatePlace,
+  placeCommentDelete,
+  placeCommentUpdate,
 } from '~workspace/lib/feature/place/server';
 
-import '../../initFirebaseAdmin';
-
-export const GET = async (req: Request, params: { params: { id: string } }) => {
-  return readPlace(req, params);
-};
+import '../../../initFirebaseAdmin';
 
 export const DELETE = async (
   req: Request,
-  params: { params: { id: string } }
+  params: { params: { placeId: string; commentId: string } }
 ) => {
   const { error, user } = await isAuthenticated(req);
   if (!user) {
     return error;
   }
-  return deletePlace(req, params);
+  return placeCommentDelete(req, params);
 };
 
 export const POST = async (
   req: Request,
-  params: { params: { id: string } }
+  params: { params: { placeId: string; commentId: string } }
 ) => {
   const { error, user } = await isAuthenticated(req);
   if (!user) {
     return error;
   }
-  return updatePlace(req, user, params);
+  return placeCommentUpdate(req, params);
 };
