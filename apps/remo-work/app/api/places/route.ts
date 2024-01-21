@@ -1,10 +1,13 @@
 import { isAuthenticated } from '~workspace/lib/common/auth/server';
-import { placeAdd, placesGet } from '~workspace/lib/feature/place/server';
-
-import '../initFirebaseAdmin';
+import { PlacesGetRequest } from '~workspace/lib/feature/place';
+import { placesGet, placeAdd } from '~workspace/lib/feature/place/server';
+import { readQueryString } from '~workspace/lib/shared/utils';
 
 export const GET = async (req: Request) => {
-  return placesGet(req);
+  const { searchParams } = new URL(req.url);
+  const requestParams = readQueryString<PlacesGetRequest>(searchParams);
+
+  return placesGet(requestParams);
 };
 
 export const PUT = async (req: Request) => {

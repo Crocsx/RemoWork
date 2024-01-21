@@ -2,14 +2,14 @@ import { Carousel, CarouselSlide } from '@mantine/carousel';
 import { Container, Title, Text, rem } from '@mantine/core';
 import { getTranslations } from 'next-intl/server';
 
-import { Place } from '~workspace/lib/feature/place';
-import { FetchInstance } from '~workspace/lib/shared/utils';
+import { PlacesGetResponse } from '~workspace/lib/feature/place';
+import { placesGet } from '~workspace/lib/feature/place/server';
 
 import { PlaceCarouselCard } from './place-carousel-card';
 
 export const PlacesCarousel = async () => {
   const t = await getTranslations();
-  const places = await FetchInstance.get<Place[]>(`/places`, {
+  const response = await placesGet({
     filters: {},
     sortBy: {
       field: 'createdAt',
@@ -17,6 +17,7 @@ export const PlacesCarousel = async () => {
     },
     perPage: 5,
   });
+  const places = (await response.json()) as PlacesGetResponse;
 
   return (
     <Container size="lg" py="xl">

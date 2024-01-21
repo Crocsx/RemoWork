@@ -4,8 +4,6 @@ import {
   placeCommentUpdate,
 } from '~workspace/lib/feature/place/server';
 
-import '../../../initFirebaseAdmin';
-
 export const DELETE = async (
   req: Request,
   params: { params: { placeId: string; commentId: string } }

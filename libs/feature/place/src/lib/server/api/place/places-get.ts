@@ -3,8 +3,6 @@ import { firestore } from 'firebase-admin';
 import { NextResponse } from 'next/server';
 import geohash from 'ngeohash';
 
-import { readQueryString } from '~workspace/lib/shared/utils';
-
 import {
   FirestorePlace,
   Place,
@@ -12,12 +10,9 @@ import {
   PlacesGetResponse,
 } from '../../../shared';
 
-export async function placesGet(req: Request) {
+export async function placesGet(params: PlacesGetRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const requestParams = readQueryString<PlacesGetRequest>(searchParams);
-
-    const { filters, sortBy, fromDocId, perPage = 20 } = requestParams;
+    const { filters, sortBy, fromDocId, perPage = 20 } = params;
 
     let query: firestore.Query<firestore.DocumentData> =
       firestore().collection('places');

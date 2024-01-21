@@ -9,7 +9,7 @@ import {
   NoiseLevel,
   PricingModel,
   QuantityLevel,
-  ReadPlacesRequest,
+  PlacesGetRequest,
   SpeedLevel,
 } from '~workspace/lib/feature/place';
 
@@ -17,14 +17,14 @@ export const PlaceFilters = ({
   filters,
   filterChangeHandler,
 }: {
-  filters: ReadPlacesRequest['filters'];
-  filterChangeHandler: (filter: ReadPlacesRequest['filters']) => void;
+  filters: PlacesGetRequest['filters'];
+  filterChangeHandler: (filter: PlacesGetRequest['filters']) => void;
 }) => {
   const t = useTranslations();
   const handleChipClick = useCallback(
-    <K extends keyof ReadPlacesRequest['filters']>(
+    <K extends keyof PlacesGetRequest['filters']>(
       key: K,
-      value: ReadPlacesRequest['filters'][K]
+      value: PlacesGetRequest['filters'][K]
     ) => {
       const newFilters = { ...filters };
       if (newFilters[key] === value) {

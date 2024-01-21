@@ -4,7 +4,6 @@ import { TranslationValues } from 'next-intl';
 
 export interface FormType {
   reason: string;
-  placeId: string;
 }
 
 export const [FormContext, useFormContext, useForm] =

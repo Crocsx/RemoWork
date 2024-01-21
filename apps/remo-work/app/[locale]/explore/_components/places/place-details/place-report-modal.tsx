@@ -18,9 +18,9 @@ export const PlaceReportModal = ({ placeId }: { placeId?: string }) => {
         title={t('place.component.placeReport.modal.title')}
       >
         <PlaceReport
+          placeId={placeId || ''}
           initialValues={{
             reason: '',
-            placeId: placeId || '',
           }}
           onReported={close}
         />

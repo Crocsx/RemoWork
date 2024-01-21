@@ -3,8 +3,6 @@ import nodemailer from 'nodemailer';
 import { isAuthenticated } from '~workspace/lib/common/auth/server';
 import { placeReport } from '~workspace/lib/feature/place/server';
 
-import '../../../initFirebaseAdmin';
-
 export const POST = async (
   req: Request,
   params: { params: { placeId: string } }

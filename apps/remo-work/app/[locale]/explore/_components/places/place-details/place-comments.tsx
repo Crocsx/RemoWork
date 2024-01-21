@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { LoadingOverlay, Textarea, Text, Button, Flex } from '@mantine/core';
 import { Form, useForm } from '@mantine/form';
@@ -7,54 +7,30 @@ import { useInViewport } from '@mantine/hooks';
 import { IconSend } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 
-import {
-  PlaceComment,
-  PlaceCommentAddRequest,
-  PlaceCommentsGetRequest,
-} from '~workspace/lib/feature/place';
-import { useApiRequestLazy, FetchInstance } from '~workspace/lib/shared/utils';
+import { PlaceCommentAddRequest } from '~workspace/lib/feature/place';
+
+import { useAddComment, useGetComments } from './fetcher';
 
 export const PlaceComments = ({ placeId }: { placeId: string }) => {
   const t = useTranslations();
   const { ref, inViewport } = useInViewport();
-  const [comments, setComments] = useState<PlaceComment[]>();
   const { getInputProps, reset, ...form } = useForm<PlaceCommentAddRequest>();
 
-  const { loading, execute: loadComments } = useApiRequestLazy({
-    onSuccess: useCallback((response: PlaceComment[]) => {
-      setComments(response);
-    }, []),
-    operation: useCallback(
-      (filters: PlaceCommentsGetRequest) => {
-        return FetchInstance.get<PlaceComment[]>(
-          `/places/${placeId}/comments`,
-          filters
-        );
-      },
-      [placeId]
-    ),
-  });
-  console.log(FetchInstance.headers);
-  const { loading: sending, execute } = useApiRequestLazy({
-    operation: useCallback(
-      async (values: PlaceCommentAddRequest) =>
-        FetchInstance.put(`/places/${placeId}/comments`, values),
-      [placeId]
-    ),
-  });
+  const { comments, loading, getComments } = useGetComments({ placeId });
+  const { loading: sending, sendComment } = useAddComment({ placeId });
 
   useEffect(() => {
     if (inViewport) {
-      loadComments({});
+      getComments();
     }
-  }, [inViewport, loadComments]);
+  }, [inViewport, getComments, placeId]);
 
   const submitHandler = useCallback(
     async (formData: PlaceCommentAddRequest) => {
-      await execute(formData);
+      await sendComment(formData);
       reset();
     },
-    [execute, reset]
+    [reset, sendComment]
   );
 
   return (

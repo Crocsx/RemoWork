@@ -7,8 +7,6 @@ import { LoadingOverlay } from '@mantine/core';
 import * as Sentry from '@sentry/nextjs';
 import { getAuth } from 'firebase/auth';
 
-import { FetchInstance } from '~workspace/lib/shared/utils';
-
 import { AuthContext } from './auth-context';
 
 export const AuthProvider = ({
@@ -27,16 +25,6 @@ export const AuthProvider = ({
         id: uid,
       });
     }
-  }, [user]);
-
-  useEffect(() => {
-    const setToken = async () => {
-      FetchInstance.headers.set(
-        'Authorization',
-        `Bearer ${await user?.getIdToken()}`
-      );
-    };
-    setToken();
   }, [user]);
 
   return (

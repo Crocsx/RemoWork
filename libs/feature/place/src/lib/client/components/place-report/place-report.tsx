@@ -6,20 +6,16 @@ import { Text, Button, Textarea, Fieldset, Group } from '@mantine/core';
 import { Form, useForm } from '@mantine/form';
 import { useTranslations } from 'next-intl';
 
-import { notifications } from '~workspace/lib/shared/ui';
-import {
-  useApiRequestLazy,
-  ErrorUtils,
-  FetchInstance,
-} from '~workspace/lib/shared/utils';
-
+import { usePlaceReport } from './fetcher';
 import { FormType, validator } from './validator';
 
 export const PlaceReport = ({
   initialValues,
+  placeId,
   onReported,
 }: {
   initialValues: FormType;
+  placeId: string;
   onReported: () => void;
 }) => {
   const t = useTranslations();
@@ -29,43 +25,18 @@ export const PlaceReport = ({
     validate: validator(t),
   });
 
-  const { loading, execute } = useApiRequestLazy({
-    operation: useCallback(
-      async ({ reason, placeId }: FormType) =>
-        FetchInstance.post(`/places/${placeId}/report`, {
-          reason,
-        }),
-      []
-    ),
-    onSuccess: useCallback(() => {
-      notifications.success({
-        title: t(
-          'place.component.placeReport.notification.placeReported.title'
-        ),
-        message: t(
-          'place.component.placeReport.notification.placeReported.description'
-        ),
-      });
+  const { reporting, reportPlace } = usePlaceReport({ placeId });
+
+  const reportHandler = useCallback(
+    async (formData: FormType) => {
+      await reportPlace(formData);
       onReported();
-    }, [onReported, t]),
-    onFailure: useCallback(
-      (e: unknown) => {
-        notifications.error({
-          title: t(
-            'place.component.placeReport.notification.placeReported.placeReportedFailure.title'
-          ),
-          message: t(
-            'place.component.placeReport.notification.placeReported.placeReportedFailure.description',
-            { error: t(ErrorUtils.getErrorMessage(e)) }
-          ),
-        });
-      },
-      [t]
-    ),
-  });
+    },
+    [onReported, reportPlace]
+  );
 
   return (
-    <Form noValidate onSubmit={execute} form={{ getInputProps, ...form }}>
+    <Form noValidate onSubmit={reportHandler} form={{ getInputProps, ...form }}>
       <Text>{t('place.component.placeReport.modal.description')}</Text>
       <Fieldset>
         <Textarea
@@ -76,7 +47,7 @@ export const PlaceReport = ({
         />
       </Fieldset>
       <Group justify="space-between" mt="lg">
-        <Button type="submit" loading={loading}>
+        <Button type="submit" loading={reporting}>
           {t('shared.button.report')}
         </Button>
       </Group>

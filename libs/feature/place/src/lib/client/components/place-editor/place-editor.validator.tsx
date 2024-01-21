@@ -12,11 +12,11 @@ import {
 } from '~workspace/lib/feature/place';
 
 export interface FormType {
-  id?: string;
-  name?: string;
+  id: string;
+  name: string;
+  longitude: number;
+  latitude: number;
   country?: string;
-  longitude?: number;
-  latitude?: number;
   illustration?: string;
   address?: string;
   priceModel?: PricingModel;

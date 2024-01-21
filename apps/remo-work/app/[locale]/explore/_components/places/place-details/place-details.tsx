@@ -20,17 +20,13 @@ import { useTranslations } from 'next-intl';
 import { AuthRestricted } from '~workspace/lib/common/auth';
 import {
   CertaintyLevel,
-  Place,
   PlaceOpeningTime,
   PlaceUtils,
 } from '~workspace/lib/feature/place';
 import { Image } from '~workspace/lib/shared/ui';
-import {
-  EMPTY_DEFAULT,
-  FetchInstance,
-  useApiRequest,
-} from '~workspace/lib/shared/utils';
+import { EMPTY_DEFAULT } from '~workspace/lib/shared/utils';
 
+import { useGetPlace } from './fetcher';
 import { PlaceComments } from './place-comments';
 import { PlaceDetailField } from './place-details-field';
 import { PlaceEditModal } from './place-edit-modal';
@@ -47,9 +43,7 @@ export const PlaceDetails = ({
   const t = useTranslations();
   const [details, setDetails] =
     useState<google.maps.places.PlaceResult | null>();
-  const { loading, response: place } = useApiRequest<Place>({
-    operation: () => FetchInstance.get<Place>(`/places/${placeId}`),
-  });
+  const { loading, place } = useGetPlace({ placeId });
 
   useEffect(() => {
     const retrievePlace = async () => {

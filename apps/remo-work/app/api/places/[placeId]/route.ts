@@ -5,8 +5,6 @@ import {
   placeUpdate,
 } from '~workspace/lib/feature/place/server';
 
-import '../../initFirebaseAdmin';
-
 export const GET = async (req: Request, params: { params: { id: string } }) => {
   return placeGet(req, params);
 };

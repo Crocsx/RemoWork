@@ -5,13 +5,7 @@ import { Button, Flex } from '@mantine/core';
 import { Form } from '@mantine/form';
 import { useTranslations } from 'next-intl';
 
-import { notifications } from '~workspace/lib/shared/ui';
-import {
-  ErrorUtils,
-  FetchInstance,
-  useApiRequestLazy,
-} from '~workspace/lib/shared/utils';
-
+import { useCreatePlace, useUpdatePlace } from './fetcher';
 import { Fields } from './fields';
 import {
   FormContextProvider,
@@ -25,7 +19,12 @@ export const PlaceEditor = ({
   onUpdated,
   details,
   mode = 'creation',
-  initialValues = {},
+  initialValues = {
+    id: '',
+    latitude: 0,
+    longitude: 0,
+    name: '',
+  },
 }: {
   onCreated?: () => void;
   onUpdated?: () => void;
@@ -35,48 +34,8 @@ export const PlaceEditor = ({
 }) => {
   const t = useTranslations();
   const isCreation = useMemo(() => mode === 'creation', [mode]);
-  const { loading, execute } = useApiRequestLazy({
-    operation: useCallback(
-      async (values: FormType) =>
-        isCreation
-          ? FetchInstance.put(`/places`, values)
-          : FetchInstance.post(`/places/${values.id}`, values),
-      [isCreation]
-    ),
-    onSuccess: useCallback(() => {
-      notifications.success({
-        title: t(
-          isCreation
-            ? 'place.component.placeEditor.notification.placeSaved.title'
-            : 'place.component.placeEditor.notification.placeUpdated.title'
-        ),
-        message: t(
-          isCreation
-            ? 'place.component.placeEditor.notification.placeSaved.description'
-            : 'place.component.placeEditor.notification.placeUpdated.description'
-        ),
-      });
-      isCreation ? onCreated?.() : onUpdated?.();
-    }, [isCreation, onUpdated, onCreated, t]),
-    onFailure: useCallback(
-      (e: unknown) => {
-        notifications.error({
-          title: t(
-            isCreation
-              ? 'place.component.placeEditor.notification.placeFailedToSaved.title'
-              : 'place.component.placeEditor.notification.placeFailedToUpdate.title'
-          ),
-          message: t(
-            isCreation
-              ? 'place.component.placeEditor.notification.placeFailedToSaved.description'
-              : 'place.component.placeEditor.notification.placeFailedToUpdate.description',
-            { error: t(ErrorUtils.getErrorMessage(e)) }
-          ),
-        });
-      },
-      [isCreation, t]
-    ),
-  });
+  const { loading: creating, createPlace } = useCreatePlace();
+  const { loading: updating, updatePlace } = useUpdatePlace();
 
   const form = useForm({
     initialValues,
@@ -92,9 +51,15 @@ export const PlaceEditor = ({
 
   const submitHandler = useCallback(
     async ({ ...values }: FormType) => {
-      await execute(values);
+      if (isCreation) {
+        await createPlace(values);
+        onCreated?.();
+      } else {
+        await updatePlace(values);
+        onUpdated?.();
+      }
     },
-    [execute]
+    [createPlace, isCreation, onCreated, onUpdated, updatePlace]
   );
 
   return (
@@ -102,7 +67,12 @@ export const PlaceEditor = ({
       <Form onSubmit={submitHandler} form={form} noValidate>
         <Flex direction="column">
           <Fields details={details} />
-          <Button type="submit" loading={loading} justify="end" ml="auto">
+          <Button
+            type="submit"
+            loading={creating || updating}
+            justify="end"
+            ml="auto"
+          >
             {mode === 'creation'
               ? t('shared.action.add', {
                   entity: t('shared.entity.place', { count: 1 }),

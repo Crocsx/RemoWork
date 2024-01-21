@@ -4,8 +4,6 @@ import {
   placeCommentsGet,
 } from '~workspace/lib/feature/place/server';
 
-import '../../../initFirebaseAdmin';
-
 export const GET = async (
   req: Request,
   params: { params: { placeId: string } }

@@ -2,14 +2,14 @@
 
 import { createContext, useContext } from 'react';
 
-import { Place, ReadPlacesRequest } from '~workspace/lib/feature/place';
+import { Place, PlacesGetRequest } from '~workspace/lib/feature/place';
 
 export type PlaceContextType = {
   readonly places: Place[];
   readonly selectedPlaceId: string | null;
   readonly setSelectedPlaceId: (place: string) => void;
-  readonly setFilters: (places: ReadPlacesRequest["filters"]) => void;
-  readonly filters: ReadPlacesRequest["filters"];
+  readonly setFilters: (places: PlacesGetRequest['filters']) => void;
+  readonly filters: PlacesGetRequest['filters'];
   readonly loading: boolean;
   readonly error: unknown;
 };
