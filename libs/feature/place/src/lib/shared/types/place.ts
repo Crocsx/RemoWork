@@ -23,9 +23,9 @@ export interface FirestorePlace {
   comfortLevel?: ComfortLevel;
   tags?: string[];
   createdBy?: string;
-  createdAt?: string;
+  createdAt?: number;
   updatedBy?: string;
-  updatedAt?: string;
+  updatedAt?: number;
 }
 
 export interface Place {
@@ -48,15 +48,15 @@ export interface Place {
   meetingSpace?: CertaintyLevel;
   tags?: string[];
   createdBy?: string;
-  createdAt?: string;
+  createdAt?: number;
   updatedBy?: string;
-  updatedAt?: string;
+  updatedAt?: number;
 }
 
 export interface PlaceComment {
   id: string;
   comment: string;
   createdBy: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: number;
+  updatedAt?: number;
 }

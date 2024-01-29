@@ -3,7 +3,7 @@ import { Group, Avatar, Text } from '@mantine/core';
 interface CommentProps {
   avatar: string;
   username: string;
-  createDate: Date;
+  createDate: string;
   comment: string;
 }
 
@@ -20,7 +20,7 @@ export function Comment({
         <div>
           <Text size="sm">{username}</Text>
           <Text size="xs" c="dimmed">
-            {createDate.toString()}
+            {createDate}
           </Text>
         </div>
       </Group>

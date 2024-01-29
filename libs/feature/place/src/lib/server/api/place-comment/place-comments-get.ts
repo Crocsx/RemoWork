@@ -56,7 +56,6 @@ export async function placeCommentsGet(req: Request, placeId: string) {
     });
 
     const users = await fetchUserDataBatch(Array.from(userIds));
-
     const commentsWithUserData = comments.map((comment) => {
       return {
         ...comment,
@@ -80,6 +79,9 @@ export async function placeCommentsGet(req: Request, placeId: string) {
 async function fetchUserDataBatch(userIds: string[]) {
   const users: Record<string, User> = {};
   for (const userId of userIds) {
+    if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+      continue; // Skip invalid or empty userIds
+    }
     const userDoc = await firestore().collection('users').doc(userId).get();
     if (userDoc.exists) {
       const userData = userDoc.data() as User;

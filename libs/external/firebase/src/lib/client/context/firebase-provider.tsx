@@ -3,15 +3,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { LoadingOverlay } from '@mantine/core';
-import { initializeAnalytics } from 'firebase/analytics';
-import { FirebaseOptions, getApp, initializeApp } from 'firebase/app';
-import {
-  RemoteConfigSettings,
-  fetchAndActivate,
-  getRemoteConfig,
-} from 'firebase/remote-config';
+import { FirebaseOptions } from 'firebase/app';
+import { RemoteConfigSettings } from 'firebase/remote-config';
 
 import { FirebaseContext } from './firebase-context';
+import { initFirebaseClient } from '../factory';
 
 interface FirebaseProviderProps {
   config: FirebaseOptions;
@@ -31,17 +27,7 @@ export const FirebaseProvider = ({
 
     (async () => {
       try {
-        initializeApp(config);
-        initializeAnalytics(getApp());
-
-        const remoteConfigInstance = getRemoteConfig(getApp());
-        if (remoteConfig) {
-          remoteConfigInstance.settings = {
-            ...remoteConfig,
-          };
-        }
-
-        await fetchAndActivate(remoteConfigInstance);
+        await initFirebaseClient(config);
 
         setReady(true);
         setLoading(false);

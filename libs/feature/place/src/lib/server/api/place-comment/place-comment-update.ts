@@ -48,7 +48,7 @@ export async function placeCommentUpdate(
       );
     }
 
-    await commentRef.ref.update({ comment, updateAt: Date.now() });
+    await commentRef.ref.update({ comment, updatedAt: Date.now() });
 
     return NextResponse.json(commentRef.data(), {
       status: 200,

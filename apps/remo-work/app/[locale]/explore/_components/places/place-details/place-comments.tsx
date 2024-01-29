@@ -6,16 +6,20 @@ import { Form, useForm } from '@mantine/form';
 import { useInViewport } from '@mantine/hooks';
 import { IconSend } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
+import { useFormatter } from 'next-intl';
 
 import { PlaceCommentAddRequest } from '~workspace/lib/feature/place';
+import { Comment } from '~workspace/lib/shared/ui';
 
 import { useAddComment, useGetComments } from './fetcher';
 
 export const PlaceComments = ({ placeId }: { placeId: string }) => {
   const t = useTranslations();
   const { ref, inViewport } = useInViewport();
-  const { getInputProps, reset, ...form } = useForm<PlaceCommentAddRequest>();
-
+  const { getInputProps, reset, ...form } = useForm<PlaceCommentAddRequest>({
+    initialValues: { comment: '' },
+  });
+  const format = useFormatter();
   const { comments, loading, getComments } = useGetComments({ placeId });
   const { loading: sending, sendComment } = useAddComment({ placeId });
 
@@ -57,7 +61,22 @@ export const PlaceComments = ({ placeId }: { placeId: string }) => {
           </Button>
         </Flex>
       </Form>
-      {comments?.map((c) => c.comment)}
+      {comments?.map((c) => (
+        <Comment
+          key={c.id}
+          avatar="https://placehold.co/640x360"
+          username={'bob'}
+          createDate={
+            c.createdAt
+              ? format.dateTime(Number(c.createdAt), {
+                  hour: 'numeric',
+                  minute: 'numeric',
+                })
+              : ''
+          }
+          comment={c.comment}
+        />
+      ))}
     </div>
   );
 };

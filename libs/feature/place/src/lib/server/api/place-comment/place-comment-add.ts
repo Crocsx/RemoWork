@@ -6,13 +6,13 @@ import { PlaceCommentAddRequest } from '../../../shared';
 
 export async function placeCommentAdd(
   req: Request,
-  { params }: { params: { placeId: string } },
+  placeId: string,
   { userId }: { userId: string }
 ) {
   try {
     const { comment }: PlaceCommentAddRequest = await req.json();
-    const placeId = params.placeId;
-    if (!params.placeId) {
+
+    if (!placeId) {
       return NextResponse.json(
         { error: 'place.api.error.idRequired' },
         { status: 400 }
@@ -32,9 +32,9 @@ export async function placeCommentAdd(
       .collection('comments')
       .add({
         comment,
-        createBy: userId,
+        createdBy: userId,
         createdAt: Date.now(),
-        updateAt: Date.now(),
+        updatedAt: Date.now(),
       });
 
     await firestore()

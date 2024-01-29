@@ -13,7 +13,7 @@ export const GET = async (
 
 export const PUT = async (
   req: Request,
-  params: { params: { placeId: string } }
+  { params }: { params: { placeId: string } }
 ) => {
   const { error, user } = await isAuthenticated();
 
@@ -21,7 +21,7 @@ export const PUT = async (
     return error;
   }
 
-  return placeCommentAdd(req, params, {
+  return placeCommentAdd(req, params?.placeId, {
     userId: user.uid,
   });
 };
