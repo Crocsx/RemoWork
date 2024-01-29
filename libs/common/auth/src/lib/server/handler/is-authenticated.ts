@@ -1,12 +1,13 @@
 import * as Sentry from '@sentry/nextjs';
 import { auth } from 'firebase-admin';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-export const isAuthenticated = async (req: Request) => {
+export const isAuthenticated = async () => {
   try {
-    const tokenId = req.headers.get('Authorization')?.replace('Bearer ', '');
+    const tokenID = cookies().get('session')?.value;
 
-    if (!tokenId) {
+    if (!tokenID) {
       return {
         user: null,
         error: NextResponse.json(
@@ -16,7 +17,7 @@ export const isAuthenticated = async (req: Request) => {
       };
     }
 
-    const decodedClaims = await auth().verifyIdToken(tokenId, true);
+    const decodedClaims = await auth().verifyIdToken(tokenID, true);
 
     if (!decodedClaims) {
       return {

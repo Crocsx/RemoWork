@@ -5,10 +5,10 @@ import { useIdToken } from 'react-firebase-hooks/auth';
 
 import { LoadingOverlay } from '@mantine/core';
 import * as Sentry from '@sentry/nextjs';
+import { setCookie, deleteCookie } from 'cookies-next';
 import { getAuth } from 'firebase/auth';
 
 import { AuthContext } from './auth-context';
-
 export const AuthProvider = ({
   children,
 }: {
@@ -18,13 +18,25 @@ export const AuthProvider = ({
 
   useEffect(() => {
     const { email, uid } = user || {};
-
     if (email) {
       Sentry.setUser({
         email,
         id: uid,
       });
     }
+  }, [user]);
+
+  useEffect(() => {
+    const setToken = async () => {
+      const token = await user?.getIdToken();
+      if (token) {
+        setCookie('session', token);
+      } else {
+        deleteCookie('session');
+      }
+    };
+
+    setToken();
   }, [user]);
 
   return (
