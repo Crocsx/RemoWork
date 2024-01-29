@@ -9,10 +9,9 @@ import { PlaceUpdateRequest, PlaceUpdateResponse } from '../../../shared';
 export async function placeUpdate(
   req: Request,
   user: DecodedIdToken,
-  { params }: { params: { placeId: string } }
+  placeId: string
 ) {
   try {
-    const id = params.placeId;
     const {
       latitude,
       longitude,
@@ -20,7 +19,7 @@ export async function placeUpdate(
       ...place
     }: PlaceUpdateRequest = await req.json();
 
-    if (!id || typeof id !== 'string') {
+    if (!placeId || typeof placeId !== 'string') {
       return NextResponse.json(
         { error: 'place.api.error.idRequired' },
         { status: 400 }
@@ -42,7 +41,7 @@ export async function placeUpdate(
     }
 
     const collectionRef = firestore().collection('places');
-    const docRef = await collectionRef.doc(id).get();
+    const docRef = await collectionRef.doc(placeId).get();
 
     if (!docRef.exists) {
       return NextResponse.json(
@@ -53,7 +52,7 @@ export async function placeUpdate(
 
     docRef.ref.update({
       ...place,
-      id,
+      id: placeId,
       geohash: geohash.encode(latitude, longitude),
       updatedAt: Date.now(),
       updatedBy: user.uid,

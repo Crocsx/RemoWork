@@ -8,7 +8,7 @@ export const DELETE = async (
   req: Request,
   params: { params: { placeId: string; commentId: string } }
 ) => {
-  const { error, user } = await isAuthenticated(req);
+  const { error, user } = await isAuthenticated();
   if (!user) {
     return error;
   }
@@ -19,7 +19,7 @@ export const POST = async (
   req: Request,
   params: { params: { placeId: string; commentId: string } }
 ) => {
-  const { error, user } = await isAuthenticated(req);
+  const { error, user } = await isAuthenticated();
   if (!user) {
     return error;
   }

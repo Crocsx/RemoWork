@@ -60,7 +60,7 @@ export const PlaceDetails = ({
   }, [service, placeId]);
 
   return (
-    <Flex direction="column" flex="1" gap="sm">
+    <Flex direction="column" flex="1" gap="sm" h="100%">
       <Flex justify="space-between">
         <Button variant="outline" onClick={back}>
           <IconArrowLeft />

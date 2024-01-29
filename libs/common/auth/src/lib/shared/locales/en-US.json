@@ -1,8 +1,9 @@
 {
-  "place": {
+  "auth": {
     "api": {
       "error": {
-        "tokenInvalid": "Token is invalid"
+        "tokenInvalid": "Token is invalid",
+        "tokenMissing": "Token is Missing"
       }
     }
   }

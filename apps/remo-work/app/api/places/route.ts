@@ -11,7 +11,7 @@ export const GET = async (req: Request) => {
 };
 
 export const PUT = async (req: Request) => {
-  const { error, user } = await isAuthenticated(req);
+  const { error, user } = await isAuthenticated();
   if (!user) {
     return error;
   }

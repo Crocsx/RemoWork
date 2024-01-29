@@ -7,7 +7,7 @@ export const POST = async (
   req: Request,
   params: { params: { placeId: string } }
 ) => {
-  const { error, user } = await isAuthenticated(req);
+  const { error, user } = await isAuthenticated();
   if (!user) {
     return error;
   }

@@ -4,13 +4,9 @@ import { NextResponse } from 'next/server';
 
 import { PlaceDeleteResponse } from '../../../shared';
 
-export async function placeDelete(
-  _: Request,
-  { params }: { params: { placeId: string } }
-) {
+export async function placeDelete(_: Request, placeId: string) {
   try {
-    const id = params.placeId;
-    if (!id || typeof id !== 'string') {
+    if (!placeId || typeof placeId !== 'string') {
       return NextResponse.json(
         { error: 'place.api.error.idRequired' },
         { status: 400 }
@@ -18,7 +14,7 @@ export async function placeDelete(
     }
 
     const collectionRef = firestore().collection('places');
-    const docRef = await collectionRef.doc(id).get();
+    const docRef = await collectionRef.doc(placeId).get();
 
     if (!docRef.exists) {
       return NextResponse.json(

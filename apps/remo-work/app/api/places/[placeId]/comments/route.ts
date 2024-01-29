@@ -6,16 +6,16 @@ import {
 
 export const GET = async (
   req: Request,
-  params: { params: { placeId: string } }
+  { params }: { params: { placeId: string } }
 ) => {
-  return placeCommentsGet(req, params);
+  return placeCommentsGet(req, params?.placeId);
 };
 
 export const PUT = async (
   req: Request,
   params: { params: { placeId: string } }
 ) => {
-  const { error, user } = await isAuthenticated(req);
+  const { error, user } = await isAuthenticated();
 
   if (!user) {
     return error;

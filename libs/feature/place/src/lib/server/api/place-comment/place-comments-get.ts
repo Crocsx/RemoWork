@@ -11,16 +11,12 @@ import {
   PlaceCommentsGetResponse,
 } from '../../../shared';
 
-export async function placeCommentsGet(
-  req: Request,
-  { params }: { params: { placeId: string } }
-) {
+export async function placeCommentsGet(req: Request, placeId: string) {
   try {
     const { searchParams } = new URL(req.url);
     const requestParams =
       readQueryString<PlaceCommentsGetRequest>(searchParams);
     const { fromDocId, sortBy, perPage = 20 } = requestParams;
-    const placeId = params.placeId;
 
     if (!placeId) {
       return NextResponse.json(
